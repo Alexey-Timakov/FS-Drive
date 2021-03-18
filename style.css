@@ -1,0 +1,135 @@
+@font-face {
+    font-family: Roboto;
+    src: url('./fonts/Roboto-Regular.ttf');
+}
+body {
+    font-family: Roboto;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+section {
+    padding: 10px;
+}
+
+.menu-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menu-right__nav {
+    display: flex;
+    flex-direction: row;
+    margin-right: 0px;
+}
+
+.menu-right__nav div {
+    margin: 15px;
+    font-size: 16px;
+}
+
+.menu-right__nav a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu-right__button {
+    width: 106px;
+    height: 43px;
+    border: 1px solid rgba(27, 27, 27, 0.4);
+    border-radius: 6px;
+    background-color: white;
+    font-size: 16px;
+}
+
+.about-us {
+    text-align: center;
+    margin: 40px;
+}
+
+.about-us__text h1 {
+    font-weight: bold;
+    font-size: 64px;
+    margin: 30px;
+}
+
+.about-us__text p {
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.about-contacts {
+    text-align: center;
+    margin: 40px;
+    background-color: #F7F9FB;
+}
+
+.about-contacts__block {
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+
+.about-contacts h2 {
+    font-size: 48px;
+}
+
+.about-contacts__block-info {
+    margin: 20px 68px;
+}
+.about-contacts__block-info_descr {
+    font-size: 14px;
+    color: #4F4F4F;
+}
+.about-contacts__block-info_data {
+    font-size: 20px;
+    color: #000000;
+}
+
+.about-team {
+    text-align: center;
+}
+
+.about-team h2 {
+    font-size: 48px;
+    margin: 30px;
+}
+
+.about-team__all {
+    display: flex;
+    justify-content: center;
+}
+
+.about-team__all figure {
+    margin: 25px 40px 25px 40px;
+}
+
+.about-team__all_name {
+    margin: 8px;
+    font-size: 20px;
+    color: #000000;
+}
+.about-team__all_ocupation {
+    margin: 8px;
+    font-size: 14px;
+    color: #828282;
+}
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3F3D56;
+    padding: 50px 40px;
+}
+
+.footer__item-left {
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.footer__item-right a {
+    padding: 0px 10px;
+}
