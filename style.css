@@ -137,6 +137,7 @@ section {
 .about-team__all {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .about-team__all figure {
