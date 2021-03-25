@@ -4,6 +4,7 @@
 }
 body {
     font-family: Roboto;
+    margin: 0px;
 }
 header {
     display: flex;
@@ -19,7 +20,19 @@ section {
     align-items: center
 }
 
+.menu-logo svg {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-logo svg:hover,
+.menu-logo svg:hover path,
+.menu-logo svg:hover rect {
+    fill: #61A199;
+}
+
 .menu-right {
+    margin: 0px 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,13 +45,20 @@ section {
 }
 
 .menu-right__nav div {
-    margin: 15px;
-    font-size: 16px;
+    padding: 15px;
 }
 
 .menu-right__nav a {
+    font-size: 16px;
     text-decoration: none;
     color: black;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.menu-right__nav a:hover,
+.about-contacts__block-info_data:hover {
+    filter: drop-shadow(0 0 5px #61A199);
 }
 
 .menu-right__button {
@@ -48,6 +68,15 @@ section {
     border-radius: 6px;
     background-color: white;
     font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+}
+
+.menu-right__button:hover {
+    /* background-color: #3F3D56; */
+    background-color: #61A199;
+    color: white;
 }
 
 .about-us {
@@ -93,6 +122,7 @@ section {
     font-size: 20px;
     color: #000000;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .about-team {
@@ -137,5 +167,15 @@ footer {
 }
 
 .footer__item-right a {
+    cursor: pointer;
     padding: 0px 10px;
+}
+
+.footer__item-right img {
+    transition: all 0.3s ease;
+}
+
+.footer__item-right img:hover {
+    filter: drop-shadow(0 0 2px white);
+    transform: scale(1.1);
 }
