@@ -34,7 +34,25 @@ header {
     flex-direction: row;
     align-items: center;
 }
+.menu-right__compact {
+    display: none;
+}
+@media screen and (max-width: 376px) {
+    .menu-right {
+        display: none;
+    }
+    .menu-right__compact {
+        display: inline;
+        margin: 22px 20px;
+    }
+    .menu-right__compact:hover {
+        filter: drop-shadow(0 0 5px #61A199);
+    }
+    .menu-logo {
+        margin: 20px 20px;
+    }
 
+}
 .menu-right__nav {
     display: flex;
     flex-direction: row;
@@ -79,8 +97,7 @@ header {
 
 .about-us {
     text-align: center;
-    margin: 76px auto 67px;
-    width: 925px;
+    margin: 76px auto 76px;
 }
 
 .about-us figure {
@@ -97,12 +114,36 @@ header {
 }
 
 .about-us__text p {
+    max-width: 925px;
     font-weight: normal;
     font-size: 24px;
     line-height: 35px;
     margin: auto;
 }
 
+@media screen and (max-width: 376px) {
+    .about-us {
+        width: 335px;
+        margin: 35px auto;
+    }
+    .about-us__text {
+        margin: 37px auto;
+    }
+    .about-us img {
+        width: 267px;
+        height: 202px;
+        /* transform: scale(0.75); */
+    }
+    .about-us__text h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    .about-us__text p {
+        font-size: 16px;
+        line-height: 24px;
+        width: fit-content;
+    }
+}
 .about-contacts {
 
     text-align: center;
@@ -125,12 +166,14 @@ header {
 }
 
 .about-contacts__block-info {
-    margin: 20px 68px 0px;
+    margin: 20px 68px 20px;
     width: 264px;
 }
 .about-contacts__block-info_descr {
     font-size: 14px;
     color: #4F4F4F;
+    min-width: 0px;
+    word-wrap: break-word;
 }
 .about-contacts__block-info_data {
     font-size: 20px;
@@ -139,8 +182,33 @@ header {
     cursor: pointer;
 }
 
+@media screen and (max-width: 376px) {
+    .about-contacts {
+        height: 237px;
+    }
+    .about-contacts__block {
+        display: inline;
+    }
+    .about-contacts__block img {
+        display: none;
+    }
+    .about-contacts h2 {
+        margin: 8px auto 10px;
+        font-size: 24px;
+    }
+    .about-contacts__block-info_descr {
+        font-size: 12px;
+    }
+    .about-contacts__block-info_data {
+        font-size: 14px;
+    }
+    .about-contacts__block-info {
+        margin: 20px auto 0px;
+    }
+}
+
 .about-team {
-    margin: 91px auto;
+    margin: 85px auto 93px;
     text-align: center;
 }
 
@@ -171,22 +239,48 @@ header {
     font-size: 14px;
     color: #828282;
 }
+
+@media screen and (max-width: 376px) {
+    .about-team {
+        margin: 41px auto 72px;
+    }
+    .about-team h2 {
+        margin-bottom: -20px;
+        font-size: 24px;
+    }
+    .about-team__all_name {
+        font-size: 16px;
+        margin: -35px auto 15px;
+    }
+    .about-team__all_ocupation {
+        font-size: 12px;
+        margin: -13px auto;
+    }
+    .about-team__all figure, figcaption {
+        margin: 0px;
+    }
+    .about-team__all img {
+        transform: scale(0.44);
+        margin: auto;
+    }
+
+}
 footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #3F3D56;
-    padding: 50px 40px;
+    padding: 46px 35px;
 }
 
 .footer__item-left {
     font-size: 16px;
-    color: #FFFFFF;
+    color: #828282;
 }
 
 .footer__item-right a {
     cursor: pointer;
-    padding: 0px 5px;
+    margin: 0px 8px 0px 0px;
 }
 
 .footer__item-right img {
@@ -196,4 +290,19 @@ footer {
 .footer__item-right img:hover {
     filter: drop-shadow(0 0 2px white);
     transform: scale(1.1);
+}
+
+@media screen and (max-width: 376px) {
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 20px;
+    }
+    .footer__item-right {
+        margin-top: 14px;
+    }
+    .footer__item-right a {
+        margin: 0px 10px 0px 0px;
+    }
+
 }
