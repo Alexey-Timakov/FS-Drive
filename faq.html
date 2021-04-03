@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О нас</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Частые вопросы</title>
+    <link rel="stylesheet" href="style_faq.css">
+    <script src="faq_script.js"></script>
 </head>
 <body>
     <header>
@@ -32,79 +33,56 @@
     </header>
 
     <main>
-        <section class="about-us">
-            <figure><img src="./src/undraw_team_spirit_hrr4 1.svg" alt="Схематическое векторное изображение команды разработчиков"></figure>
-            <div class="about-us__text">
-                <h1>О нас</h1>
-                <p>Это учебный проект, созданный с целью получения боевого опыта в разработке настоящего живого веб-приложения.
-                Этот сервис имитирует работу каршеринга, в котором можно не только арендовать автомобили, но и сдавать их в аренду.</p>    
+        <section class="faq-logo">
+            <figure><img src="./src/undraw_questions_75e0 1.svg" alt="Схематическое векторное изображение человека с вопросом"></figure>
+            <div class="faq-logo__text">
+                <h1>Частые вопросы</h1>
+                <p>Отвечаем на вопросы, которые у вас могут возникнуть.</p>    
             </div>
         </section>
 
-        <section class="about-contacts">
-            <div class="about-contacts__main-block">
-                <h2>Контакты</h2>
-                <div class="about-contacts__block">
-                    <div class="about-contacts__block-info">
-                        <p class="about-contacts__block-info_descr">Электронная почта</p>
-                        <a class="about-contacts__block-info_data" href="mailto:drive@skillfactory.com" aria-label="Электронная почта SkillDrive">drive@skillfactory.com</a>
-                    </div>
-                    <img src="./src/Rectangle 24.svg" alt="" aria-hidden="true">
-                    <div class="about-contacts__block-info">
-                        <p class="about-contacts__block-info_descr">Телефон</p>
-                        <a class="about-contacts__block-info_data" href="tel:+79121234567" aria-label="Номер телефона SkillDrive">+7 912 123-45-67</a>
-                    </div>
-                </div>
-            </div>
-            
-        </section>
-
-        <section class="about-team">
-            <h2>Команда</h2>
-            <div class="about-team__all">
-                <figure>
-                    <img src="./src/Ellipse 9.png" alt="Иван Иванов фото">
-                    <figcaption>
-                        <p class="about-team__all_name">Иван Иванов</p>
-                        <p class="about-team__all_ocupation">CEO</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="./src/Ellipse 10.png" alt="Алексей Смирнов фото">
-                    <figcaption>
-                        <p class="about-team__all_name">Алексей Смирнов</p>
-                        <p class="about-team__all_ocupation">Frontend-разработчик</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="./src/Ellipse 11.png" alt="Денис Ярцев фото">
-                    <figcaption>
-                        <p class="about-team__all_name">Денис Ярцев</p>
-                        <p class="about-team__all_ocupation">Backend-разработчик</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="./src/Ellipse 12.png" alt="Николай Морозов фото">
-                    <figcaption>
-                        <p class="about-team__all_name">Николай Морозов</p>
-                        <p class="about-team__all_ocupation">Дизайнер</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="./src/Ellipse 13.png" alt="Ирина Деева фото">
-                    <figcaption>
-                        <p class="about-team__all_name">Ирина Деева</p>
-                        <p class="about-team__all_ocupation">Копирайтер</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="./src/Ellipse 14.png" alt="Мария Стрелкова фото">
-                    <figcaption>
-                        <p class="about-team__all_name">Мария Стрелкова</p>
-                        <p class="about-team__all_ocupation">SMM</p>
-                    </figcaption>
-                </figure>
-            </div>
+        <section class="quest-and-ans">
+                <button class="quest-and-ans__button">
+                    <span class="quest-and-ans__button-text">Могу ли я отменить бронь?</span>
+                    <img class="arrow_down active" src="./src/arrow_down.svg" alt="" aria-hidden="true">
+                    <img class="arrow_up" src="./src/arrow_up.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="quest-and-ans__answ">Бронь можно отменить в любое удобное время, но не менее, чем за 1 час до срока аренды.</div>
+                
+                <button class="quest-and-ans__button">
+                    <span>Могу ли я вернуть деньги, если не подошёл автомобиль?</span>
+                    <img class="arrow_down active" src="./src/arrow_down.svg" alt="" aria-hidden="true">
+                    <img class="arrow_up" src="./src/arrow_up.svg" alt="" aria-hidden="true">                    
+                </button>
+                <div class="quest-and-ans__answ">Вопрос вкусовых предпочтений не может быть аргументом для возврата. При бронировании заранее планируйте сценарий использования.</div>
+                
+                <button class="quest-and-ans__button">
+                    <span>Что делать, если случилось ДТП?</span>
+                    <img class="arrow_down active" src="./src/arrow_down.svg" alt="" aria-hidden="true">
+                    <img class="arrow_up" src="./src/arrow_up.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="quest-and-ans__answ">Включить аварийную сигнализацию, выставить знак аварийной остановки и вызвать полицию.</div>
+                
+                <button class="quest-and-ans__button">
+                    <span>Могу ли я оставить автомобиль в удобном для меня месте?</span>
+                    <img class="arrow_down active" src="./src/arrow_down.svg" alt="" aria-hidden="true">
+                    <img class="arrow_up" src="./src/arrow_up.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="quest-and-ans__answ">Данный вопрос обсуждается с собственником, но как правило автомобиль нужно вернуть туда, где вы его получили.</div>
+                
+                <button class="quest-and-ans__button">
+                    <span>Что делать, если собственник просит заплатить ему напрямую?</span>
+                    <img class="arrow_down active" src="./src/arrow_down.svg" alt="" aria-hidden="true">
+                    <img class="arrow_up" src="./src/arrow_up.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="quest-and-ans__answ">Оплата производится через приложение SkillDrive.</div>
+                
+                <button class="quest-and-ans__button">
+                    <span>Должен ли я заправлять автомобиль?</span>
+                    <img class="arrow_down active" src="./src/arrow_down.svg" alt="" aria-hidden="true">
+                    <img class="arrow_up" src="./src/arrow_up.svg" alt="" aria-hidden="true">
+                </button>
+                <div class="quest-and-ans__answ">При получении в автомобиль заправлен полностью. Вернуть автомобиль нужно также с полным баком.</div>
         </section>
     </main>
 
