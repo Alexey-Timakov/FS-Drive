@@ -44,6 +44,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 .menu-right__compact {
     display: none;
@@ -67,6 +68,7 @@ header {
 .menu-right__nav {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .menu-right__nav div {
