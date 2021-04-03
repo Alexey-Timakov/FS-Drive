@@ -207,7 +207,7 @@ header {
 }
 
 .quest-and-ans__answ {
-    display: none;
+    /* display: none; */
     width: 68%;
     margin: 5px 0px 40px;
     font-size: 20px;

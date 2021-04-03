@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByClassName("quest-and-ans__button");
 
     for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle("active");
+        buttons[i].nextElementSibling.style.display = "none";
+
         buttons[i].addEventListener("click", function() {
             this.classList.toggle("active");
             let answerDiv = this.nextElementSibling;
