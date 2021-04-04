@@ -4,13 +4,15 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.toggle("active");
         buttons[i].nextElementSibling.style.display = "none";
+        buttons[i].querySelector(".arrow_up").classList.toggle("active");
+        buttons[i].querySelector(".arrow_down").classList.toggle("active");
 
         buttons[i].addEventListener("click", function() {
             this.classList.toggle("active");
             let answerDiv = this.nextElementSibling;
             let arrowDown = this.querySelector(".arrow_down");
             let arrowUp = this.querySelector(".arrow_up");
-            
+
             if (answerDiv.style.display == "block") {
                 answerDiv.style.display = "none";
                 arrowDown.classList.toggle("active");
