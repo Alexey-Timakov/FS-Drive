@@ -49,7 +49,7 @@ header {
 .menu-right__compact {
     display: none;
 }
-@media screen and (max-width: 392px) {
+@media screen and (max-width: 768px) {
     .menu-right {
         display: none;
     }
@@ -134,9 +134,9 @@ header {
     margin: auto;
 }
 
-@media screen and (max-width: 392px) {
+@media screen and (max-width: 768px) {
     .faq-logo {
-        width: 335px;
+        width: 89%;
         margin: 35px auto 20px;
     }
     .faq-logo__text {
@@ -215,7 +215,7 @@ header {
 }
 
 
-@media screen and (max-width: 392px) {
+@media screen and (max-width: 768px) {
     .quest-and-ans {
         margin-bottom: 30px;
     }
@@ -268,7 +268,7 @@ footer {
     transform: scale(1.1);
 }
 
-@media screen and (max-width: 392px) {
+@media screen and (max-width: 768px) {
     footer {
         flex-direction: column;
         align-items: flex-start;
