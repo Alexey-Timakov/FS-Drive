@@ -201,6 +201,9 @@ header {
     font-family: Roboto-Medium;
     color: rgba(97, 161, 153, 1);
 }
+.quest-and-ans__button.active + div {
+    margin: 5px 0 40px;
+}
 
 .quest-and-ans__button:hover {
     background: rgba(97, 161, 153, 0.1);
@@ -208,10 +211,15 @@ header {
 
 .quest-and-ans__answ {
     /* display: none; */
+    /* max-height: 0px; */
     width: 68%;
-    margin: 5px 0px 40px;
+    /* padding: 5px 0px 40px; */
+    /* margin: 5px 0px 40px; */
+    
     font-size: 20px;
     line-height: 28px;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out;
 }
 
 
