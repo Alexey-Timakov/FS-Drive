@@ -1,0 +1,20 @@
+{
+  "name": "sf-drive",
+  "version": "1.0.0",
+  "description": "sf-drive studying project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass src/scss:src/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexey-Timakov/SF-Drive_homework.git"
+  },
+  "author": "Alexey T",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexey-Timakov/SF-Drive_homework/issues"
+  },
+  "homepage": "https://github.com/Alexey-Timakov/SF-Drive_homework#readme"
+}

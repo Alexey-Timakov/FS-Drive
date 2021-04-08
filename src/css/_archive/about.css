@@ -1,16 +1,16 @@
 @font-face {
     font-family: Roboto-Regular;
-    src: url('./fonts/Roboto-Regular.ttf');
+    src: url('../fonts/Roboto-Regular.ttf');
 }
 
 @font-face {
     font-family: Roboto-Medium;
-    src: url('./fonts/Roboto-Medium.ttf');
+    src: url('../fonts/Roboto-Medium.ttf');
 }
 
 @font-face {
     font-family: Roboto-Bold;
-    src: url('./fonts/Roboto-Bold.ttf');
+    src: url('../fonts/Roboto-Bold.ttf');
 }
 body {
     font-family: Roboto-Regular;
@@ -77,7 +77,7 @@ header {
 .menu-right__nav a {
     font-size: 16px;
     text-decoration: none;
-    color: black;
+    color: #000000;
     transition: all 0.2s ease;
     cursor: pointer;
 }
@@ -94,7 +94,7 @@ header {
     height: 43px;
     border: 1px solid rgba(27, 27, 27, 0.4);
     border-radius: 6px;
-    background-color: white;
+    background-color: #ffffff;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -165,7 +165,14 @@ header {
     height: 341px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+.about-contacts h2 {
+    font-family: Roboto-Medium;
+    font-weight: 500;
+    font-size: 48px;
+    margin: -10px 0 25px;
 }
 
 .about-contacts__block {
@@ -174,19 +181,18 @@ header {
     margin: 0px auto;
 }
 
-.about-contacts h2 {
-    font-family: Roboto-Medium;
-    font-weight: 500;
-    font-size: 48px;
-    margin: 0px auto 10px;
-}
-
 .about-contacts__block-info {
-    margin: 20px 68px 20px;
+    margin: 0px;
+    padding: 0 68px 0;
     width: 264px;
+    
+}
+.about-contacts__block-info:nth-child(1) {
+    border-right: 1px solid #C8C8CF;
 }
 .about-contacts__block-info_descr {
     font-size: 14px;
+    line-height: 21px;
     color: #4F4F4F;
     min-width: 0px;
     word-wrap: break-word;
@@ -306,7 +312,7 @@ footer {
 }
 
 .footer__item-right img:hover {
-    filter: drop-shadow(0 0 2px white);
+    filter: drop-shadow(0 0 2px #ffffff);
     transform: scale(1.1);
 }
 
