@@ -1,4 +1,4 @@
-// Fonts
+/* Fonts */
 @font-face {
     font-family: Roboto-Regular;
     src: url('../fonts/Roboto-Regular.ttf');
@@ -25,7 +25,7 @@ body {
 @import "header";
 @import "footer";
 
-// Main sections
+/* Main section. About-us. */
 .about-us {
     text-align: center;
     margin: 76px auto 76px;
@@ -52,6 +52,7 @@ body {
     }
 }
 
+/* Main section. About-us. Adaptive */
 @media screen and (max-width: $breakpoint-mobile) {
     .about-us {
         width: 89%;
@@ -80,6 +81,7 @@ body {
         }
     }
 }
+/* Main section. Contacts. */
 
 .about-contacts {
 
@@ -133,6 +135,8 @@ body {
     }
 }
 
+/* Main section. Contacts. Adaptive */
+
 @media screen and (max-width: $breakpoint-mobile) {
     .about-contacts {
         height: 237px;
@@ -163,6 +167,8 @@ body {
         }
     }
 }
+
+/* Main section. About-team. */
 
 .about-team {
     margin: 85px auto 93px;
@@ -201,6 +207,7 @@ body {
 
 }
 
+/* Main section. About-team. Adaptive */
 @media screen and (max-width: $breakpoint-mobile) {
     .about-team {
         margin: 41px auto 72px;

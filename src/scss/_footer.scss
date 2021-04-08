@@ -1,6 +1,6 @@
 @import "variables";
 
-// Footer section
+/* Footer section */
 footer {
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,7 @@ footer {
     }
 }
 
-// Footer section adaptive
+/* Footer section adaptive */
 @media screen and (max-width: $breakpoint-mobile) {
     footer {
         flex-direction: column;

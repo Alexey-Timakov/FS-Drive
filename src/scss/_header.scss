@@ -1,6 +1,6 @@
 @import "variables";
 
-// Header section
+/* Header section */
 header {
     display: flex;
     flex-direction: row;
@@ -77,7 +77,7 @@ header {
         }    
     }
 }
-// Header section adaptive
+/* Header section adaptive */
 @media screen and (max-width: $breakpoint-mobile) {
     .menu-right {
         display: none;
