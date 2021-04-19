@@ -1,3 +1,5 @@
+import "../scss/index.scss";
+
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByClassName("quest-and-ans__button");
 

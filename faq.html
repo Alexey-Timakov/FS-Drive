@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Частые вопросы</title>
-    <link rel="stylesheet" href="src/css/faq.css">
-    <script src="src/script/faq.js"></script>
+    <!-- <link rel="stylesheet" href="src/css/faq.css"> -->
+    <!-- <link rel="stylesheet" href="./main.css"> -->
+    <!-- <script src="src/script/faq.js"></script> -->
+    <!-- <script src="./index.js"></script> -->
 </head>
 <body>
     <header>
@@ -21,12 +23,12 @@
                 </svg>
             </a>
         </div>
-        <a class="menu-right__compact" href="" aria-label="Меню сайта"><img src="src/images/menu_compact.svg" alt="Меню сайта" title="Меню"></a>
+        <a class="menu-right__compact" href="" aria-label="Меню сайта"><img src="<%=require('./src/images/menu_compact.svg')%>" alt="Меню сайта" title="Меню"></a>
         <div class="menu-right">
             <nav class="menu-right__nav">
-                <div><a href="about.html" aria-label="О нас">О нас</a></div>
+                <div><a href="./about.html" aria-label="О нас">О нас</a></div>
                 <div><a href="">Условия</a></div>
-                <div><a href="faq.html" aria-label="Частые вопросы">Частые вопросы</a></div>
+                <div><a href="./faq.html" aria-label="Частые вопросы">Частые вопросы</a></div>
             </nav>
             <button class="menu-right__button">Войти</button>
         </div>
@@ -36,7 +38,7 @@
 
     <main>
         <section class="faq-logo">
-            <figure><img src="src/images/undraw_questions.svg" alt="Схематическое векторное изображение человека с вопросом"></figure>
+            <figure><img src="<%=require('./src/images/undraw_questions.svg')%>" alt="Схематическое векторное изображение человека с вопросом"></figure>
             <div class="faq-logo__text">
                 <h1>Частые вопросы</h1>
                 <p>Отвечаем на вопросы, которые у вас могут возникнуть.</p>    
@@ -46,43 +48,43 @@
         <section class="quest-and-ans">
                 <button class="quest-and-ans__button active">
                     <span class="quest-and-ans__button-text">Могу ли я отменить бронь?</span>
-                    <img class="arrow_down" src="src/images/arrow_down.svg" alt="" aria-hidden="true">
-                    <img class="arrow_up active" src="src/images/arrow_up.svg" alt="" aria-hidden="true">
+                    <img class="arrow_down" src="<%=require('./src/images/arrow_down.svg')%>" alt="" aria-hidden="true">
+                    <img class="arrow_up active" src="<%=require('./src/images/arrow_up.svg')%>" alt="" aria-hidden="true">
                 </button>
                 <div class="quest-and-ans__answ">Бронь можно отменить в любое удобное время, но не менее, чем за 1 час до срока аренды.</div>
                 
                 <button class="quest-and-ans__button active">
                     <span>Могу ли я вернуть деньги, если не подошёл автомобиль?</span>
-                    <img class="arrow_down" src="src/images/arrow_down.svg" alt="" aria-hidden="true">
-                    <img class="arrow_up active" src="src/images/arrow_up.svg" alt="" aria-hidden="true">                    
+                    <img class="arrow_down" src="<%=require('./src/images/arrow_down.svg')%>" alt="" aria-hidden="true">
+                    <img class="arrow_up active" src="<%=require('./src/images/arrow_up.svg')%>" alt="" aria-hidden="true">                    
                 </button>
                 <div class="quest-and-ans__answ">Вопрос вкусовых предпочтений не может быть аргументом для возврата. При бронировании заранее планируйте сценарий использования.</div>
                 
                 <button class="quest-and-ans__button active">
                     <span>Что делать, если случилось ДТП?</span>
-                    <img class="arrow_down" src="src/images/arrow_down.svg" alt="" aria-hidden="true">
-                    <img class="arrow_up active" src="src/images/arrow_up.svg" alt="" aria-hidden="true">
+                    <img class="arrow_down" src="<%=require('./src/images/arrow_down.svg')%>" alt="" aria-hidden="true">
+                    <img class="arrow_up active" src="<%=require('./src/images/arrow_up.svg')%>" alt="" aria-hidden="true">
                 </button>
                 <div class="quest-and-ans__answ">Включить аварийную сигнализацию, выставить знак аварийной остановки и вызвать полицию.</div>
                 
                 <button class="quest-and-ans__button active">
                     <span>Могу ли я оставить автомобиль в удобном для меня месте?</span>
-                    <img class="arrow_down" src="src/images/arrow_down.svg" alt="" aria-hidden="true">
-                    <img class="arrow_up active" src="src/images/arrow_up.svg" alt="" aria-hidden="true">
+                    <img class="arrow_down" src="<%=require('./src/images/arrow_down.svg')%>" alt="" aria-hidden="true">
+                    <img class="arrow_up active" src="<%=require('./src/images/arrow_up.svg')%>" alt="" aria-hidden="true">
                 </button>
                 <div class="quest-and-ans__answ">Данный вопрос обсуждается с собственником, но как правило автомобиль нужно вернуть туда, где вы его получили.</div>
                 
                 <button class="quest-and-ans__button active">
                     <span>Что делать, если собственник просит заплатить ему напрямую?</span>
-                    <img class="arrow_down" src="src/images/arrow_down.svg" alt="" aria-hidden="true">
-                    <img class="arrow_up active" src="src/images/arrow_up.svg" alt="" aria-hidden="true">
+                    <img class="arrow_down" src="<%=require('./src/images/arrow_down.svg')%>" alt="" aria-hidden="true">
+                    <img class="arrow_up active" src="<%=require('./src/images/arrow_up.svg')%>" alt="" aria-hidden="true">
                 </button>
                 <div class="quest-and-ans__answ">Оплата производится через приложение SkillDrive.</div>
                 
                 <button class="quest-and-ans__button active">
                     <span>Должен ли я заправлять автомобиль?</span>
-                    <img class="arrow_down" src="src/images/arrow_down.svg" alt="" aria-hidden="true">
-                    <img class="arrow_up active" src="src/images/arrow_up.svg" alt="" aria-hidden="true">
+                    <img class="arrow_down" src="<%=require('./src/images/arrow_down.svg')%>" alt="" aria-hidden="true">
+                    <img class="arrow_up active" src="<%=require('./src/images/arrow_up.svg')%>" alt="" aria-hidden="true">
                 </button>
                 <div class="quest-and-ans__answ">При получении в автомобиль заправлен полностью. Вернуть автомобиль нужно также с полным баком.</div>
         </section>
@@ -91,9 +93,9 @@
     <footer>
         <div class="footer__item-left">© SkillDrive Inc. 2020</div>
         <div class="footer__item-right">
-            <a href="https://vk.com" target="_blank" aria-label="Ссылка на вКонтакте"><img src="src/images/vk_vector.svg" alt="" aria-hidden="true" title="Перейти на страницу в вКонтакте"></a>
-            <a href="https://instagramm.com" target="_blank" aria-label="Ссылка на Instagramm"><img src="src/images/inst_vector.svg" alt="" aria-hidden="true" title="Перейти на страницу в Instagramm"></a>
-            <a href="https://facebook.com" target="_blank" aria-label="Ссылка на Facebook"><img src="src/images/face_vector.svg" alt="" aria-hidden="true" title="Перейти на страницу в Facebook"></a>
+            <a href="https://vk.com" target="_blank" aria-label="Ссылка на вКонтакте"><img src="<%=require('./src/images/vk_vector.svg')%>" alt="" aria-hidden="true" title="Перейти на страницу в вКонтакте"></a>
+            <a href="https://instagramm.com" target="_blank" aria-label="Ссылка на Instagramm"><img src="<%=require('./src/images/inst_vector.svg')%>" alt="" aria-hidden="true" title="Перейти на страницу в Instagramm"></a>
+            <a href="https://facebook.com" target="_blank" aria-label="Ссылка на Facebook"><img src="<%=require('./src/images/face_vector.svg')%>" alt="" aria-hidden="true" title="Перейти на страницу в Facebook"></a>
         </div>
     </footer>
 </body>
