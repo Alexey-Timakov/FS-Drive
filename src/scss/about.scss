@@ -1,26 +1,5 @@
-/* Fonts */
-@font-face {
-    font-family: Roboto-Regular;
-    src: url('../fonts/Roboto-Regular.ttf');
-}
-
-@font-face {
-    font-family: Roboto-Medium;
-    src: url('../fonts/Roboto-Medium.ttf');
-}
-
-@font-face {
-    font-family: Roboto-Bold;
-    src: url('../fonts/Roboto-Bold.ttf');
-}
-
-body {
-    font-family: Roboto-Regular;
-    margin: 0px;
-}
-
-
 // Imports
+@import "fonts";
 @import "variables";
 @import "header";
 @import "footer";

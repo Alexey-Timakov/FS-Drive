@@ -1,17 +1,21 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     mode: "production",
+    experiments: {asset: true},
     entry: "/src/script/faq.js",
     output: {
-        path: __dirname + "/dist/",
-        filename: "index.js"
+        // path: __dirname + "/build",
+        path: path.resolve(__dirname, "./build"),
+        filename: "./script/index.js",
+        clean: true
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "main.css"
+            filename: "./styles/main.css"
         }),
         new HtmlWebpackPlugin({
             filename: "about.html",
@@ -31,6 +35,7 @@ module.exports = {
                 options: { esModule: true, },
             },
                 "css-loader",
+                "resolve-url-loader",
                 "postcss-loader",
             {
                 loader: "sass-loader",
@@ -49,10 +54,18 @@ module.exports = {
         },
         {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            type: 'asset/resource',
-            generator: {
-                filename: 'fonts/[hash][ext][query]'
-            }
+            // type: 'asset/resource',
+            // generator: {
+                // filename: 'fonts/[hash][ext][query]'
+            // }
+            use: [
+                {loader: "url-loader",
+                // options: {
+                //     limit: 100000,
+                //     name: "fonts/[hash].[ext]"
+                //     }
+                }
+            ],
         },
         {
             test: /\.js$/,
