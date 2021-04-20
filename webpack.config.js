@@ -4,12 +4,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    mode: "production",
+    // mode: "production",
+    mode: "development",
     entry: "/src/script/faq.js",
     output: {
         path: path.resolve(__dirname, "./build"),
         filename: "./script/index.js",
         clean: true
+    },
+    devServer: {
+        contentBase: path.resolve(__dirname, "./build"),
+        stats: "errors-warnings",
+        index: "about.html"
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -30,18 +36,20 @@ module.exports = {
             exclude: "/node_modules",
             use: [{
                 loader: MiniCssExtractPlugin.loader,
-                options: { esModule: true,
-                publicPath: path.resolve(__dirname, "./build")},
-            },
+                options: { 
+                    esModule: true,
+                    publicPath: path.resolve(__dirname, "./build/")
+                },
+                },
                 "css-loader",
                 "resolve-url-loader",
                 "postcss-loader",
-            {
+                {
                 loader: "sass-loader",
                 options: {
                     implementation: require("sass")
                 }
-            }
+                }
             ]
         },
         {
@@ -53,10 +61,17 @@ module.exports = {
         },
         {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            type: 'asset/resource',
-            generator: {
-            filename: 'fonts/[hash][ext][query]'
+            loader: "file-loader",
+            options: {
+                name: "[name].[ext]",
+                // publicPath: path.resolve(__dirname, "./fonts/"),
+                outputPath: "./fonts",
+                esModule: false,
             }
+            // type: 'asset/resource',
+            // generator: {
+            //     filename: './fonts/[hash][ext][query]',
+            // }
         },
         {
             test: /\.js$/,
