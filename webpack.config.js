@@ -5,7 +5,6 @@ const path = require('path');
 
 module.exports = {
     mode: "production",
-    experiments: {asset: true},
     entry: "/src/script/faq.js",
     output: {
         // path: __dirname + "/build",
@@ -32,40 +31,38 @@ module.exports = {
             exclude: "/node_modules",
             use: [{
                 loader: MiniCssExtractPlugin.loader,
-                options: { esModule: true, },
+                options: { 
+                    esModule: true,
+                    publicPath: path.resolve(__dirname, "./build"),
+                },
             },
                 "css-loader",
-                "resolve-url-loader",
                 "postcss-loader",
-            {
-                loader: "sass-loader",
-                options: {
-                    implementation: require("sass")
-                }
-            }
+                {
+                    loader: "sass-loader",
+                    options: {
+                        implementation: require("sass")
+                    }
+                },
             ]
         },
         {
             test: /\.(png|svg|jpg|jpeg|gif)$/i,
-            type: 'asset/resource',
-            generator: {
-                filename: 'images/[hash][ext][query]'
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: './images',
+                esModule: false,
             }
         },
         {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            // type: 'asset/resource',
-            // generator: {
-                // filename: 'fonts/[hash][ext][query]'
-            // }
-            use: [
-                {loader: "url-loader",
-                // options: {
-                //     limit: 100000,
-                //     name: "fonts/[hash].[ext]"
-                //     }
-                }
-            ],
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: './fonts',
+                esModule: false,
+            },
         },
         {
             test: /\.js$/,
