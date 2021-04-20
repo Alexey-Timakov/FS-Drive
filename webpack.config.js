@@ -5,10 +5,8 @@ const path = require('path');
 
 module.exports = {
     mode: "production",
-    experiments: {asset: true},
     entry: "/src/script/faq.js",
     output: {
-        // path: __dirname + "/build",
         path: path.resolve(__dirname, "./build"),
         filename: "./script/index.js",
         clean: true
@@ -32,7 +30,8 @@ module.exports = {
             exclude: "/node_modules",
             use: [{
                 loader: MiniCssExtractPlugin.loader,
-                options: { esModule: true, },
+                options: { esModule: true,
+                publicPath: path.resolve(__dirname, "./build")},
             },
                 "css-loader",
                 "resolve-url-loader",
@@ -54,18 +53,10 @@ module.exports = {
         },
         {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            // type: 'asset/resource',
-            // generator: {
-                // filename: 'fonts/[hash][ext][query]'
-            // }
-            use: [
-                {loader: "url-loader",
-                // options: {
-                //     limit: 100000,
-                //     name: "fonts/[hash].[ext]"
-                //     }
-                }
-            ],
+            type: 'asset/resource',
+            generator: {
+            filename: 'fonts/[hash][ext][query]'
+            }
         },
         {
             test: /\.js$/,
