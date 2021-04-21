@@ -14,7 +14,11 @@ module.exports = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, "./build"),
-        stats: "errors-warnings",
+        stats: {
+            assets: false,
+            children: false,
+            moduleAssets: false
+        },
         index: "about.html"
     },
     plugins: [
@@ -65,7 +69,8 @@ module.exports = {
             options: {
                 name: "[name].[ext]",
                 // publicPath: path.resolve(__dirname, "./fonts/"),
-                outputPath: "./fonts",
+                publicPath: url => `../fonts/${url}`,
+                outputPath: "./fonts/",
                 esModule: false,
             }
             // type: 'asset/resource',
