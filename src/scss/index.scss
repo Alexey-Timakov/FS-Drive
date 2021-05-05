@@ -99,15 +99,16 @@
     }
 
     &__answ {
-        /* display: none; */
-        /* max-height: 0px; */
+        max-height: 0px;
         width: 68%;
-        /* padding: 5px 0px 40px; */
-        /* margin: 5px 0px 40px; */
         font-size: 20px;
         line-height: 28px;
         overflow: hidden;
-        transition: max-height 0.1s ease-out;
+        transition: max-height 0.2s ease-out;
+
+        &.active {
+            max-height: 50px;
+        }
     }
 }
 

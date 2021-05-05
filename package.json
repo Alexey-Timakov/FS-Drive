@@ -4,7 +4,11 @@
     "description": "sf-drive studying project",
     "main": "index.js",
     "devDependencies": {
+        "@types/react": "^17.0.4",
+        "@types/react-dom": "^17.0.3",
         "autoprefixer": "^10.2.5",
+        "awesome-typescript-loader": "^5.2.1",
+        "bootstrap": "^4.6.0",
         "css-loader": "^5.2.2",
         "css-minimizer-webpack-plugin": "^2.0.0",
         "eslint": "^7.24.0",
@@ -14,10 +18,14 @@
         "mini-css-extract-plugin": "^1.5.0",
         "postcss": "^8.2.10",
         "postcss-loader": "^5.2.0",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.10",
         "sass-loader": "^11.0.1",
         "style-loader": "^2.0.0",
+        "typescript": "^4.2.4",
         "url-loader": "^4.1.1",
         "webpack": "^5.33.2",
         "webpack-cli": "^4.6.0",
@@ -27,7 +35,8 @@
     "scripts": {
         "scss": "sass --no-source-map src/scss:src/css",
         "postcss": "postcss src/css --dir src/css --use autoprefixer",
-        "build": "webpack"
+        "build": "webpack --mode=production",
+        "start": "npx webpack serve --mode development --open"
     },
     "repository": {
         "type": "git",
@@ -38,5 +47,6 @@
     "bugs": {
         "url": "https://github.com/Alexey-Timakov/SF-Drive_homework/issues"
     },
-    "homepage": "https://github.com/Alexey-Timakov/SF-Drive_homework#readme"
+    "homepage": "https://github.com/Alexey-Timakov/SF-Drive_homework#readme",
+    "dependencies": {}
 }

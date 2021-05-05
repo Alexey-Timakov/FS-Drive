@@ -4,33 +4,35 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    // mode: "production",
-    mode: "development",
-    entry: "/src/script/faq.js",
+    entry: {
+        faq: "/src/script/index_faq.tsx",
+        about: "/src/script/index_about.tsx"
+    },
     output: {
         path: path.resolve(__dirname, "./build"),
-        filename: "./script/index.js",
+        filename: "./script/[name].js",
         clean: true
     },
+    resolve: {
+        extensions : [".tsx", ".ts", ".jsx", ".js", ".json"]
+    },
     devServer: {
-        contentBase: path.resolve(__dirname, "./build"),
         stats: {
             assets: false,
             children: false,
             moduleAssets: false
         },
-        index: "about.html"
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: "./styles/main.css"
         }),
         new HtmlWebpackPlugin({
-            filename: "about.html",
+            filename: "[name].html",
             template: "about.html"
         }),
         new HtmlWebpackPlugin({
-            filename: "faq.html",
+            filename: "[name].html",
             template: "faq.html"
         }),
     ],
@@ -57,14 +59,21 @@ module.exports = {
             ]
         },
         {
-            test: /\.(png|svg|jpg|jpeg|gif)$/i,
-            type: 'asset/resource',
-            generator: {
-                filename: 'images/[hash][ext][query]'
+            test: /\.(png|svg|jpg|jpeg|gif)$/,
+            loader: "file-loader",
+            options : {
+                name: "[name].[ext]",
+                outputPath: "./images",
+                esModule: false
             }
+            ,
+            // type: 'asset/resource',
+            // generator: {
+            //     filename: './images/[hash][ext][query]'
+            // }
         },
         {
-            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
             loader: "file-loader",
             options: {
                 name: "[name].[ext]",
@@ -73,15 +82,12 @@ module.exports = {
                 outputPath: "./fonts/",
                 esModule: false,
             }
-            // type: 'asset/resource',
-            // generator: {
-            //     filename: './fonts/[hash][ext][query]',
-            // }
         },
         {
-            test: /\.js$/,
+            test: /\.(tsx|ts)$/,
             exclude: "/node_modules",
-            use: "eslint-loader"
+            // use: "eslint-loader"
+            use: "awesome-typescript-loader"
         }
         ]
     },
