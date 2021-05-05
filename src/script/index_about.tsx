@@ -5,4 +5,4 @@ import About from "../components/about";
 
 import "../scss/index.scss";
 
-render(<About/>, document.getElementById("root"), );
+render(<About/>, document.getElementById("root_about"), );

@@ -5,4 +5,4 @@ import Faq from "../components/faq";
 
 import "../scss/index.scss";
 
-render(<Faq/>, document.getElementById("root"), );
+render(<Faq/>, document.getElementById("root_faq"), );
