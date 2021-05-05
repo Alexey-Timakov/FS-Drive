@@ -62,6 +62,7 @@ module.exports = {
             test: /\.(png|svg|jpg|jpeg|gif)$/,
             loader: "file-loader",
             options : {
+                publicPath: path.resolve(__dirname, "./build/"),
                 name: "[name].[ext]",
                 outputPath: "./images",
                 esModule: false
