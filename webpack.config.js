@@ -28,12 +28,12 @@ module.exports = {
             filename: "./styles/main.css"
         }),
         new HtmlWebpackPlugin({
-            filename: "[name].html",
-            template: "about.html"
+            filename: "about.html",
+            template: "./about.html"
         }),
         new HtmlWebpackPlugin({
-            filename: "[name].html",
-            template: "faq.html"
+            filename: "faq.html",
+            template: "./faq.html"
         }),
     ],
     module: {

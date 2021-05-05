@@ -5,16 +5,16 @@ import NoScript from "./NoScript";
 import MainFaq from "./Main_Faq";
 import Footer from "./Footer";
 
-function Faq () {
-    document.addEventListener("DOMContentLoaded", function() {
+function Faq() {
+    document.addEventListener("DOMContentLoaded", function () {
         let buttons = document.getElementsByClassName("quest-and-ans__button");
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].classList.toggle("active");
             buttons[i].nextElementSibling.classList.toggle("active");
             buttons[i].querySelector(".arrow_up").classList.toggle("active");
             buttons[i].querySelector(".arrow_down").classList.toggle("active");
-    
-            buttons[i].addEventListener("click", function() {
+
+            buttons[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 this.nextElementSibling.classList.toggle("active");
                 this.querySelector(".arrow_down").classList.toggle("active");
@@ -25,10 +25,10 @@ function Faq () {
 
     return (
         <>
-        <Header />
-        <NoScript />
-        <MainFaq />
-        <Footer />
+            <Header />
+            <NoScript />
+            <MainFaq />
+            <Footer />
         </>
     )
 }
