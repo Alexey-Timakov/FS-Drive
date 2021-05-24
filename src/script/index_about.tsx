@@ -3,6 +3,7 @@ import {render} from "react-dom";
 
 import About from "../components/about";
 
-import "../scss/index.scss";
+// import "../scss/index.scss";
+import "../scss/about.scss";
 
 render(<About/>, document.getElementById("root_about"), );

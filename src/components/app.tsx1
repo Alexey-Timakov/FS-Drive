@@ -1,0 +1,18 @@
+import * as React from "react";
+import {Route, Switch, Link} from "react-router-dom";
+import About from "../components/about";
+import Faq from "../components/faq"
+function App() {
+    return (
+        <>
+            <Route path="/faq">
+                <Faq />
+            </Route>
+            <Route path="/">
+                <About />
+            </Route>
+        </>
+    )
+}
+
+export default App;

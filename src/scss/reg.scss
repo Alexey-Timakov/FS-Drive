@@ -1,0 +1,204 @@
+// Imports
+@import "fonts";
+@import "variables";
+@import "header";
+
+/* Main section. Registration form. */
+
+.reg-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    p {
+        margin-top: 55px;
+        margin-bottom: 15px;
+        color: $reg-grey-text;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+    }
+    h1 {
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 78px;
+        margin-top: 0px;
+        margin-bottom: 50px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 47%;
+
+        .block-input {
+            width: 100%;
+
+            h2 {
+                align-self: flex-start;
+                font-size: 36px;
+                font-weight: 400;
+                line-height: 53px;
+                margin-top: 0px;
+                margin-bottom: 30px;
+            }
+
+            &__wrapper{
+
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+
+                &:last-child {
+                    margin-bottom: 59px;
+                }
+
+            }
+            label {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+                color: $reg-black-label-text;
+            }
+            input {
+                margin-left: auto;
+                height: 44px;
+                width: 61%;
+                border: solid 1px $reg-border-gray;
+                border-radius: 6px;
+                padding: 0px 12px;
+                box-sizing: border-box;
+
+                &.calendar {
+                    background: url("../images/calendar.svg") no-repeat 90% 50%;
+                }
+
+                &.short {
+                    width: 23%;
+                    margin-right: 38%;
+                }
+
+                &:hover {
+                    border-color: $light-green;
+                }
+                &:focus {
+                    border: solid 2px #61A199;
+                }
+            }
+        }
+    }
+
+}
+footer {
+    background-color: $reg-footer-background;
+    padding: 0;
+    margin-top: 35px;
+    
+    .submit-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        border-top: 1px solid #DEE2E4;
+
+        .submit__button {
+            margin-top: 17px;
+            margin-bottom: 17px;
+            background-color: $reg-footer-button-color;
+            width: 176px;
+            height: 51px;
+            border-radius: 6px;
+            border: 0;
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 500;
+            color: $reg-footer-button-text;
+        }
+    }
+}
+
+/* Main section. Registration form. Adaptive. */
+
+@media screen and (max-width: 768px) {
+    .reg-form-wrapper {
+        p {
+            font-size: 12px;
+            line-height: 18px;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 38px;
+            margin-bottom: 41px;
+        }
+
+        form {
+            width: 89%;
+    
+            .block-input {
+                // width: 100%;
+    
+                h2 {
+                    font-size: 24px;
+                    font-weight: 500;
+                    line-height: 29px;
+                    margin-top: 0px;
+                    width: 70%;
+                }
+    
+                &__wrapper{
+
+                    flex-direction: column;
+                    align-items: flex-start;
+                    margin-bottom: 0px;
+    
+                    &:last-child {
+                        margin-bottom: 14px;
+                    }
+    
+                }
+                label {
+                    margin-bottom: 12px;
+                }
+                input {
+                    width: 100%;
+                    margin-bottom: 26px;
+    
+                    // &.calendar {
+                    //     background: url("../images/calendar.svg") no-repeat 90% 50%;
+                    // }
+    
+                    &.short {
+                        width: 100%;
+                        // margin-right: 38%;
+                    }    
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        margin-top: 0px;
+        
+        .submit-footer {
+    
+            .submit__button {
+                margin-top: 17px;
+                margin-bottom: 17px;
+                width: 335px;
+                font-size: 16px;
+                line-height: 19px;
+                font-weight: 500;
+            }
+        }
+    }
+}

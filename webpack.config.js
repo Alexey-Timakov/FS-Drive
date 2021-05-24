@@ -5,8 +5,9 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        faq: "/src/script/index_faq.tsx",
-        about: "/src/script/index_about.tsx"
+        faq: "./src/script/index_faq.tsx",
+        about: "./src/script/index_about.tsx",
+        reg: "./src/script/index_reg.tsx"
     },
     output: {
         path: path.resolve(__dirname, "./build"),
@@ -14,7 +15,7 @@ module.exports = {
         clean: true
     },
     resolve: {
-        extensions : [".tsx", ".ts", ".jsx", ".js", ".json"]
+        extensions : [".tsx", ".ts  ", ".jsx", ".js", ".json"]
     },
     devServer: {
         stats: {
@@ -25,15 +26,19 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "./styles/main.css"
+            filename: "./styles/[name].css"
+        }),
+        new HtmlWebpackPlugin({
+            filename: "faq.html",
+            template: "./faq.html"
         }),
         new HtmlWebpackPlugin({
             filename: "about.html",
             template: "./about.html"
         }),
         new HtmlWebpackPlugin({
-            filename: "faq.html",
-            template: "./faq.html"
+            filename: "reg.html",
+            template: "./reg.html"
         }),
     ],
     module: {
@@ -89,6 +94,11 @@ module.exports = {
             exclude: "/node_modules",
             // use: "eslint-loader"
             use: "awesome-typescript-loader"
+        },
+        {
+            test: /\.(jsx|js)$/,
+            exclude: "/node_modules",
+            use: "babel-loader"
         }
         ]
     },
