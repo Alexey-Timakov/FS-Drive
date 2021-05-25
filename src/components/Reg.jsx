@@ -1,4 +1,5 @@
 import * as React from "react";
+import validator from "validator";
 
 import Header from "./header";
 import NoScript from "./NoScript";
@@ -30,6 +31,10 @@ class Reg extends React.Component {
         this.onUserLicIdDateChange = this.onUserLicIdDateChange.bind(this);
         this.onUserPasswordChange = this.onUserPasswordChange.bind(this);
         this.onUserPasswordCheckChange = this.onUserPasswordCheckChange.bind(this);
+
+        this.checkInputs = this.checkInputs.bind(this);
+        this.checkUserName = this.checkUserName.bind(this);
+        
         this.state = {
             userName: "",
             userBirth: "",
@@ -80,9 +85,31 @@ class Reg extends React.Component {
     }
     onUserPasswordCheckChange(userPasswordCheck) {
         this.setState({userPasswordCheck});
-        console.log(userPasswordCheck);
     }
 
+    checkUserName() {
+        if (validator.isAlpha(this.state.userName)) {
+            document.querySelector(".block-input__name").parentNode.nextSibling.classList.remove("active");
+            document.querySelector(".block-input__name").classList.remove("error");
+            console.log(this.state.userName, "UserName is OK");
+            return true;
+        } else {
+            document.querySelector(".block-input__name").parentNode.nextSibling.classList.add("active");
+            document.querySelector(".block-input__name").classList.add("error");
+            console.log(this.state.userName, "UserName is NOT OK");
+            return false;
+        }
+    }
+    checkInputs() {
+        this.checkUserName();
+        // checkUserBirth();
+        // checkUserMail();
+        // checkUserPhone();
+    }
+    componentDidMount() {
+        // document.querySelector(".submit__button").classList.remove("is-active");
+        // document.querySelector(".submit__button").disabled = true;
+    }
     render () {
         const userName = this.state.userName;
         const userBirth = this.state.userBirth;
@@ -134,7 +161,7 @@ class Reg extends React.Component {
             </main>
             <footer>
                 <div className="submit-footer">
-                    <input className="submit__button is-active" type="button" value="Продолжить" />
+                    <input className="submit__button is-active" onClick={this.checkInputs} type="button" value="Продолжить" />
                 </div>
             </footer>
         </>

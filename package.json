@@ -55,5 +55,7 @@
         "url": "https://github.com/Alexey-Timakov/SF-Drive_homework/issues"
     },
     "homepage": "https://github.com/Alexey-Timakov/SF-Drive_homework#readme",
-    "dependencies": {}
+    "dependencies": {
+        "validator": "^13.6.0"
+    }
 }

@@ -85,7 +85,26 @@
                     border-color: $light-green;
                 }
                 &:focus {
-                    border: solid 2px #61A199;
+                    border: solid 2px $light-green;
+                }
+
+                &.error {
+                    border: solid 2px $reg-form-error-color;
+                }
+            }
+            &__error {
+                display: none;
+                position: relative;
+                left: 39%;
+                margin-bottom: 19px;
+                margin-top: -10px;
+                color: $reg-form-error-color;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+
+                &.active {
+                    display: block;
                 }
             }
         }
@@ -108,7 +127,8 @@ footer {
         .submit__button {
             margin-top: 17px;
             margin-bottom: 17px;
-            background-color: $reg-footer-button-color;
+            background-color: $reg-footer-button-color-disabled;
+            color: $reg-footer-button-text-disabled;
             width: 176px;
             height: 51px;
             border-radius: 6px;
@@ -116,7 +136,11 @@ footer {
             font-size: 16px;
             line-height: 19px;
             font-weight: 500;
-            color: $reg-footer-button-text;
+
+            &.is-active {
+                background-color: $reg-footer-button-color;
+                color: $reg-footer-button-text;
+            }
         }
     }
 }

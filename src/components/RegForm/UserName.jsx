@@ -4,13 +4,13 @@ class UserName extends React.Component {
     constructor(props) {
         super(props);
         this.onValueChange = this.onValueChange.bind(this);
-        this.state = {userName: ""};
+        this.state = {userName: "",}
     }
     
     onValueChange(event) {
         this.props.onUserNameChange(event.target.value);
     }
-    
+
     render() {
         const userName = this.props.userName;
         return (
@@ -19,6 +19,7 @@ class UserName extends React.Component {
                     <label htmlFor="userName">ФИО:</label>
                     <input className="block-input__name" type="text" id="userName" name="userName" value={userName} onChange={this.onValueChange} placeholder="ФИО полностью"/>
                 </div>
+                <p className="block-input__error">Некорректное имя</p>
             </>
         )
     }

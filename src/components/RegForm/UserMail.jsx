@@ -10,14 +10,17 @@ class UserMail extends React.Component {
     onValueChange(event) {
         this.props.onUserMailChange(event.target.value);
     }
+
     render() {
         const userMail = this.props.userMail;
+
         return (
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="userMail">Электронная почта</label>
                     <input className="block-input__email" type="email" id="userMail" name="userMail" value={userMail} onChange={this.onValueChange} placeholder="mail@example.com"/>
                 </div>
+                <p className="block-input__error">Неверная почта</p>
             </>
         )
     }

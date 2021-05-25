@@ -10,6 +10,7 @@ class UserPhone extends React.Component {
     onValueChange(event) {
         this.props.onUserPhoneChange(event.target.value);
     }
+    
     render() {
         const userPhone = this.props.userPhone;
         return (
