@@ -32,8 +32,8 @@ class Reg extends React.Component {
         this.onUserPasswordChange = this.onUserPasswordChange.bind(this);
         this.onUserPasswordCheckChange = this.onUserPasswordCheckChange.bind(this);
 
-        this.checkInputs = this.checkInputs.bind(this);
-        this.checkUserName = this.checkUserName.bind(this);
+        // this.checkInputs = this.checkInputs.bind(this);
+        this.onButtonCheck = this.onButtonCheck.bind(this);
         
         this.state = {
             userName: "",
@@ -87,7 +87,7 @@ class Reg extends React.Component {
         this.setState({userPasswordCheck});
     }
 
-    checkUserName() {
+    onButtonCheck() {
         if (validator.isAlpha(this.state.userName)) {
             document.querySelector(".block-input__name").parentNode.nextSibling.classList.remove("active");
             document.querySelector(".block-input__name").classList.remove("error");
@@ -100,16 +100,33 @@ class Reg extends React.Component {
             return false;
         }
     }
-    checkInputs() {
-        this.checkUserName();
-        // checkUserBirth();
-        // checkUserMail();
-        // checkUserPhone();
-    }
+
+    // checkInputs() {
+    //     this.onButtonCheck();
+    // }
+
     componentDidMount() {
-        // document.querySelector(".submit__button").classList.remove("is-active");
-        // document.querySelector(".submit__button").disabled = true;
+        document.querySelector(".submit__button").classList.remove("is-active");
+        document.querySelector(".submit__button").disabled = true;
     }
+
+    componentDidUpdate() {
+        let inputsEmpty = 0;
+        Object.entries(this.state).forEach(([key, value]) => {
+            console.log(key, " - ", value);
+            if (value == "") {
+                inputsEmpty +=1;
+            }
+        });
+        if (inputsEmpty == 0) {
+            document.querySelector(".submit__button").classList.add("is-active");
+            document.querySelector(".submit__button").disabled = false;
+        } else {
+            document.querySelector(".submit__button").classList.remove("is-active");
+            document.querySelector(".submit__button").disabled = true;
+        }
+    }
+
     render () {
         const userName = this.state.userName;
         const userBirth = this.state.userBirth;
@@ -161,7 +178,7 @@ class Reg extends React.Component {
             </main>
             <footer>
                 <div className="submit-footer">
-                    <input className="submit__button is-active" onClick={this.checkInputs} type="button" value="Продолжить" />
+                    <input className="submit__button is-active" onClick={this.onButtonCheck} type="button" value="Продолжить" />
                 </div>
             </footer>
         </>
