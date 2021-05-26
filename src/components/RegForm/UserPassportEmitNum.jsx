@@ -16,7 +16,7 @@ class UserPassportEmitNum extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="emitentNumber">Код подразделения</label>
-                    <input className="block-input__passport-emit-num short" type="number" id="userPassportEmitNum" name="userPassportEmitNum" value={userPassportEmitNum} onChange={this.onValueChange} placeholder="000-000" pattern="[0-9]{3}-[0-9]{3}"/>
+                    <input className="block-input__passport-emit-num short" type="text" id="userPassportEmitNum" name="userPassportEmitNum" value={userPassportEmitNum} onChange={this.onValueChange} placeholder="000-000" pattern="[0-9]{3}-[0-9]{3}" maxLength="6"/>
                 </div>
             </>
         )

@@ -16,7 +16,7 @@ class UserLicId extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="licenseNumber">Серия и номер</label>
-                    <input className="block-input__licence-num short" type="number" id="userLicId" name="userLicId" value={userLicId} onChange={this.onValueChange} placeholder="0000 000000" pattern="[0-9]{4} [0-9]{6}"/>
+                    <input className="block-input__licence-num short" type="text" id="userLicId" name="userLicId" value={userLicId} onChange={this.onValueChange} placeholder="0000 000000" pattern="[0-9]{4} [0-9]{6}" maxLength="10"/>
                 </div>
             </>
         )

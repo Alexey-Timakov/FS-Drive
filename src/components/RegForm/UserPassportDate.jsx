@@ -16,7 +16,7 @@ class UserPassportDate extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="userPassportDate">Дата выдачи</label>
-                    <input className="block-input__passport-date short calendar" type="date" id="userPassportDate" name="userPassportDate" value={userPassportDate} onChange={this.onValueChange} placeholder="00.00.0000"/>
+                    <input className="block-input__passport-date short calendar" type="date" id="userPassportDate" name="userPassportDate" value={userPassportDate} onChange={this.onValueChange} placeholder="00.00.0000" maxLength="8"/>
                 </div>
             </>
         )

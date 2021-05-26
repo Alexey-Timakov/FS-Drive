@@ -19,9 +19,10 @@ module.exports = {
     },
     devServer: {
         stats: {
+            contentBase: path.resolve(__dirname, './src'), // нет эффекта
             assets: false,
             children: false,
-            moduleAssets: false
+            moduleAssets: false,
         },
     },
     plugins: [
@@ -49,15 +50,21 @@ module.exports = {
                 loader: MiniCssExtractPlugin.loader,
                 options: { 
                     esModule: true,
-                    publicPath: path.resolve(__dirname, "./build/")
+                    // publicPath: path.resolve(__dirname, "./build/")
                 },
                 },
                 "css-loader",
-                "resolve-url-loader",
                 "postcss-loader",
+                {
+                loader: "resolve-url-loader",
+                options: {
+                    sourceMap: true,
+                }
+                },
                 {
                 loader: "sass-loader",
                 options: {
+                    sourceMap: true,
                     implementation: require("sass")
                 },
                 
@@ -67,6 +74,7 @@ module.exports = {
         {
             test: /\.(png|svg|jpg|jpeg|gif)$/,
             loader: "file-loader",
+            // loader: "url-loader",
             options : {
                 publicPath: path.resolve(__dirname, "./build/"),
                 name: "[name].[ext]",

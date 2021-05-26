@@ -17,7 +17,7 @@ class UserPhone extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="userPhone">Телефон</label>
-                    <input className="block-input__phone short" type="tel" id="userPhone" name="userPhone" value={userPhone} onChange={this.onValueChange} placeholder="+7 900 000-00-00" pattern="[+7] [0-9]{3} [0-9]{3}-[0-9]{2}-[0-9]{2}"/>
+                    <input className="block-input__phone short" type="tel" id="userPhone" name="userPhone" value={userPhone} onChange={this.onValueChange} placeholder="+7 900 000-00-00" pattern="[+7] [0-9]{3} [0-9]{3}-[0-9]{2}-[0-9]{2}" maxLength="12"/>
                 </div>
             </>
         )

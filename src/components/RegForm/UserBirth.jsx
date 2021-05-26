@@ -16,7 +16,7 @@ class UserBirth extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="userBirth">Дата рождения</label>
-                    <input className="block-input__date short calendar" type="date" id="userBirth" name="userBirth" value={userBirth} onChange={this.onValueChange} placeholder="00.00.0000"/>
+                    <input className="block-input__date short calendar" type="date" id="userBirth" name="userBirth" value={userBirth} onChange={this.onValueChange} placeholder="01.01.1970" maxLength="8"/>
                 </div>
 
             </>

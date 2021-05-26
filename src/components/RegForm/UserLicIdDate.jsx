@@ -16,7 +16,7 @@ class UserLicIdDate extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="licensetDate">Дата выдачи</label>
-                    <input className="block-input__licence-date short calendar" type="date" id="userLicIdDate" name="userLicIdDate" value={userLicIdDate} onChange={this.onValueChange} placeholder="00.00.0000"/>
+                    <input className="block-input__licence-date short calendar" type="date" id="userLicIdDate" name="userLicIdDate" value={userLicIdDate} onChange={this.onValueChange} placeholder="00.00.0000" maxLength="8"/>
                 </div>
             </>
         )
