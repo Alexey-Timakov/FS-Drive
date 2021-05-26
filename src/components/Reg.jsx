@@ -109,24 +109,24 @@ class Reg extends React.Component {
     // }
 
     componentDidMount() {
-        document.querySelector(".submit__button").classList.remove("is-active");
-        document.querySelector(".submit__button").disabled = true;
+        document.querySelector(".submit-footer__button").classList.remove("is-active");
+        document.querySelector(".submit-footer__button").disabled = true;
     }
 
     componentDidUpdate() {
         let inputsEmpty = 0;
         Object.entries(this.state).forEach(([key, value]) => {
-            console.log(key, " - ", value);
+            // console.log(key, " - ", value);
             if (value == "") {
                 inputsEmpty +=1;
             }
         });
         if (inputsEmpty == 0) {
-            document.querySelector(".submit__button").classList.add("is-active");
-            document.querySelector(".submit__button").disabled = false;
+            document.querySelector(".submit-footer__button").classList.add("is-active");
+            document.querySelector(".submit-footer__button").disabled = false;
         } else {
-            document.querySelector(".submit__button").classList.remove("is-active");
-            document.querySelector(".submit__button").disabled = true;
+            document.querySelector(".submit-footer__button").classList.remove("is-active");
+            document.querySelector(".submit-footer__button").disabled = true;
         }
     }
 
@@ -179,9 +179,9 @@ class Reg extends React.Component {
                     </form>
                 </div>
             </main>
-            <footer>
-                <div className="submit-footer">
-                    <input className="submit__button is-active" onClick={this.onButtonCheck} type="button" value="Продолжить" />
+            <footer className="submit-footer">
+                <div className="submit-footer__wrapper">
+                    <input className="submit-footer__button is-active" onClick={this.onButtonCheck} type="button" value="Продолжить" />
                 </div>
             </footer>
         </>

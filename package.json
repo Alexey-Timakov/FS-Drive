@@ -55,7 +55,7 @@
     },
     "homepage": "https://github.com/Alexey-Timakov/SF-Drive_homework#readme",
     "dependencies": {
-        "react-router-dom": "^4.3.1",
+        "react-router-dom": "^5.2.0",
         "validator": "^13.6.0"
     }
 }

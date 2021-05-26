@@ -12,6 +12,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "./build"),
+        publicPath: "/",
         filename: "./script/[name].js",
         clean: true
     },
@@ -20,7 +21,7 @@ module.exports = {
     },
     devServer: {
         stats: {
-            contentBase: path.resolve(__dirname, './src'), // нет эффекта
+            // contentBase: path.resolve(__dirname, './build'),
             assets: false,
             children: false,
             moduleAssets: false,
@@ -28,7 +29,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "./styles/[name].css"
+            filename: "./styles/[name].css",
         }),
         // new HtmlWebpackPlugin({
         //     filename: "faq.html",
@@ -55,7 +56,9 @@ module.exports = {
                 loader: MiniCssExtractPlugin.loader,
                 options: { 
                     esModule: true,
-                    // publicPath: path.resolve(__dirname, "./build/")
+                    publicPath: (resourcePath, context) => {
+                        return path.relative(path.dirname(resourcePath), context) + '/';
+                    }
                 },
                 },
                 "css-loader",
@@ -79,18 +82,13 @@ module.exports = {
         {
             test: /\.(png|svg|jpg|jpeg|gif)$/,
             loader: "file-loader",
-            // loader: "url-loader",
             options : {
-                publicPath: path.resolve(__dirname, "./build/"),
+                // publicPath: path.resolve(__dirname, "./build/"), // убрал пока-что т.к. картинки в css неверно прогружались
                 name: "[name].[ext]",
                 outputPath: "./images",
                 esModule: false
             }
             ,
-            // type: 'asset/resource',
-            // generator: {
-            //     filename: './images/[hash][ext][query]'
-            // }
         },
         {
             test: /\.(woff|woff2|eot|ttf|otf)$/,

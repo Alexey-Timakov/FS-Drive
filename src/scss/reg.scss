@@ -53,16 +53,38 @@
                 margin-bottom: 20px;
 
                 &:last-child {
-                    margin-bottom: 59px;
+                    margin-bottom: 61px;
+                }
+
+                a {
+                    display: inline-block;
+                    position: relative;
+                    top: 0px;
+                    right: 10px;
+                    width: 25px;
+                    height: 25px;
+                    background: url(../images/eye-off.svg) no-repeat 0% 0%;
+
+                    &.eye-on {
+                        background: url(../images/eye-on.svg) no-repeat 0% 0%;
+                    }
                 }
             }
+
             label {
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 16px;
                 color: $reg-black-label-text;
             }
+
             input {
+
+                &.moved {
+                    position: relative;
+                    left: 26px;
+                }
+                
                 margin-left: auto;
                 height: 44px;
                 width: 61%;
@@ -95,33 +117,16 @@
                     }
                 }
 
-                &.eye-closed {
-                    &:before{
-                        display: inline-block;
-                        font-family: 'Glyphter';
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 20px;
-                        line-height: 1;
-                        -webkit-font-smoothing: antialiased;
-                        -moz-osx-font-smoothing: grayscale;
-                        content:"\0042";
-                        position: relative;
-                        top: 0px;
-                        left: 75%;
-                        color: $reg-footer-button-color;
-                    }
-                }
-
                 &.short {
-                    width: 23%;
-                    margin-right: 38%;
+                    width: 25%;
+                    margin-right: 36%;
                 }
 
                 &:hover {
                     border-color: $light-green;
                 }
-                &:active {
+                &:focus {
+                    outline: none;
                     border: solid 2px $light-green;
                 }
 
@@ -129,6 +134,7 @@
                     border: solid 2px $reg-form-error-color;
                 }
             }
+
             &__error {
                 display: none;
                 position: relative;
@@ -148,12 +154,14 @@
     }
 
 }
-footer {
+
+.submit-footer{
     background-color: $reg-footer-background;
     padding: 0;
     margin-top: 35px;
-    
-    .submit-footer {
+
+    &__wrapper {
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -161,23 +169,24 @@ footer {
         padding: 0;
         border-top: 1px solid #DEE2E4;
 
-        .submit__button {
-            margin-top: 17px;
-            margin-bottom: 17px;
-            background-color: $reg-footer-button-color-disabled;
-            color: $reg-footer-button-text-disabled;
-            width: 176px;
-            height: 51px;
-            border-radius: 6px;
-            border: 0;
-            font-size: 16px;
-            line-height: 19px;
-            font-weight: 500;
+    }
 
-            &.is-active {
-                background-color: $reg-footer-button-color;
-                color: $reg-footer-button-text;
-            }
+    &__button {
+        margin-top: 17px;
+        margin-bottom: 17px;
+        background-color: $reg-footer-button-color-disabled;
+        color: $reg-footer-button-text-disabled;
+        width: 176px;
+        height: 51px;
+        border-radius: 6px;
+        border: 0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 500;
+
+        &.is-active {
+            background-color: $reg-footer-button-color;
+            color: $reg-footer-button-text;
         }
     }
 }
@@ -223,6 +232,11 @@ footer {
                     &:last-child {
                         margin-bottom: 14px;
                     }
+
+                    a {
+                        top: -33px;
+                        left: 90%;    
+                    }
     
                 }
                 label {
@@ -231,11 +245,12 @@ footer {
                 input {
                     width: 100%;
                     margin-bottom: 26px;
-    
-                    // &.calendar {
-                    //     background: url("../images/calendar.svg") no-repeat 90% 50%;
-                    // }
-    
+                    
+                    &.moved {
+                        left: 0px;
+                        margin-bottom: 0px;
+                    }
+
                     &.short {
                         width: 100%;
                         // margin-right: 38%;
@@ -257,19 +272,19 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-    footer {
+    .submit-footer{
         margin-top: 0px;
+
+        // &__wrapper {
+        // }
         
-        .submit-footer {
-    
-            .submit__button {
-                margin-top: 17px;
-                margin-bottom: 17px;
-                width: 335px;
-                font-size: 16px;
-                line-height: 19px;
-                font-weight: 500;
-            }
+        &__button {
+            margin-top: 17px;
+            margin-bottom: 17px;
+            width: 335px;
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 500;
         }
-    }
+    }       
 }
