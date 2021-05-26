@@ -1,7 +1,7 @@
 import * as React from "react";
 import {render} from "react-dom";
 
-import About from "../components/about";
+import About from "../components/About";
 
 // import "../scss/index.scss";
 import "../scss/about.scss";

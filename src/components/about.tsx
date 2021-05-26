@@ -1,4 +1,6 @@
 import * as React from "react";
+import "../scss/about.scss";
+
 import Header from "./header";
 import NoScript from "./NoScript";
 import AboutIntro from "./About_Intro";

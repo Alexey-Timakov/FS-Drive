@@ -5,9 +5,10 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        faq: "./src/script/index_faq.tsx",
-        about: "./src/script/index_about.tsx",
-        reg: "./src/script/index_reg.tsx"
+        index: "./src/script/index.tsx",
+        // faq: "./src/script/index_faq.tsx",
+        // about: "./src/script/index_about.tsx",
+        // reg: "./src/script/index_reg.tsx"
     },
     output: {
         path: path.resolve(__dirname, "./build"),
@@ -29,17 +30,21 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "./styles/[name].css"
         }),
+        // new HtmlWebpackPlugin({
+        //     filename: "faq.html",
+        //     template: "./faq.html"
+        // }),
+        // new HtmlWebpackPlugin({
+        //     filename: "about.html",
+        //     template: "./about.html"
+        // }),
+        // new HtmlWebpackPlugin({
+        //     filename: "reg.html",
+        //     template: "./reg.html"
+        // }),
         new HtmlWebpackPlugin({
-            filename: "faq.html",
-            template: "./faq.html"
-        }),
-        new HtmlWebpackPlugin({
-            filename: "about.html",
-            template: "./about.html"
-        }),
-        new HtmlWebpackPlugin({
-            filename: "reg.html",
-            template: "./reg.html"
+            filename: "index.html",
+            template: "./index.html"
         }),
     ],
     module: {

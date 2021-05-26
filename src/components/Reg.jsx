@@ -1,6 +1,8 @@
 import * as React from "react";
 import validator from "validator";
 
+import "../scss/reg.scss";
+
 import Header from "./header";
 import NoScript from "./NoScript";
 import UserName from "./RegForm/UserName";
@@ -15,6 +17,7 @@ import UserLicId from "./RegForm/UserLicId";
 import UserLicIdDate from "./RegForm/UserLicIdDate";
 import UserPassword from "./RegForm/UserPassword";
 import UserPasswordCheck from "./RegForm/UserPasswordCheck";
+import { Route } from "react-router-dom";
 
 class Reg extends React.Component {
     constructor(props) {
