@@ -20,6 +20,8 @@ module.exports = {
         extensions : [".tsx", ".ts  ", ".jsx", ".js", ".json"]
     },
     devServer: {
+        historyApiFallback: true,
+        contentBase: "./build",
         stats: {
             // contentBase: path.resolve(__dirname, './build'),
             assets: false,

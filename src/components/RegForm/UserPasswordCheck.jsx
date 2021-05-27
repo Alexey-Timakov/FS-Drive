@@ -30,7 +30,7 @@ class UserPasswordCheck extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="userPasswordCheck">Повторите пароль</label>
-                    <input className="block-input__password moved eye-closed" type="text" id="userPasswordCheck" name="userPasswordCheck" value={userPasswordCheck} onChange={this.onValueChange} placeholder="•••••••••••••••••••"/>
+                    <input className="block-input__password moved" type="text" id="userPasswordCheck" name="userPasswordCheck" value={userPasswordCheck} onChange={this.onValueChange} placeholder="•••••••••••••••••••"/>
                     <a href="#" className="eye-closed" onClick={this.changePassView}/>
                 </div>
             </>
