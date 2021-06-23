@@ -4,11 +4,10 @@ class UserMail extends React.Component {
     constructor(props) {
         super(props);
         this.onValueChange = this.onValueChange.bind(this);
-        this.state = {userMail: ""};
     }
     
     onValueChange(event) {
-        this.props.onUserMailChange(event.target.value);
+        this.props.onChange(event);
     }
 
     render() {
@@ -18,9 +17,9 @@ class UserMail extends React.Component {
             <>
                 <div className="block-input__wrapper">
                     <label htmlFor="userMail">Электронная почта</label>
-                    <input className="block-input__email" type="email" id="userMail" name="userMail" value={userMail} onChange={this.onValueChange} placeholder="mail@example.com"/>
+                    <input className="block-input__email" type="text" id="userMail" name="userMail" value={userMail} onChange={this.onValueChange} placeholder="mail@example.com"/>
                 </div>
-                <p className="block-input__error">Неверная почта</p>
+                <p className="block-input__error">Некорректная почта</p>
             </>
         )
     }

@@ -17,27 +17,16 @@ import UserLicId from "./RegForm/UserLicId";
 import UserLicIdDate from "./RegForm/UserLicIdDate";
 import UserPassword from "./RegForm/UserPassword";
 import UserPasswordCheck from "./RegForm/UserPasswordCheck";
-import { Route } from "react-router-dom";
 
 class Reg extends React.Component {
     constructor(props) {
         super(props);
-        this.onUserNameChange = this.onUserNameChange.bind(this);
-        this.onUserBirthChange = this.onUserBirthChange.bind(this);
-        this.onUserMailChange = this.onUserMailChange.bind(this);
-        this.onUserPhoneChange = this.onUserPhoneChange.bind(this);
-        this.onUserPassportChange = this.onUserPassportChange.bind(this);
-        this.onUserPassportDateChange = this.onUserPassportDateChange.bind(this);
-        this.onUserPassportEmitChange = this.onUserPassportEmitChange.bind(this);
-        this.onUserPassportEmitNumChange = this.onUserPassportEmitNumChange.bind(this);
-        this.onUserLicIdChange = this.onUserLicIdChange.bind(this);
-        this.onUserLicIdDateChange = this.onUserLicIdDateChange.bind(this);
-        this.onUserPasswordChange = this.onUserPasswordChange.bind(this);
-        this.onUserPasswordCheckChange = this.onUserPasswordCheckChange.bind(this);
-
-        // this.checkInputs = this.checkInputs.bind(this);
-        this.onButtonCheck = this.onButtonCheck.bind(this);
-        
+        this.onInputChange = this.onInputChange.bind(this);
+        this.inputCheck = this.inputCheck.bind(this);
+        this.sendUserData = this.sendUserData.bind(this);
+        this.showErrorInput = this.showErrorInput.bind(this);
+        this.hideErrorInput = this.hideErrorInput.bind(this);
+      
         this.state = {
             userName: "",
             userBirth: "",
@@ -53,60 +42,158 @@ class Reg extends React.Component {
             userPasswordCheck: "",
         };
     }
-    onUserNameChange(userName) {
-        this.setState({userName});
-    }
-    onUserBirthChange(userBirth) {
-        this.setState({userBirth});
-    }
-    onUserMailChange(userMail) {
-        this.setState({userMail});
-    }
-    onUserPhoneChange(userPhone) {
-        this.setState({userPhone});
-    }
-    onUserPassportChange(userPassport) {
-        this.setState({userPassport});
-    }
-    onUserPassportDateChange(userPassportDate) {
-        this.setState({userPassportDate});
-    }
-    onUserPassportEmitChange(userPassportEmit) {
-        this.setState({userPassportEmit});
-    }
-    onUserPassportEmitNumChange(userPassportEmitNum) {
-        this.setState({userPassportEmitNum});
-    }
-    onUserLicIdChange(userLicId) {
-        this.setState({userLicId});
-    }
-    onUserLicIdDateChange(userLicIdDate) {
-        this.setState({userLicIdDate});
-    }
-    onUserPasswordChange(userPassword) {
-        this.setState({userPassword});
-    }
-    onUserPasswordCheckChange(userPasswordCheck) {
-        this.setState({userPasswordCheck});
+
+    onInputChange(event) {
+        this.setState({[event.target.name]: event.target.value});
     }
 
-    onButtonCheck() {
-        if (validator.isAlpha(this.state.userName)) {
-            document.querySelector(".block-input__name").parentNode.nextSibling.classList.remove("active");
-            document.querySelector(".block-input__name").classList.remove("error");
-            console.log(this.state.userName, "UserName is OK");
-            return true;
-        } else {
-            document.querySelector(".block-input__name").parentNode.nextSibling.classList.add("active");
-            document.querySelector(".block-input__name").classList.add("error");
-            console.log(this.state.userName, "UserName is NOT OK");
-            return false;
-        }
+    showErrorInput(key) {
+        document.querySelector(`#${key}`).parentNode.nextSibling.classList.add("active");
+        document.querySelector(`#${key}`).classList.add("error");
     }
 
-    // checkInputs() {
-    //     this.onButtonCheck();
-    // }
+    hideErrorInput(key) {
+        document.querySelector(`#${key}`).parentNode.nextSibling.classList.remove("active");
+        document.querySelector(`#${key}`).classList.remove("error");
+    }
+
+    inputCheck(event) {
+        event.preventDefault();
+        let inputsError = 0;
+
+        Object.entries(this.state).forEach(([key, value]) => {
+            switch(key) {
+                case "userName":
+                    if (!validator.isAlpha(value, 'ru-RU', {ignore: " -"})) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                // case "userBirth":
+                // case "userPassportDate":
+                // case "userLicIdDate":
+                //     // if (!validator.isDate(+value, {format: "DD/MM/YYYY", delimiters: ['/', '-', '.']})) {
+                //     if (!validator.isISO8601(value.toString())) {
+                //         this.showErrorInput(key);
+                //         inputsError +=1;
+                //     }
+                //     else {
+                //         this.hideErrorInput(key);
+                //     }
+                //     break;
+
+                case "userMail":
+                    if (!validator.isEmail(value)) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                case "userPhone":
+                    if (!validator.isMobilePhone(value, 'ru-RU', {strictMode: false})) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                case "userPassport":
+                    if (!validator.isPassportNumber(value, 'RU')) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                case "userPassportEmit":
+                    if (!validator.isAlphanumeric(value, 'ru-RU', {ignore: " -"})) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                case "userPassportEmitNum":
+                case "userLicId":
+                    if (!validator.isInt(value)) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                case "userPassword":
+                    if (!validator.isStrongPassword(value, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1})) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+
+                case "userPasswordCheck":
+                    if (value !== this.state.userPassword) {
+                        this.showErrorInput(key);
+                        inputsError +=1;
+                    }
+                    else {
+                        this.hideErrorInput(key);
+                    }
+                    break;
+            };
+        })
+
+        if (inputsError == 0) {
+            const button = document.querySelector(".submit-footer__button");
+            button.innerHTML= '<i class="is-waiting"></i>';
+            setTimeout(this.sendUserData, 1500)}; //Таймаут для проверки работоспособности
+    }
+
+    sendUserData() {
+        const button = document.querySelector(".submit-footer__button");
+        const data = {};
+        Object.entries(this.state).forEach(([key, value]) => {
+            data[key] = value;
+        })
+
+        fetch("http://localhost:8000", {
+            method: "POST",
+            headers: {
+                "Origin": "http://localhost:8080",
+                "Content-Type": "application/json;charset=utf-8"
+              },
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(res => {
+                button.innerHTML= 'Продолжить';
+                console.log("POST - ", res);
+                if (res.code == 1) {
+                    document.querySelector(".reg-form-error").classList.add("is-active");
+                } else if (res.code == 0) {
+                    document.querySelector(".reg-form-error").classList.remove("is-active");
+                }
+            })
+            .catch(error => {
+                document.querySelector(".reg-form-error").classList.add("is-active");
+                console.log(error)});        
+    }
 
     componentDidMount() {
         document.querySelector(".submit-footer__button").classList.remove("is-active");
@@ -143,45 +230,47 @@ class Reg extends React.Component {
         const userLicIdDate = this.state.userLicIdDate;
         const userPassword = this.state.userPassword;
         const userPasswordCheck = this.state.userPasswordCheck;
-        return (
+        return (            
             <>
             <Header />
             <NoScript />
             <main>
+                <div className="reg-form-error">Не удалось продолжить регистрацию. Попробуйте ещё раз.</div>
                 <div className="reg-form-wrapper">
                     <p>Шаг 1 из 3</p>
                     <h1>Расскажите о себе</h1>
-                    <form>
+                    <form id="userData" name="userData">
                         <div className="block-input">
                             <h2>Информация о вас</h2>
-                            <UserName userName={userName} onUserNameChange={this.onUserNameChange}/>
-                            <UserBirth userBirth={userBirth} onUserBirthChange={this.onUserBirthChange}/>
-                            <UserMail userMail={userMail} onUserMailChange={this.onUserMailChange}/>
-                            <UserPhone userPhone={userPhone} onUserPhoneChange={this.onUserPhoneChange}/>
+                            <UserName userName={userName} onChange={this.onInputChange}/>
+                            <UserBirth userBirth={userBirth} onChange={this.onInputChange}/>
+                            <UserMail userMail={userMail} onChange={this.onInputChange}/>
+                            <UserPhone userPhone={userPhone} onChange={this.onInputChange}/>
                         </div>
                         <div className="block-input">
                             <h2>Паспорт</h2>
-                            <UserPassport userPassport={userPassport} onUserPassportChange={this.onUserPassportChange}/>
-                            <UserPassportDate userPassportDate={userPassportDate} onUserPassportDateChange={this.onUserPassportDateChange}/>
-                            <UserPassportEmit userPassportEmit={userPassportEmit} onUserPassportEmitChange={this.onUserPassportEmitChange}/>
-                            <UserPassportEmitNum userPassporEmitNum={userPassportEmitNum} onUserPassportEmitNumChange={this.onUserPassportEmitNumChange}/>
+                            <UserPassport userPassport={userPassport} onChange={this.onInputChange}/>
+                            <UserPassportDate userPassportDate={userPassportDate} onChange={this.onInputChange}/>
+                            <UserPassportEmit userPassportEmit={userPassportEmit} onChange={this.onInputChange}/>
+                            <UserPassportEmitNum userPassporEmitNum={userPassportEmitNum} onChange={this.onInputChange}/>
                         </div>
                         <div className="block-input">
                             <h2>Водительское удостоверение</h2>
-                            <UserLicId userLicId={userLicId} onUserLicIdChange={this.onUserLicIdChange}/>
-                            <UserLicIdDate userLicIdDate={userLicIdDate} onUserLicIdDateChange={this.onUserLicIdDateChange}/>
+                            <UserLicId userLicId={userLicId} onChange={this.onInputChange}/>
+                            <UserLicIdDate userLicIdDate={userLicIdDate} onChange={this.onInputChange}/>
                         </div>
                         <div className="block-input">
                             <h2>Пароль</h2>
-                            <UserPassword userPassword={userPassword} onUserPasswordChange={this.onUserPasswordChange}/>
-                            <UserPasswordCheck userPasswordCheck={userPasswordCheck} onUserPasswordCheckChange={this.onUserPasswordCheckChange}/>
+                            <UserPassword userPassword={userPassword} onChange={this.onInputChange}/>
+                            <UserPasswordCheck userPasswordCheck={userPasswordCheck} onChange={this.onInputChange}/>
                         </div>
                     </form>
                 </div>
             </main>
             <footer className="submit-footer">
                 <div className="submit-footer__wrapper">
-                    <input className="submit-footer__button is-active" onClick={this.onButtonCheck} type="button" value="Продолжить" />
+                    <button className="submit-footer__button is-active" onClick={this.inputCheck}>Продолжить
+                    </button>
                 </div>
             </footer>
         </>

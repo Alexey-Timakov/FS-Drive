@@ -5,6 +5,27 @@
 
 /* Main section. Registration form. */
 
+.reg-form-error {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    height: 58px;
+    width: 100%;
+    background-color: $reg-form-error-color;
+    color: $reg-footer-error-text;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+
+    &.is-active {
+        display: flex;
+        position: absolute;
+        top: 0px;
+    }
+}
+
 .reg-form-wrapper {
     display: flex;
     flex-direction: column;
@@ -188,12 +209,42 @@
             background-color: $reg-footer-button-color;
             color: $reg-footer-button-text;
         }
+
+        .is-waiting::before {
+            display: inline-block;
+            font-family: 'Glyphter';
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content:"\0044";
+
+            animation: rotation 2s infinite linear;
+        }
+
+        @keyframes rotation {
+            from {
+                    -webkit-transform: rotate(0deg);
+            }
+            to {
+                    -webkit-transform: rotate(359deg);
+            }
+    }
     }
 }
 
 /* Main section. Registration form. Adaptive. */
 
 @media screen and (max-width: 768px) {
+    .reg-form-error {
+        height: 72px;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+    }
+
     .reg-form-wrapper {
         p {
             font-size: 12px;

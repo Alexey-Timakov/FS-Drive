@@ -5,11 +5,10 @@ class UserName extends React.Component {
     constructor(props) {
         super(props);
         this.onValueChange = this.onValueChange.bind(this);
-        this.state = {userName: "",}
     }
     
     onValueChange(event) {
-        this.props.onUserNameChange(event.target.value);
+        this.props.onChange(event);
     }
 
     render() {

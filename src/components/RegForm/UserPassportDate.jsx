@@ -4,11 +4,10 @@ class UserPassportDate extends React.Component {
     constructor(props) {
         super(props);
         this.onValueChange = this.onValueChange.bind(this);
-        this.state = {userPassportDate: ""};
     }
     
     onValueChange(event) {
-        this.props.onUserPassportDateChange(event.target.value);
+        this.props.onChange(event);
     }
     render() {
         const userPassportDate = this.props.userPassportDate;
@@ -18,6 +17,7 @@ class UserPassportDate extends React.Component {
                     <label htmlFor="userPassportDate">Дата выдачи</label>
                     <input className="block-input__passport-date short calendar" type="date" id="userPassportDate" name="userPassportDate" value={userPassportDate} onChange={this.onValueChange} placeholder="00.00.0000" maxLength="8"/>
                 </div>
+                <p className="block-input__error">Некорректная дата</p>
             </>
         )
     }

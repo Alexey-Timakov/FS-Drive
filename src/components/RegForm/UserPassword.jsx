@@ -5,18 +5,15 @@ class UserPassword extends React.Component {
         super(props);
         this.onValueChange = this.onValueChange.bind(this);
         this.changePassView = this.changePassView.bind(this);
-        this.state = {userPassword: ""};
     }
     
     onValueChange(event) {
-        this.props.onUserPasswordChange(event.target.value);
+        this.props.onChange(event);
     }
 
     changePassView(event) {
         event.preventDefault();
         let input = event.target.previousSibling;
-        // console.log(input);
-        // console.log(event.target);
         if (input.getAttribute('type') == 'password') {
             event.target.classList.add('eye-on');
             input.setAttribute('type', 'text');
@@ -25,6 +22,7 @@ class UserPassword extends React.Component {
             input.setAttribute('type', 'password');
         }
     }
+    
     render() {
         const userPassword = this.props.userPassword;
 
@@ -35,6 +33,7 @@ class UserPassword extends React.Component {
                     <input className="block-input__password moved" type="password" id="userPassword" name="userPassword" value={userPassword} onChange={this.onValueChange} placeholder="•••••••••••••••••••"/>
                     <a href="#" className="eye-closed" onClick={this.changePassView}/>
                 </div>
+                <p className="block-input__error">Придумайте более сложный пароль (a-z, A-Z, 1-9, #,@...)</p>
             </>
         )
     }
