@@ -1,22 +1,22 @@
 import * as React from "react";
 import validator from "validator";
 
-import "../scss/reg.scss";
+import "../../scss/reg.scss";
 
-import Header from "./header";
-import NoScript from "./NoScript";
-import UserName from "./RegForm/UserName";
-import UserBirth from "./RegForm/UserBirth";
-import UserMail from "./RegForm/UserMail";
-import UserPhone from "./RegForm/UserPhone";
-import UserPassport from "./RegForm/UserPassport";
-import UserPassportDate from "./RegForm/UserPassportDate";
-import UserPassportEmit from "./RegForm/UserPassportEmit";
-import UserPassportEmitNum from "./RegForm/UserPassportEmitNum";
-import UserLicId from "./RegForm/UserLicId";
-import UserLicIdDate from "./RegForm/UserLicIdDate";
-import UserPassword from "./RegForm/UserPassword";
-import UserPasswordCheck from "./RegForm/UserPasswordCheck";
+import Header from "../Common/header";
+import NoScript from "../Common/NoScript";
+import UserName from "./UserName";
+import UserBirth from "./UserBirth";
+import UserMail from "./UserMail";
+import UserPhone from "./UserPhone";
+import UserPassport from "./UserPassport";
+import UserPassportDate from "./UserPassportDate";
+import UserPassportEmit from "./UserPassportEmit";
+import UserPassportEmitNum from "./UserPassportEmitNum";
+import UserLicId from "./UserLicId";
+import UserLicIdDate from "./UserLicIdDate";
+import UserPassword from "./UserPassword";
+import UserPasswordCheck from "./UserPasswordCheck";
 
 class Reg extends React.Component {
     constructor(props) {

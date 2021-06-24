@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "../images/undraw_questions.svg";
+import "../../images/undraw_questions.svg";
 import FaqQAMain from "./Faq_QA_main";
 
 function MainFaq () {

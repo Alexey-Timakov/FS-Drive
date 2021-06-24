@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import "../images/vk_vector.svg";
-import "../images/inst_vector.svg";
-import "../images/face_vector.svg";
+import "../../images/vk_vector.svg";
+import "../../images/inst_vector.svg";
+import "../../images/face_vector.svg";
 
 function Footer () {
     return (

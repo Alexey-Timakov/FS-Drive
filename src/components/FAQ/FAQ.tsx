@@ -1,10 +1,10 @@
 import * as React from "react";
-import "../scss/faq.scss";
+import "../../scss/faq.scss";
 
-import Header from "./header";
-import NoScript from "./NoScript";
+import Header from "../Common/header";
+import NoScript from "../Common/NoScript";
 import MainFaq from "./Main_Faq";
-import Footer from "./Footer";
+import Footer from "../Common/Footer";
 
 function Faq() {
     document.addEventListener("DOMContentLoaded", function () {

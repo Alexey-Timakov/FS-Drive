@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import "../images/arrow_down.svg";
-import "../images/arrow_up.svg";
+import "../../images/arrow_down.svg";
+import "../../images/arrow_up.svg";
 
 function QAElement (props) {
     return (

@@ -1,15 +1,15 @@
 import * as React from "react";
 
 import Logo from "./logo";
-import TopMenu from "./top_menu";
-import TopMenuCompact from "./top_menu_compact";
+import TopMenuUnreg from "./top_menu_unreg";
+import TopMenuCompactUnreg from "./top_menu_compact_unreg";
 
 function Header () {
     return (
         <header>
             <Logo />
-            <TopMenuCompact />
-            <TopMenu />
+            <TopMenuCompactUnreg />
+            <TopMenuUnreg />
         </header>
     )
 }

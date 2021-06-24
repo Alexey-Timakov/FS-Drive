@@ -1,12 +1,12 @@
 import * as React from "react";
 import Member from "./Member";
 
-import "../images/Ellipse 9.png";
-import "../images/Ellipse 10.png";
-import "../images/Ellipse 11.png";
-import "../images/Ellipse 12.png";
-import "../images/Ellipse 13.png";
-import "../images/Ellipse 14.png";
+import "../../images/Ellipse 9.png";
+import "../../images/Ellipse 10.png";
+import "../../images/Ellipse 11.png";
+import "../../images/Ellipse 12.png";
+import "../../images/Ellipse 13.png";
+import "../../images/Ellipse 14.png";
 
 function AboutTeam () {
     const ourTeam = [

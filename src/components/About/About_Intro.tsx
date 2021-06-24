@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "../images/undraw_team_spirit.svg";
+import "../../images/undraw_team_spirit.svg";
 
 function AboutIntro () {
     return (
