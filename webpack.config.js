@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "./build"),
-        publicPath: "/",
+        publicPath: path.resolve(__dirname, "./build"),
         filename: "./script/[name].js",
         clean: true
     },
@@ -23,7 +23,6 @@ module.exports = {
         historyApiFallback: true,
         contentBase: "./build",
         stats: {
-            // contentBase: path.resolve(__dirname, './build'),
             assets: false,
             children: false,
             moduleAssets: false,
@@ -33,18 +32,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "./styles/[name].css",
         }),
-        // new HtmlWebpackPlugin({
-        //     filename: "faq.html",
-        //     template: "./faq.html"
-        // }),
-        // new HtmlWebpackPlugin({
-        //     filename: "about.html",
-        //     template: "./about.html"
-        // }),
-        // new HtmlWebpackPlugin({
-        //     filename: "reg.html",
-        //     template: "./reg.html"
-        // }),
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "./index.html"
@@ -59,7 +46,7 @@ module.exports = {
                 options: { 
                     esModule: true,
                     publicPath: (resourcePath, context) => {
-                        return path.relative(path.dirname(resourcePath), context) + '/';
+                        return path.relative(path.dirname(resourcePath), context) + '/build/';
                     }
                 },
                 },
