@@ -169,7 +169,7 @@ class Reg extends React.Component {
         const button = document.querySelector(".submit-footer__button");
         const data = {};
         Object.entries(this.state).forEach(([key, value]) => {
-            data[key] = value;
+            if (key !== "userPasswordCheck") data[key] = value;
         })
 
         fetch("http://localhost:8000", {

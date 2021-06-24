@@ -1,8 +1,24 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcrypt');
 const app = express();
+
+let newUserData = {};
+
+function hashPass(passToHash) {
+    const saltRounds = 10;
+
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        newUserData.userSalt = salt;
+        // console.log(salt);
+        bcrypt.hash(passToHash, salt)
+            .then(function(hash){
+            newUserData.userPassword = hash;
+            // console.log(newUserData.userPassword);
+        });
+    })
+}
 
 mongoose.connect('mongodb://localhost/sfdrive', {useNewUrlParser: true, useUnifiedTopology : true})
     .then(() => console.log("Connection to DB has been established"));
@@ -19,8 +35,9 @@ const SFDriveUsersSchema = new mongoose.Schema({
     userLicId: String,
     userLicIdDate: String,
     userPassword: String,
-    userPasswordCheck: String,
+    userSalt: String,
 });
+
 
 const SFDriveUsers = mongoose.model("SFDriveUsers", SFDriveUsersSchema);
 
@@ -37,6 +54,7 @@ function loggerMiddleware (req, res, next) {
 };
 
 app.use(loggerMiddleware);
+
 app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
@@ -46,10 +64,13 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/", async (req, res) => {    
-    let newUserData = {};
     let resCode = 0; // newUser's email is OK
     Object.entries(req.body).forEach(([key, value]) => {
-        newUserData[key] = value;
+        if (key === "userPassword") {
+            hashPass(value);
+        } else {
+            newUserData[key] = value;
+        }
     });
     const checkVal = await SFDriveUsers.find({"userMail": newUserData.userMail})
     // console.log("checkVal = ", checkVal, checkVal.length);
