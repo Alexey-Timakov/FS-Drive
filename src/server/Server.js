@@ -1,7 +1,13 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+
+// Import Routers
+const authorize = require("./autorize");
+
+// Import DB
+const {SFDriveUsers} = require ("./DB");
+
 const app = express();
 
 let newUserData = {};
@@ -20,26 +26,25 @@ function hashPass(passToHash) {
     })
 }
 
-mongoose.connect('mongodb://localhost/sfdrive', {useNewUrlParser: true, useUnifiedTopology : true})
-    .then(() => console.log("Connection to DB has been established"));
+// mongoose.connect('mongodb://localhost/sfdrive', {useNewUrlParser: true, useUnifiedTopology : true})
+//     .then(() => console.log("Connection to DB has been established"));
 
-const SFDriveUsersSchema = new mongoose.Schema({
-    userName: String,
-    userBirth: String,
-    userMail: String,
-    userPhone: String,
-    userPassport: String,
-    userPassportDate: String,
-    userPassportEmit: String,
-    userPassportEmitNum: String,
-    userLicId: String,
-    userLicIdDate: String,
-    userPassword: String,
-    userSalt: String,
-});
+// const SFDriveUsersSchema = new mongoose.Schema({
+//     userName: String,
+//     userBirth: String,
+//     userMail: String,
+//     userPhone: String,
+//     userPassport: String,
+//     userPassportDate: String,
+//     userPassportEmit: String,
+//     userPassportEmitNum: String,
+//     userLicId: String,
+//     userLicIdDate: String,
+//     userPassword: String,
+//     userSalt: String,
+// });
 
-
-const SFDriveUsers = mongoose.model("SFDriveUsers", SFDriveUsersSchema);
+// const SFDriveUsers = mongoose.model("SFDriveUsers", SFDriveUsersSchema);
 
 app.use((req, res, next) => {
     res.append("Access-Control-Allow-Origin", ["http://localhost:8080"]);
@@ -48,12 +53,7 @@ app.use((req, res, next) => {
     next();
 });
 
-function loggerMiddleware (req, res, next) {
-    console.log(`Middleware: ${req.method} - ${req.url}`);
-    next();
-};
-
-app.use(loggerMiddleware);
+app.use("/login", authorize);
 
 app.use(bodyParser.json());
 
@@ -84,9 +84,6 @@ app.post("/", async (req, res) => {
         resCode = 1; // newUser's email is NOT OK
         res.send({"code": resCode, "message": "User with this email is already exist."})
     }
-    // user.push(newUserData);
-    // res.json(JSON.stringify(user));
-    // console.log(user);
 });
 
 app.listen(8000, () => {
