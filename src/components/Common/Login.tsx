@@ -12,9 +12,13 @@ function Login () {
         document.querySelector(".login-window__wrapper").classList.remove("is-active");
         document.querySelector(".login-window__fade").classList.remove("is-active");
     }
+    const setTokens = (accessToken, refreshToken) => {
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+    }
     const login = () => {
         event.preventDefault();
-        console.log(userMailLogin, userPasswordLogin);
+        // console.log(userMailLogin, userPasswordLogin);
         fetch("http://localhost:8000/login", {
             method: "POST",
             headers: {
@@ -27,7 +31,11 @@ function Login () {
             }),
         })
         .then(res => res.json())
-        .then(res => console.log(res.message))
+        .then(res => {
+            if (res.isOK) {
+                console.log(res);
+                setTokens(res.tokens.accessToken, res.tokens.refreshToken);
+            } else console.log(res)})
         .catch(err => console.log(err))
     };
 

@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const authorize = require("./autorize");
 
 // Import DB
-const {SFDriveUsers} = require ("./DB");
+const SFDriveUsers = require("./DB");
 
 const app = express();
 
@@ -15,36 +15,17 @@ let newUserData = {};
 function hashPass(passToHash) {
     const saltRounds = 10;
 
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        newUserData.userSalt = salt;
-        // console.log(salt);
-        bcrypt.hash(passToHash, salt)
-            .then(function(hash){
-            newUserData.userPassword = hash;
-            // console.log(newUserData.userPassword);
+    bcrypt.genSalt(saltRounds, async function(err, salt) {
+        newUserData.userSalt = await salt;
+        // console.log(newUserData.userSalt);
+        bcrypt.hash(passToHash, salt, async function(err, hash) {
+            if (hash) {
+                newUserData.userPassword = await hash;
+                // console.log(newUserData.userPassword);
+            }
         });
     })
 }
-
-// mongoose.connect('mongodb://localhost/sfdrive', {useNewUrlParser: true, useUnifiedTopology : true})
-//     .then(() => console.log("Connection to DB has been established"));
-
-// const SFDriveUsersSchema = new mongoose.Schema({
-//     userName: String,
-//     userBirth: String,
-//     userMail: String,
-//     userPhone: String,
-//     userPassport: String,
-//     userPassportDate: String,
-//     userPassportEmit: String,
-//     userPassportEmitNum: String,
-//     userLicId: String,
-//     userLicIdDate: String,
-//     userPassword: String,
-//     userSalt: String,
-// });
-
-// const SFDriveUsers = mongoose.model("SFDriveUsers", SFDriveUsersSchema);
 
 app.use((req, res, next) => {
     res.append("Access-Control-Allow-Origin", ["http://localhost:8080"]);
