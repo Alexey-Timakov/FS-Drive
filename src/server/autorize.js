@@ -17,7 +17,7 @@ authorize.post("/", async (req, res) => {
     const userToLogin =  await SFDriveUsers.findOne({"userMail": userMail});
 
     if (userToLogin != null) {
-        console.log("User found!", userToLogin.userMail);
+        console.log("User have been found!", userToLogin.userMail);
         bcrypt.compare(userPassword, userToLogin.userPassword, function(err, isMatch) {
             if (err) {
                 console.log("WOW!", err);
@@ -25,12 +25,15 @@ authorize.post("/", async (req, res) => {
             } else if (isMatch) {
                 console.log("Password matches!");
                 const tokens = generateToken(userMail);
-                res.status(200).send({"message": "Password matches!", "isOK": true, tokens});
+                res.status(200).send({"message": "Login and password match!", "isOK": true, tokens});
             } else {
                 console.log("Password does NOT match!");
-                res.status(401).send({"message": "Password does NOT match!", "isOK": false});
+                res.status(401).send({"message": "Login and password do NOT match!", "isOK": false});
             }
         })
+    } else {
+        console.log("User have NOT been found!", userToLogin.userMail);
+        res.status(401).send({"message": "User have NOT been found!", "isOK": false});
     }
 });
 
