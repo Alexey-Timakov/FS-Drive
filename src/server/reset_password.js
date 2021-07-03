@@ -12,6 +12,7 @@ resetPass.use(bodyParser.json());
 
 resetPass.post("/", async (req, res) => {
     const userMail = req.body.userMail;
+    const queryUser = {"userMail": userMail};
     console.log("Requested user to reset password: ", userMail);
     
     const payload = {
@@ -19,17 +20,20 @@ resetPass.post("/", async (req, res) => {
         "type": "change-pass",
     };
 
-    try {
-        const userToReset =  await SFDriveUsers.findOne({"userMail": userMail});
-        if (userToReset != null) {
-            console.log("User have been found!", userToReset.userMail);
+    const resetToken = jwt.sign(payload, RESET_TOKEN_SECRET, {expiresIn: RESET_TOKEN_LIFE});
 
-            const resetToken = jwt.sign(payload, RESET_TOKEN_SECRET, {expiresIn: RESET_TOKEN_LIFE});
-            userToReset.update({})
-        } 
-    } catch (error) {
+    try {
+            await SFDriveUsers.findOneAndUpdate(queryUser, {$set: {"resetToken": resetToken}}, {returnNewDocument: true}, (err, doc) => {
+                if (err) {
+                    res.status(501).send({"message": "Something went wrong...", "isOK": false});
+                } else {
+                    res.status(200).send({"message": "Reset password request has been acepted"});
+                }
+            });
+    }
+    catch (error) {
         console.log("Error", error);
-        res.status(401).send({"message": "Something went wrong...", "isOK": false});
+        res.status(501).send({"message": "Something went wrong...", "isOK": false});
     }
 });
 

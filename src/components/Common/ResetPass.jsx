@@ -33,24 +33,23 @@ function ResetPass () {
     const resetPass = (event) => {
         event.preventDefault();
         console.log("reset pass - ", userMailToReset);
-        // fetch("http://localhost:8000/resetpass", {
-        //     method: "POST",
-        //     headers: {
-        //         "Origin": "http://localhost:8080",
-        //         "Content-Type": "application/json;charset=utf-8",
-        //       },
-        //     body: JSON.stringify({
-        //         "userMail": userMailToReset,
-        //     }),
-        // })
-        // .then(res => res.json())
-        // .then(res => {
-        //     if (res.isOK) {
-        //         console.log(res);
-        //     } else console.log(res)})
-        // .catch(err => console.log(err))
+        fetch("http://localhost:8000/resetpass", {
+            method: "POST",
+            headers: {
+                "Origin": "http://localhost:8080",
+                "Content-Type": "application/json;charset=utf-8",
+              },
+            body: JSON.stringify({
+                "userMail": userMailToReset,
+            }),
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res.isOK) {
+                console.log(res);
+            } else console.log(res)})
+        .catch(err => console.log(err))
     };
-
 
     return (
         <>

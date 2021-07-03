@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/sfdrive', {useNewUrlParser: true, useUnifiedTopology : true})
     .then(() => console.log("Connection to DB has been established"));
 
+mongoose.set('useFindAndModify', false);
+
 const SFDriveUsersSchema = new mongoose.Schema({
         userName: String,
         userBirth: String,
@@ -15,7 +17,9 @@ const SFDriveUsersSchema = new mongoose.Schema({
         userLicId: String,
         userLicIdDate: String,
         userPassword: String,
-        userSalt: String,
+        accessToken: String,
+        refreshToken: String,
+        resetToken: String,
 });
 
 module.exports = mongoose.model("SFDriveUsers", SFDriveUsersSchema);
