@@ -1,24 +1,57 @@
 import * as React from "react";
 import {BrowserRouter as Router, Link} from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import validator from "validator";
+import setTokens from "./setToken.js";
 
 import "../../images/sign_in.svg";
-
-import "../../scss/login.scss";
 import "../../images/close_cross.svg";
 
+import "../../scss/login.scss";
+
+
 function Login () {
+    let [userMailLogin, changedUserMailLogin] = useState("");
+    let [userPasswordLogin, changedUserPasswordLogin] = useState("");
+    
+    const loginButton = document.querySelector("#login-button");
+    
+    const showErrorInput = () => {
+        document.querySelector("#userMailLogin").classList.add("error");
+        document.querySelector("#userPasswordLogin").classList.add("error");
+        document.querySelector(".login-window__error").classList.add("active");
+    }
+
+    const hideErrorInput = () => {
+        document.querySelector("#userMailLogin").classList.remove("error");
+        document.querySelector("#userPasswordLogin").classList.remove("error");
+        document.querySelector(".login-window__error").classList.remove("active");
+    }
+
+    useEffect(() => {
+        if (loginButton && validator.isEmail(userMailLogin) && userPasswordLogin != "") {
+            loginButton.disabled = false;
+        } else if (loginButton && (!validator.isEmail(userMailLogin) || userPasswordLogin == "")) {
+            loginButton.disabled = true;
+        }
+    })
+
     const hideLoginWindow = () => {
         document.querySelector(".login-window__wrapper").classList.remove("is-active");
         document.querySelector(".login-window__fade").classList.remove("is-active");
     }
-    const setTokens = (accessToken, refreshToken) => {
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+
+    const showResetPassWindow = () => {
+        hideLoginWindow();
+        document.querySelector(".reset-window__wrapper").classList.add("is-active");
+        document.querySelector(".reset-window__fade").classList.add("is-active");
     }
-    const login = () => {
+
+    const login = (event) => {
         event.preventDefault();
-        // console.log(userMailLogin, userPasswordLogin);
+        hideErrorInput();
+        loginButton.innerHTML= '<i class="is-waiting"></i>';
+        console.log(userMailLogin, userPasswordLogin);
         fetch("http://localhost:8000/login", {
             method: "POST",
             headers: {
@@ -32,16 +65,22 @@ function Login () {
         })
         .then(res => res.json())
         .then(res => {
+            loginButton.classList.remove("is-waiting");
+            loginButton.innerHTML = "Войти";
             if (res.isOK) {
                 console.log(res);
                 setTokens(res.tokens.accessToken, res.tokens.refreshToken);
-            } else console.log(res)})
-        .catch(err => console.log(err))
+            } else {
+                showErrorInput();
+                console.log(res);
+            }})
+        .catch(err => {
+            loginButton.classList.remove("is-waiting");
+            loginButton.innerHTML = "Войти";
+            console.log(err);
+        })
     };
 
-    let [userMailLogin, changedUserMailLogin] = useState("");
-    let [userPasswordLogin, changedUserPasswordLogin] = useState("");
-    
     return (
         <>
             <div className="login-window__wrapper">
@@ -51,9 +90,10 @@ function Login () {
                 <div className="login-window__description">
                     <img src="./images/sign_in.svg" alt="Векторное изображение думающего человека" />
                     <h1>Авторизация</h1>
+                    <p className="login-window__error">Неверная почта или пароль</p>
                 </div>
                 <div className="login-window__form-wrapper">
-                    <form id="login-window__form" name="login-window__form">
+                    <form onSubmit={login} id="login-window__form" name="login-window__form">
                         <div className="block-input__wrapper">
                             <input className="" type="text" id="userMailLogin" name="userMailLogin" value={userMailLogin} onChange={(e) => changedUserMailLogin(e.target.value)}/>
                             <label htmlFor="userMailLogin">Электронная почта</label>
@@ -61,9 +101,10 @@ function Login () {
                         <div className="block-input__wrapper">
                             <input className="" type="password" id="userPasswordLogin" name="userPasswordLogin" value={userPasswordLogin} onChange={(e) => changedUserPasswordLogin(e.target.value)}/>
                             <label htmlFor="userPasswordLogin">Пароль</label>
+                            <a aria-label="Переход к форме восстановления пароля" onClick={showResetPassWindow}>Забыли?</a>
                         </div>
                         <div className="login-button__wrapper">
-                            <button className="login-button is-active" onClick={login}>Войти</button>
+                            <button disabled id="login-button" className="login-button is-active">Войти</button>
                         </div>
                     </form>
                 </div>

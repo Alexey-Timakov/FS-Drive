@@ -17,7 +17,7 @@ function generateToken(name) {
         "accessToken": accessToken,
         "refreshToken": refreshToken
     };
-    
+
 return tokens;
 };
 

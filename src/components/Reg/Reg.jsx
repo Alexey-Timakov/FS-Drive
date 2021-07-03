@@ -18,6 +18,8 @@ import UserLicIdDate from "./UserLicIdDate";
 import UserPassword from "./UserPassword";
 import UserPasswordCheck from "./UserPasswordCheck";
 
+import setTokens from "../Common/setToken.js";
+
 class Reg extends React.Component {
     constructor(props) {
         super(props);
@@ -172,7 +174,7 @@ class Reg extends React.Component {
             if (key !== "userPasswordCheck") data[key] = value;
         })
 
-        fetch("http://localhost:8000", {
+        fetch("http://localhost:8000/registration", {
             method: "POST",
             headers: {
                 "Origin": "http://localhost:8080",
@@ -187,6 +189,7 @@ class Reg extends React.Component {
                 if (res.code == 1) {
                     document.querySelector(".reg-form-error").classList.add("is-active");
                 } else if (res.code == 0) {
+                    setTokens(res.tokens.accessToken, res.tokens.refreshToken);
                     document.querySelector(".reg-form-error").classList.remove("is-active");
                 }
             })
