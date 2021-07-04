@@ -24,10 +24,15 @@ resetPass.post("/", async (req, res) => {
 
     try {
             await SFDriveUsers.findOneAndUpdate(queryUser, {$set: {"resetToken": resetToken}}, {returnNewDocument: true}, (err, doc) => {
-                if (err) {
+                if (doc) {
+                    console.log("Found");
+                    res.status(200).send({"message": "Reset password request has been acepted", "isOK": true});
+                } else if (!doc) {
+                    console.log("Not found");
                     res.status(501).send({"message": "Something went wrong...", "isOK": false});
-                } else {
-                    res.status(200).send({"message": "Reset password request has been acepted"});
+                } else if (err) {
+                    console.log("Error", err);
+                    res.status(501).send({"message": "Something went wrong...", "isOK": false});
                 }
             });
     }

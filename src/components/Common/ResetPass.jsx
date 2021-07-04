@@ -47,6 +47,7 @@ function ResetPass () {
         .then(res => {
             if (res.isOK) {
                 console.log(res);
+                
             } else console.log(res)})
         .catch(err => console.log(err))
     };
