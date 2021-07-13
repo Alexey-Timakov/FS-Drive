@@ -10,12 +10,13 @@ import "../../scss/reset.scss";
 
 function ResetPass () {
     let [userMailToReset, changedUserMailToReset] = useState("");
-    const resetButton = document.querySelector("#reset-button");
     
     useEffect(() => {
-        if (resetButton && validator.isEmail(userMailToReset)) {
+        const resetButton = document.querySelector("#reset-button");
+        resetButton.disabled = true;
+        if (validator.isEmail(userMailToReset)) {
             resetButton.disabled = false;
-        } else if (resetButton && !validator.isEmail(userMailToReset)) {
+        } else {
             resetButton.disabled = true;
         }
     })
@@ -29,6 +30,11 @@ function ResetPass () {
         document.querySelector(".login-window__wrapper").classList.add("is-active");
         document.querySelector(".login-window__fade").classList.add("is-active");
     }
+    const checkMailAfterResetShow = () => {
+        hideResetPassWindow();
+        document.querySelector(".check-mail__wrapper").classList.add("is-active");
+        document.querySelector(".check-mail__fade").classList.add("is-active");  
+    }
 
     const userMailChange = (event) => {
         const label = document.querySelector("#userMailToReset").previousElementSibling;
@@ -41,6 +47,8 @@ function ResetPass () {
     }
 
     const resetPass = (event) => {
+        document.querySelector("#reset-button").classList.add("is-waiting");
+        document.querySelector("#reset-button").innerHTML = "";
         event.preventDefault();
         console.log("reset pass - ", userMailToReset);
         fetch("http://localhost:8000/resetpass", {
@@ -53,13 +61,19 @@ function ResetPass () {
                 "userMail": userMailToReset,
             }),
         })
-        .then(res => res.json())
+        .then(res => {
+            res.json();
+            document.querySelector("#reset-button").classList.remove("is-waiting");
+            document.querySelector("#reset-button").innerHTML = "Отправить";
+        })
         .then(res => {
             if (res.isOK) {
+                checkMailAfterResetShow();
                 console.log(res);
-                
             } else console.log(res)})
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err);
+        })
     };
 
     return (
@@ -76,7 +90,7 @@ function ResetPass () {
                     <p>Мы отправим ссылку для восстановления пароля на вашу электронную почту</p>
                 </div>
                 <div className="reset-window__form-wrapper">
-                    <form onSubmit={resetPass} id="reset-window__form" name="reset-window__form">
+                    <form id="reset-window__form" name="reset-window__form">
                         <div className="block-input__wrapper">
                             <label htmlFor="userMailToReset">Электронная почта</label>
                             <input className="" type="text" id="userMailToReset" name="userMailToReset" value={userMailToReset} onChange={userMailChange}/>
@@ -84,7 +98,7 @@ function ResetPass () {
                     </form>
                 </div>
                 <div className="reset-window__footer">
-                    <button disabled id="reset-button" className="reset-button is-active">Отправить</button>
+                    <button type="button" onClick={resetPass} id="reset-button" className="reset-button is-active">Отправить</button>
                 </div>
             </div>
         </div>

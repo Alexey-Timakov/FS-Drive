@@ -34,8 +34,10 @@ function Login () {
     useEffect(() => {
         if (loginButton && validator.isEmail(userMailLogin) && userPasswordLogin != "") {
             loginButton.disabled = false;
+            console.log("false");
         } else if (loginButton && (!validator.isEmail(userMailLogin) || userPasswordLogin == "")) {
             loginButton.disabled = true;
+            console.log("true");
         }
     })
 
