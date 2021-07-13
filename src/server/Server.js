@@ -2,9 +2,10 @@ const express = require("express");
 // const bodyParser = require('body-parser');
 
 // Import Routers
+const registration = require("./registration");
 const authorize = require("./authorize");
 const resetPass = require("./reset_password");
-const registration = require("./registration");
+const changePass = require("./change_pass");
 
 // Import DB
 const SFDriveUsers = require("./DB");
@@ -26,6 +27,8 @@ app.use("/login", authorize);
 app.use("/registration", registration);
 
 app.use("/resetpass", resetPass);
+
+app.use("/changePass", changePass);
 
 //Get list of users:
 app.get("/list", async (req, res) => {

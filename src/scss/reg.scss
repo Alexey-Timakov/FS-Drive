@@ -46,14 +46,14 @@
         font-weight: 700;
         line-height: 78px;
         margin-top: 0px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 
     form {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        width: 47%;
+        width: 676px;
 
         .block-input {
             width: 100%;
@@ -63,7 +63,7 @@
                 font-size: 36px;
                 font-weight: 400;
                 line-height: 53px;
-                margin-top: 0px;
+                margin-top: 35px;
                 margin-bottom: 30px;
             }
 
@@ -72,10 +72,6 @@
                 display: flex;
                 align-items: center;
                 margin-bottom: 20px;
-
-                &:last-child {
-                    margin-bottom: 61px;
-                }
 
                 a {
                     display: inline-block;
@@ -108,7 +104,7 @@
                 
                 margin-left: auto;
                 height: 44px;
-                width: 61%;
+                width: 416px;
                 border: solid 1px $reg-border-gray;
                 border-radius: 6px;
                 padding: 0px 12px;
@@ -133,14 +129,14 @@
                         content:"\0041";
                         position: relative;
                         top: 0px;
-                        left: 81%;
+                        left: 173px;
                         color: $reg-footer-button-color;
                     }
                 }
 
                 &.short {
-                    width: 25%;
-                    margin-right: 36%;
+                    width: 208px;
+                    margin-right: 208px;
                 }
 
                 &:hover {
@@ -159,7 +155,7 @@
             &__error {
                 display: none;
                 position: relative;
-                left: 39%;
+                text-align: left;
                 margin-bottom: 19px;
                 margin-top: -10px;
                 color: $reg-form-error-color;
@@ -179,7 +175,7 @@
 .submit-footer{
     background-color: $reg-footer-background;
     padding: 0;
-    margin-top: 35px;
+    margin-top: 80px;
 
     &__wrapper {
 
@@ -257,20 +253,19 @@
             font-size: 32px;
             font-weight: 500;
             line-height: 38px;
-            margin-bottom: 41px;
+            margin-bottom: 35px;
         }
 
         form {
-            width: 89%;
+            width: 334px;
     
             .block-input {
-                // width: 100%;
     
                 h2 {
                     font-size: 24px;
                     font-weight: 500;
                     line-height: 29px;
-                    margin-top: 0px;
+                    margin-top: 10px;
                     width: 70%;
                 }
     
@@ -280,13 +275,9 @@
                     align-items: flex-start;
                     margin-bottom: 0px;
     
-                    &:last-child {
-                        margin-bottom: 14px;
-                    }
-
                     a {
-                        top: -33px;
-                        left: 90%;    
+                        top: -35px;
+                        left: 295px;    
                     }
     
                 }
@@ -324,7 +315,7 @@
 
 @media screen and (max-width: 768px) {
     .submit-footer{
-        margin-top: 0px;
+        margin-top: 25px;
 
         // &__wrapper {
         // }

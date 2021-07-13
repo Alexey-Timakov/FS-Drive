@@ -20,6 +20,9 @@ $footer-background: #3F3D56;
 $footer-copy: #828282;
 $footer-shadow: #ffffff;
 
+$menu-compact-background-color: rgba(255, 255, 255, 0.95);
+$menu-compact-line-color: rgba(220, 224, 237, 1);
+$menu-compact-link-color: rgba(27, 27, 27, 1);
 
 $reg-grey-text: rgba(130, 130, 130, 1);
 $reg-black-label-text: #1b1b1b;
@@ -32,6 +35,8 @@ $reg-footer-button-text: rgba(255, 255, 255, 1);
 $reg-footer-error-text: rgba(255, 255, 255, 1);
 $reg-form-error-color: rgba(235, 87, 87, 1);
 
+$login-window-fade-color: rgba(0,0,0,.5);
+$login-windwow-background-color: #ffffff;
 $login-input-description-text: rgba(163, 160, 177, 1);
 $login-input-text:rgba(27, 27, 27, 1);
 $login-button-color: rgba(97, 161, 153, 1);

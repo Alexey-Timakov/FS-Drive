@@ -9,7 +9,6 @@ import "../../images/close_cross.svg";
 
 import "../../scss/login.scss";
 
-
 function Login () {
     let [userMailLogin, changedUserMailLogin] = useState("");
     let [userPasswordLogin, changedUserPasswordLogin] = useState("");
@@ -17,14 +16,18 @@ function Login () {
     const loginButton = document.querySelector("#login-button");
     
     const showErrorInput = () => {
-        document.querySelector("#userMailLogin").classList.add("error");
-        document.querySelector("#userPasswordLogin").classList.add("error");
+        document.querySelector("#userMailLogin").parentNode.classList.add("error");
+        document.querySelector("#userPasswordLogin").parentNode.classList.add("error");
+        document.querySelector("#userMailLogin").previousElementSibling.classList.add("error");
+        document.querySelector("#userPasswordLogin").previousElementSibling.classList.add("error");
         document.querySelector(".login-window__error").classList.add("active");
     }
 
     const hideErrorInput = () => {
-        document.querySelector("#userMailLogin").classList.remove("error");
-        document.querySelector("#userPasswordLogin").classList.remove("error");
+        document.querySelector("#userMailLogin").parentNode.classList.remove("error");
+        document.querySelector("#userPasswordLogin").parentNode.classList.remove("error");
+        document.querySelector("#userMailLogin").previousElementSibling.classList.remove("error");
+        document.querySelector("#userPasswordLogin").previousElementSibling.classList.remove("error");
         document.querySelector(".login-window__error").classList.remove("active");
     }
 
@@ -47,6 +50,16 @@ function Login () {
         document.querySelector(".reset-window__fade").classList.add("is-active");
     }
 
+    const InputChange = (event) => {
+        const label = event.target.previousElementSibling;
+        if (event.target.name == "userMailLogin") changedUserMailLogin(event.target.value);
+        if (event.target.name == "userPasswordLogin") changedUserPasswordLogin(event.target.value);
+        if (event.target.value != "") {
+            label.classList.add("changed");
+        } else {
+            label.classList.remove("changed");
+        }
+    }
     const login = (event) => {
         event.preventDefault();
         hideErrorInput();
@@ -77,42 +90,44 @@ function Login () {
         .catch(err => {
             loginButton.classList.remove("is-waiting");
             loginButton.innerHTML = "Войти";
+            showErrorInput();
             console.log(err);
         })
     };
 
     return (
         <>
-            <div className="login-window__wrapper">
-                <div className="login-window__close">
-                    <a onClick={hideLoginWindow} target="_blank" aria-label="Закрыть окно авторизации"><img src="./images/close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно авторизации"/></a>
-                </div>
-                <div className="login-window__description">
-                    <img src="./images/sign_in.svg" alt="Векторное изображение думающего человека" />
-                    <h1>Авторизация</h1>
-                    <p className="login-window__error">Неверная почта или пароль</p>
-                </div>
-                <div className="login-window__form-wrapper">
-                    <form onSubmit={login} id="login-window__form" name="login-window__form">
-                        <div className="block-input__wrapper">
-                            <input className="" type="text" id="userMailLogin" name="userMailLogin" value={userMailLogin} onChange={(e) => changedUserMailLogin(e.target.value)}/>
-                            <label htmlFor="userMailLogin">Электронная почта</label>
-                        </div>
-                        <div className="block-input__wrapper">
-                            <input className="" type="password" id="userPasswordLogin" name="userPasswordLogin" value={userPasswordLogin} onChange={(e) => changedUserPasswordLogin(e.target.value)}/>
-                            <label htmlFor="userPasswordLogin">Пароль</label>
-                            <a aria-label="Переход к форме восстановления пароля" onClick={showResetPassWindow}>Забыли?</a>
-                        </div>
-                        <div className="login-button__wrapper">
-                            <button disabled id="login-button" className="login-button is-active">Войти</button>
-                        </div>
-                    </form>
-                </div>
-                <div className="login-window__link">
-                    <Link to="/Reg" aria-label="Перейти на страницу регистрации" onClick={hideLoginWindow}>Зарегистрироваться</Link>
+            <div className="login-window__fade">
+                <div className="login-window__wrapper">
+                    <div className="login-window__close">
+                        <a onClick={hideLoginWindow} target="_blank" aria-label="Закрыть окно авторизации"><img src="./images/close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно авторизации"/></a>
+                    </div>
+                    <div className="login-window__description">
+                        <img src="./images/sign_in.svg" alt="Векторное изображение думающего человека" />
+                        <h1>Авторизация</h1>
+                        <p className="login-window__error">Неверная почта или пароль</p>
+                    </div>
+                    <div className="login-window__form-wrapper">
+                        <form onSubmit={login} id="login-window__form" name="login-window__form">
+                            <div className="block-input__wrapper">
+                                <label htmlFor="userMailLogin">Электронная почта</label>
+                                <input className="" type="text" id="userMailLogin" name="userMailLogin" value={userMailLogin} onChange={InputChange}/>
+                            </div>
+                            <a className="login-window__link-to-reset" aria-label="Переход к форме восстановления пароля" onClick={showResetPassWindow}>Забыли?</a>
+                            <div className="block-input__wrapper">
+                                <label htmlFor="userPasswordLogin">Пароль</label>
+                                <input className="" type="password" id="userPasswordLogin" name="userPasswordLogin" value={userPasswordLogin} onChange={InputChange}/>
+                            </div>
+                            <div className="login-button__wrapper">
+                                <button disabled id="login-button" className="login-button is-active">Войти</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="login-window__link-to-reg">
+                        <Link to="/Reg" aria-label="Перейти на страницу регистрации" onClick={hideLoginWindow}>Зарегистрироваться</Link>
+                    </div>
                 </div>
             </div>
-            <div className="login-window__fade"></div>
         </>
     )
 }

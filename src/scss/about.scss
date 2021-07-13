@@ -129,6 +129,11 @@
 
             &-info {
                 margin: 20px auto 0px;
+                padding: 0;
+
+                &:nth-child(1) {
+                    border-right: none;
+                }    
 
                 &_descr {
                     font-size: 12px;

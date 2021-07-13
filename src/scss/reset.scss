@@ -2,16 +2,16 @@
 @import "fonts";
 @import "variables";
 
-// Login window.
+// Reset password window.
 
-.login-window {
+.reset-window {
     &__fade {
-        display: none;
+        position: fixed;
         justify-content: center;
         align-items: center;
-        position: fixed;
         top: 0;
         left: 0;
+        display: none;
         width: 100%;
         height: 100%;
         background: $login-window-fade-color;
@@ -26,7 +26,6 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        width: 504px;
         padding: 25px;
         background-color: $login-windwow-background-color;
         border-radius: 10px;
@@ -44,13 +43,16 @@
     }
 
     &__close {
-        align-self: flex-end;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        
     }
     &__description {
         display: flex;
         flex-direction: column;
         align-items: center;
-
         h1 {
             text-align: center;
             font-size: 32px;
@@ -59,28 +61,14 @@
             margin-top: 38px;
             margin-bottom: 40px;
         }
-    }
-    &__error {
-        display: none;
-        color: $login-window-error;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 16px;
 
-        &.active {
-            display: block;
+        p {
+            max-width: 333px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
         }
-    }
-    &__link-to-reset {
-        position: relative;
-        top: 33px;
-        left: 280px;
-        font-size: 14px;
-        line-height: 16px;
-        font-weight: 400;
-        color: $login-window-link;
-        text-decoration: none;
-        z-index: 3;
     }
     &__form {
         &-wrapper {
@@ -92,7 +80,6 @@
                 display: flex;
                 flex-direction: column;
                 padding: 0px 12px;
-                margin-bottom: 10px;
 
                 label {
                     position: relative;
@@ -110,10 +97,6 @@
                         top: 7px;
                         margin-bottom: 10px;   
                     }
-
-                    &.error {
-                        color: $login-window-error;
-                    }
                 }
                 input {
                     border: none;
@@ -127,65 +110,35 @@
 
                     &:focus {
                         outline: none;
-                    }                  
-                }
-
-                &.error {
-                    border: solid 2px $login-window-error;
-                }
-
-            }
-
-            .login-button__wrapper {
-                display: flex;
-                justify-content: center;
-                border-bottom: 1px $login-window-border solid;
-                margin-top: 25px;
-                padding-bottom: 40px;
-
-                button {
-                    width: 126px;
-                    height: 51px;
-                    background-color: $login-button-color;
-                    border-radius: 6px;
-                    border: none;
-                    color: $login-button-text-color;
-                    font-size: 16px;
-                    font-weight: 500;
-                    line-height: 19px;
-
-                    &:disabled {
-                        background-color: $login-button-color-disabled;
-                        color: $login-button-text-color-disabled
-                    }
-
-                    .is-waiting::before {
-                        display: inline-block;
-                        font-family: 'Glyphter';
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 24px;
-                        line-height: 1;
-                        -webkit-font-smoothing: antialiased;
-                        -moz-osx-font-smoothing: grayscale;
-                        content:"\0044";
-            
-                        animation: rotation 2s infinite linear;
-                    }
-            
-                    @keyframes rotation {
-                        from {
-                            -webkit-transform: rotate(0deg);
-                        }
-                        to {
-                            -webkit-transform: rotate(359deg);
-                        }
                     }
                 }
             }
         }
     }
-    &__link-to-reg {
+    &__footer {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        padding-bottom: 40px;
+
+        button {
+            width: 126px;
+            height: 51px;
+            background-color: $login-button-color;
+            border-radius: 6px;
+            border: none;
+            color: $login-button-text-color;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19px;
+
+            &:disabled {
+                background-color: $login-button-color-disabled;
+                color: $login-button-text-color-disabled
+            }
+        }
+    }
+    &__link {
         margin-top: 30px;
         a {
             text-align: center;
@@ -199,8 +152,8 @@
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
+    .reset-window {
 
-    .login-window {
         &__fade {
             height: 667px; //temp
         
@@ -216,19 +169,22 @@
             
             &.is-active {
             }
-    
+
             a {
             }
         }
-    
+
         &__close {
-            padding: 20px;
+            a {
+                padding: 20px;
+            }
+            
         }
         &__description {
-            margin-bottom: 29px;
             img {
                 transform: scale(0.72);
             }
+
             h1 {
                 font-size: 28px;
                 font-weight: 500;
@@ -236,55 +192,43 @@
                 margin-top: 22px;
                 margin-bottom: 0px;
             }
+
             p {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
                 margin-top: 10px;
-            }
-        }
-        &__error {
-            &.active {
+                margin-bottom: 28px;
             }
         }
         &__form {
             &-wrapper {
-                .block-input__wrapper {
-                    margin-bottom: 0px;
+                .block-input__wrapper {    
                     label {    
+                        &.changed {
+                        }
                     }
                     input {
-                        width: 325px;
-                        height: 44px;
-    
-                        &.error {
+                        &:focus {
                         }
                     }
-    
-                    a {
-                        left: 280px;
-                    }
                 }
-    
-                .login-button__wrapper {
-                    margin-top: 27px;
-                    padding-bottom: 38px;
-    
-                    button {
-                        width: 335px;
-                        height: 51px;
-    
-                        &:disabled {
-                        }
-    
-                        .is-waiting::before {
-                
-                        }                
-                    }
-                }
+            }
+        }
+        &__footer {
+            margin-top: auto;
+            padding-bottom: 0px;
+
+            button {
+                padding: 0px;
+                margin: 20px 20px;
+                width: 335px;
+                height: 51px;
             }
         }
         &__link {
-            margin-top: 28px;
             a {
             }
-        }
+        }   
     }
 }

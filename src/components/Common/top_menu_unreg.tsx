@@ -10,16 +10,18 @@ function TopMenuUnreg () {
     }
 
     return (
+        <>
         <div className="menu-right">
-        <nav className="menu-right__nav">
-            <div><Link to="/about" aria-label="О нас">О нас</Link></div>
-            <div><Link to="">Условия</Link></div>
-            <div><Link to="/faq" aria-label="Частые вопросы">Частые вопросы</Link></div>
-        </nav>
-        <button className="menu-right__button" onClick={showLoginWindow}>Войти</button>
+            <nav className="menu-right__nav">
+                <div><Link to="/about" aria-label="О нас">О нас</Link></div>
+                <div><Link to="">Условия</Link></div>
+                <div><Link to="/faq" aria-label="Частые вопросы">Частые вопросы</Link></div>
+            </nav>
+            <button className="menu-right__button" onClick={showLoginWindow}>Войти</button>
+        </div>
         <Login />
         <ResetPass />
-    </div>
+        </>
     )
 }
 
