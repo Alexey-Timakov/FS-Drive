@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import "../../images/vk_vector.svg";
 import "../../images/inst_vector.svg";

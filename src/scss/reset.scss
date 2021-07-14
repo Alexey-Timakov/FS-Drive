@@ -17,7 +17,7 @@
         background: $login-window-fade-color;
         z-index: 100;
     
-        &.is-active {
+        &.active {
             display: flex;
         }
     }
@@ -31,7 +31,7 @@
         background-color: $login-windwow-background-color;
         border-radius: 10px;
         
-        &.is-active {
+        &.active {
             display: flex;
             z-index: 101;
         }
@@ -60,7 +60,7 @@
             font-weight: 700;
             line-height: 38px;
             margin-top: 38px;
-            margin-bottom: 40px;
+            margin-bottom: 0px;
         }
 
         p {
@@ -69,8 +69,23 @@
             font-size: 14px;
             font-weight: 400;
             line-height: 16px;
+            margin-bottom: 30px;
         }
     }
+
+    &__error {
+
+        display: none;
+        color: $login-window-error;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+
+        &.active {
+            display: block;
+        }
+    }
+
     &__form {
         &-wrapper {
             .block-input__wrapper {
@@ -133,6 +148,10 @@
             font-weight: 500;
             line-height: 19px;
 
+            &:hover {
+                background-color: $reg-fotter-button-color-hover;
+            }
+
             &:disabled {
                 background-color: $login-button-color-disabled;
                 color: $login-button-text-color-disabled
@@ -179,10 +198,8 @@
     .reset-window {
 
         &__fade {
-            height: 667px; //temp
+            height: 667px; //temp, just for testing on PC
         
-            &.is-active {
-            }
         }
         &__wrapper {
             width: 100%;
@@ -191,11 +208,6 @@
             padding: 0px;
             justify-content: flex-start;
             
-            &.is-active {
-            }
-
-            a {
-            }
         }
 
         &__close {
@@ -224,21 +236,9 @@
                 margin-top: 10px;
                 margin-bottom: 28px;
             }
+            
         }
-        &__form {
-            &-wrapper {
-                .block-input__wrapper {    
-                    label {    
-                        &.changed {
-                        }
-                    }
-                    input {
-                        &:focus {
-                        }
-                    }
-                }
-            }
-        }
+
         &__footer {
             margin-top: auto;
             padding-bottom: 0px;
@@ -250,9 +250,5 @@
                 height: 51px;
             }
         }
-        &__link {
-            a {
-            }
-        }   
     }
 }

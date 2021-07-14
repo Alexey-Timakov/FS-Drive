@@ -80,10 +80,10 @@
                     right: 10px;
                     width: 25px;
                     height: 25px;
-                    background: url(../images/eye-off.svg) no-repeat 0% 0%;
+                    background: url("../images/eye-off.svg") no-repeat 0% 0%;
 
                     &.eye-on {
-                        background: url(../images/eye-on.svg) no-repeat 0% 0%;
+                        background: url("../images/eye-on.svg") no-repeat 0% 0%;
                     }
                 }
             }
@@ -154,10 +154,9 @@
 
             &__error {
                 display: none;
-                position: relative;
-                text-align: left;
-                margin-bottom: 19px;
-                margin-top: -10px;
+                text-align: center;
+                margin-bottom: 0px;
+                margin-top: 0px;
                 color: $reg-form-error-color;
                 font-size: 14px;
                 font-weight: 400;
@@ -204,6 +203,10 @@
         &.is-active {
             background-color: $reg-footer-button-color;
             color: $reg-footer-button-text;
+
+            &:hover {
+                background-color: $reg-fotter-button-color-hover;
+            }
         }
 
         .is-waiting::before {

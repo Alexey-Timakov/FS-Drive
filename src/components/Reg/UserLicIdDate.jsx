@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 class UserLicIdDate extends React.Component {
     constructor(props) {

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 class UserMail extends React.Component {
     constructor(props) {

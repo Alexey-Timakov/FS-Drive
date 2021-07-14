@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import "../../images/close_cross.svg";
 import "../../images/check_mail.svg";
 
@@ -7,8 +7,8 @@ import "../../scss/check_mail_after_reset_pass.scss";
 function CheckMailAfterResetPass () {
 
     const hideCheckMailWindow = () => {
-        document.querySelector(".check-mail__wrapper").classList.remove("is-active");
-        document.querySelector(".check-mail__fade").classList.remove("is-active");
+        document.querySelector(".check-mail__wrapper").classList.remove("active");
+        document.querySelector(".check-mail__fade").classList.remove("active");
     }
 
     return (

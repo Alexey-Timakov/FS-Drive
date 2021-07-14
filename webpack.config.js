@@ -47,9 +47,9 @@ module.exports = {
                 options: { 
                     esModule: true,
                     publicPath: (resourcePath, context) => {
-                        return path.relative(path.dirname(resourcePath), context) + '/build/';
-                    }
-                },
+                        return path.relative(path.dirname(resourcePath), context) + '/';
+                        }
+                    },
                 },
                 "css-loader",
                 "postcss-loader",

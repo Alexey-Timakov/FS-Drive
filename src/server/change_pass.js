@@ -66,6 +66,9 @@ changePass.post("/", async (req, res) => {
                 console.log("Error", error);
                 res.status(501).send({"message": "Something went wrong...", "isOK": false});
             }
+        } else {
+            console.log("Error", err);
+            res.status(501).send({"message": "Something went wrong...", "isOK": false});
         }
     })
 });

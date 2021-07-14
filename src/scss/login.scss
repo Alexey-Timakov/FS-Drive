@@ -17,7 +17,7 @@
         background: $login-window-fade-color;
         z-index: 100;
     
-        &.is-active {
+        &.active {
             display: flex;
         }
     }
@@ -31,7 +31,7 @@
         background-color: $login-windwow-background-color;
         border-radius: 10px;
         
-        &.is-active {
+        &.active {
             display: flex;
             z-index: 101;
         }
@@ -154,6 +154,10 @@
                     font-weight: 500;
                     line-height: 19px;
 
+                    &:hover {
+                        background-color: $reg-fotter-button-color-hover;
+                    }
+
                     &:disabled {
                         background-color: $login-button-color-disabled;
                         color: $login-button-text-color-disabled
@@ -202,10 +206,8 @@
 
     .login-window {
         &__fade {
-            height: 667px; //temp
+            height: 667px; //temp, just for testing on PC
         
-            &.is-active {
-            }
         }
         &__wrapper {
             width: 100%;
@@ -214,11 +216,6 @@
             padding: 0px;
             justify-content: flex-start;
             
-            &.is-active {
-            }
-    
-            a {
-            }
         }
     
         &__close {
@@ -240,22 +237,14 @@
                 margin-top: 10px;
             }
         }
-        &__error {
-            &.active {
-            }
-        }
         &__form {
             &-wrapper {
                 .block-input__wrapper {
                     margin-bottom: 0px;
-                    label {    
-                    }
                     input {
                         width: 325px;
                         height: 44px;
     
-                        &.error {
-                        }
                     }
     
                     a {
@@ -271,20 +260,12 @@
                         width: 335px;
                         height: 51px;
     
-                        &:disabled {
-                        }
-    
-                        .is-waiting::before {
-                
-                        }                
                     }
                 }
             }
         }
         &__link {
             margin-top: 28px;
-            a {
-            }
         }
     }
 }

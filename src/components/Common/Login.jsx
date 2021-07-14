@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {BrowserRouter as Router, Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import validator from "validator";
@@ -34,22 +34,20 @@ function Login () {
     useEffect(() => {
         if (loginButton && validator.isEmail(userMailLogin) && userPasswordLogin != "") {
             loginButton.disabled = false;
-            console.log("false");
         } else if (loginButton && (!validator.isEmail(userMailLogin) || userPasswordLogin == "")) {
             loginButton.disabled = true;
-            console.log("true");
         }
     })
 
     const hideLoginWindow = () => {
-        document.querySelector(".login-window__wrapper").classList.remove("is-active");
-        document.querySelector(".login-window__fade").classList.remove("is-active");
+        document.querySelector(".login-window__wrapper").classList.remove("active");
+        document.querySelector(".login-window__fade").classList.remove("active");
     }
 
     const showResetPassWindow = () => {
         hideLoginWindow();
-        document.querySelector(".reset-window__wrapper").classList.add("is-active");
-        document.querySelector(".reset-window__fade").classList.add("is-active");
+        document.querySelector(".reset-window__wrapper").classList.add("active");
+        document.querySelector(".reset-window__fade").classList.add("active");
     }
 
     const InputChange = (event) => {
@@ -80,7 +78,7 @@ function Login () {
         })
         .then(res => res.json())
         .then(res => {
-            loginButton.classList.remove("is-waiting");
+            // loginButton.classList.remove("is-waiting");
             loginButton.innerHTML = "Войти";
             if (res.isOK) {
                 console.log(res);
@@ -90,7 +88,7 @@ function Login () {
                 console.log(res);
             }})
         .catch(err => {
-            loginButton.classList.remove("is-waiting");
+            // loginButton.classList.remove("is-waiting");
             loginButton.innerHTML = "Войти";
             showErrorInput();
             console.log(err);
@@ -121,7 +119,7 @@ function Login () {
                                 <input className="" type="password" id="userPasswordLogin" name="userPasswordLogin" value={userPasswordLogin} onChange={InputChange}/>
                             </div>
                             <div className="login-button__wrapper">
-                                <button disabled id="login-button" className="login-button is-active">Войти</button>
+                                <button disabled id="login-button" className="login-button active">Войти</button>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 class UserPassportDate extends React.Component {
     constructor(props) {

@@ -54,14 +54,14 @@ resetPass.get("/:id", async (req, res) => {
     const id = req.params.id;
     console.log("Requested reset password form");
     try {
-        const idToRest =  await SFDriveUsers.findOne({"resetToken": id});
-        if (idToRest != null) {
+        const idToReset =  await SFDriveUsers.findOne({"resetToken": id});
+        if (idToReset != null) {
             try {
                 tokenData = jwtDecode(id);
                 console.log("Token has been found", tokenData);
                 const currentTime = Math.round(Date.now() / 1000);
                 const diffTime = tokenData.exp - currentTime;
-                const isResetTokenExpired = diffTime > 0;
+                const isResetTokenExpired = diffTime > 60;
     
                 if (isResetTokenExpired) {
                     logWrite(1, tokenData.userName, "resetToken", id);

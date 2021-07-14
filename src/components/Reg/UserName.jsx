@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import validator from "validator";
 
 class UserName extends React.Component {

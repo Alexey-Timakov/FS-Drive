@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 class UserPassportEmitNum extends React.Component {
     constructor(props) {

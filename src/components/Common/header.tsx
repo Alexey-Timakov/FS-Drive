@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import Logo from "./logo";
 import TopMenuUnreg from "./top_menu_unreg";

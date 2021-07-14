@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useState, useEffect  } from "react";
 import validator from "validator";
 
@@ -21,19 +21,27 @@ function ResetPass () {
         }
     })
     const hideResetPassWindow = () => {
-        document.querySelector(".reset-window__wrapper").classList.remove("is-active");
-        document.querySelector(".reset-window__fade").classList.remove("is-active");
+        document.querySelector(".reset-window__wrapper").classList.remove("active");
+        document.querySelector(".reset-window__fade").classList.remove("active");
     }
 
     const showLoginWindow = () => {
         hideResetPassWindow();
-        document.querySelector(".login-window__wrapper").classList.add("is-active");
-        document.querySelector(".login-window__fade").classList.add("is-active");
+        document.querySelector(".login-window__wrapper").classList.add("active");
+        document.querySelector(".login-window__fade").classList.add("active");
+    }
+
+    const showErrorMessage = () => {
+        document.querySelector(".reset-window__error").classList.add("active");
+    }
+
+    const hideErrorMessage = () => {
+        document.querySelector(".reset-window__error").classList.remove("active");
     }
     const checkMailAfterResetShow = () => {
         hideResetPassWindow();
-        document.querySelector(".check-mail__wrapper").classList.add("is-active");
-        document.querySelector(".check-mail__fade").classList.add("is-active");  
+        document.querySelector(".check-mail__wrapper").classList.add("active");
+        document.querySelector(".check-mail__fade").classList.add("active");  
     }
 
     const userMailChange = (event) => {
@@ -47,8 +55,8 @@ function ResetPass () {
     }
 
     const resetPass = (event) => {
-        document.querySelector("#reset-button").classList.add("is-waiting");
-        document.querySelector("#reset-button").innerHTML = "";
+        hideErrorMessage();
+        document.querySelector("#reset-button").innerHTML= '<i class="is-waiting"></i>';
         event.preventDefault();
         console.log("reset pass - ", userMailToReset);
         fetch("http://localhost:8000/resetpass", {
@@ -61,17 +69,19 @@ function ResetPass () {
                 "userMail": userMailToReset,
             }),
         })
+        .then(res => res.json())
         .then(res => {
-            res.json();
-            document.querySelector("#reset-button").classList.remove("is-waiting");
             document.querySelector("#reset-button").innerHTML = "Отправить";
-        })
-        .then(res => {
             if (res.isOK) {
                 checkMailAfterResetShow();
                 console.log(res);
-            } else console.log(res)})
+            } else {
+                console.log(res);
+                showErrorMessage();
+            }})
         .catch(err => {
+            document.querySelector("#reset-button").innerHTML = "Отправить";
+            showErrorMessage();
             console.log(err);
         })
     };
@@ -88,6 +98,7 @@ function ResetPass () {
                     <img src="./images/reset_password.svg" alt="Векторное изображение человека" />
                     <h1>Восстановление пароля</h1>
                     <p>Мы отправим ссылку для восстановления пароля на вашу электронную почту</p>
+                    <p className="reset-window__error">Возникла ошибка при отправке ссылки</p>
                 </div>
                 <div className="reset-window__form-wrapper">
                     <form id="reset-window__form" name="reset-window__form">
@@ -98,7 +109,7 @@ function ResetPass () {
                     </form>
                 </div>
                 <div className="reset-window__footer">
-                    <button type="button" onClick={resetPass} id="reset-button" className="reset-button is-active">Отправить</button>
+                    <button type="button" onClick={resetPass} id="reset-button" className="reset-button">Отправить</button>
                 </div>
             </div>
         </div>

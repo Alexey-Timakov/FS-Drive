@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {BrowserRouter as Router, Link} from "react-router-dom";
 
 import "../../images/menu_compact.svg";
@@ -17,8 +17,8 @@ function TopMenuCompactUnreg () {
 
     const showLoginWindow = () => {
         hideCompactMenu();
-        document.querySelector(".login-window__wrapper").classList.add("is-active");
-        document.querySelector(".login-window__fade").classList.add("is-active");
+        document.querySelector(".login-window__wrapper").classList.add("active");
+        document.querySelector(".login-window__fade").classList.add("active");
     }
 
     return (

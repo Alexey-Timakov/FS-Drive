@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {BrowserRouter as Router, Link} from "react-router-dom";
 import CheckMailAfterResetPass from "./CheckMailAfterResetPass";
 import Login from "./Login.jsx";
@@ -6,8 +6,8 @@ import ResetPass from "./ResetPass.jsx";
 
 function TopMenuUnreg () {
     const showLoginWindow = () => {
-        document.querySelector(".login-window__wrapper").classList.add("is-active");
-        document.querySelector(".login-window__fade").classList.add("is-active");
+        document.querySelector(".login-window__wrapper").classList.add("active");
+        document.querySelector(".login-window__fade").classList.add("active");
     }
 
     return (
