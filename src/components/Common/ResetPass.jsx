@@ -8,7 +8,7 @@ import "../../images/reset_password.svg";
 
 import "../../scss/reset.scss";
 
-function ResetPass () {
+function ResetPass ({addUserInfoToState}) {
     let [userMailToReset, changedUserMailToReset] = useState("");
     
     useEffect(() => {
@@ -20,6 +20,7 @@ function ResetPass () {
             resetButton.disabled = true;
         }
     })
+
     const hideResetPassWindow = () => {
         document.querySelector(".reset-window__wrapper").classList.remove("active");
         document.querySelector(".reset-window__fade").classList.remove("active");
@@ -38,6 +39,7 @@ function ResetPass () {
     const hideErrorMessage = () => {
         document.querySelector(".reset-window__error").classList.remove("active");
     }
+
     const checkMailAfterResetShow = () => {
         hideResetPassWindow();
         document.querySelector(".check-mail__wrapper").classList.add("active");
@@ -58,6 +60,7 @@ function ResetPass () {
         hideErrorMessage();
         document.querySelector("#reset-button").innerHTML= '<i class="is-waiting"></i>';
         event.preventDefault();
+        addUserInfoToState("userMailToReset", userMailToReset);
         console.log("reset pass - ", userMailToReset);
         fetch("http://localhost:8000/resetpass", {
             method: "POST",
