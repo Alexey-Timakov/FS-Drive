@@ -8,7 +8,7 @@ import "../../images/reset_password.svg";
 
 import "../../scss/reset.scss";
 
-function ResetPass ({addUserInfoToState}) {
+function ResetPass () {
     let [userMailToReset, changedUserMailToReset] = useState("");
     
     useEffect(() => {
@@ -57,10 +57,11 @@ function ResetPass ({addUserInfoToState}) {
     }
 
     const resetPass = (event) => {
+        const STORE_TITLE = "userMailToReset";
+        
         hideErrorMessage();
         document.querySelector("#reset-button").innerHTML= '<i class="is-waiting"></i>';
         event.preventDefault();
-        addUserInfoToState("userMailToReset", userMailToReset);
         console.log("reset pass - ", userMailToReset);
         fetch("http://localhost:8000/resetpass", {
             method: "POST",

@@ -1,80 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 import validator from "validator";
 
 import "../../scss/reg.scss";
 
+import { store } from "../../Store/Store";
+
 import Header from "../Common/header";
 import NoScript from "../Common/NoScript";
-import UserName from "./UserName";
-import UserBirth from "./UserBirth";
-import UserMail from "./UserMail";
-import UserPhone from "./UserPhone";
-import UserPassport from "./UserPassport";
-import UserPassportDate from "./UserPassportDate";
-import UserPassportEmit from "./UserPassportEmit";
-import UserPassportEmitNum from "./UserPassportEmitNum";
-import UserLicId from "./UserLicId";
-import UserLicIdDate from "./UserLicIdDate";
-import UserPassword from "./UserPassword";
-import UserPasswordCheck from "./UserPasswordCheck";
+
+import UserName from "../../Containers/Reg/USerName";
+import UserBirth from "../../Containers/Reg/UserBirth";
+import UserMail from "../../Containers/Reg/UserMail";
+import UserPhone from "../../Containers/Reg/UserPhone";
+import UserPassport from "../../Containers/Reg/UserPassport";
+import UserPassportDate from "../../Containers/Reg/UserPassportDate";
+import UserPassportEmit from "../../Containers/Reg/UserPassportEmit";
+import UserPassportEmitNum from "../../Containers/Reg/UserPassportEmitNum";
+import UserLicId from "../../Containers/Reg/UserLicId";
+import UserLicIdDate from "../../Containers/Reg/UserLicIdDate";
+import UserPassword from "../../Containers/Reg/UserPassword";
+import UserPasswordCheck from "../../Containers/Reg/UserPasswordCheck";
 
 import setTokens from "../Common/setToken.js";
 
-class Reg extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onInputChange = this.onInputChange.bind(this);
-        this.inputCheck = this.inputCheck.bind(this);
-        this.sendUserData = this.sendUserData.bind(this);
-        this.showErrorInput = this.showErrorInput.bind(this);
-        this.hideErrorInput = this.hideErrorInput.bind(this);
-      
-        this.state = {
-            userName: "",
-            userBirth: "",
-            userMail: "",
-            userPhone: "",
-            userPassport: "",
-            userPassportDate: "",
-            userPassportEmit: "",
-            userPassportEmitNum: "",
-            userLicId: "",
-            userLicIdDate: "",
-            userPassword: "",
-            userPasswordCheck: "",
-        };
-    }
+function Reg () {
 
-    onInputChange(event) {
-        this.setState({[event.target.name]: event.target.value});
-    }
-
-    showErrorInput(key) {
+    const showErrorInput = (key) => {
         document.querySelector(`#${key}`).parentNode.nextSibling.classList.add("active");
         document.querySelector(`#${key}`).classList.add("error");
     }
-
-    hideErrorInput(key) {
+    
+    const hideErrorInput = (key) => {
         document.querySelector(`#${key}`).parentNode.nextSibling.classList.remove("active");
         document.querySelector(`#${key}`).classList.remove("error");
     }
-
-    inputCheck(event) {
+    
+    const inputCheck = (event) => {
+        console.log(store.getState());
         event.preventDefault();
         let inputsError = 0;
-
-        Object.entries(this.state).forEach(([key, value]) => {
+    
+        Object.entries(store.getState().user).forEach(([key, value]) => {
             switch(key) {
                 case "userName":
                     if (!validator.isAlpha(value, 'ru-RU', {ignore: " -"})) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 // case "userBirth":
                 // case "userPassportDate":
                 // case "userLicIdDate":
@@ -87,93 +64,112 @@ class Reg extends React.Component {
                 //         this.hideErrorInput(key);
                 //     }
                 //     break;
-
+    
                 case "userMail":
                     if (!validator.isEmail(value)) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 case "userPhone":
                     if (!validator.isMobilePhone(value, 'ru-RU', {strictMode: false})) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 case "userPassport":
                     if (!validator.isPassportNumber(value, 'RU')) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 case "userPassportEmit":
                     if (!validator.isAlphanumeric(value, 'ru-RU', {ignore: " -"})) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 case "userPassportEmitNum":
                 case "userLicId":
                     if (!validator.isInt(value)) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 case "userPassword":
                     if (!validator.isStrongPassword(value, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1})) {
-                        this.showErrorInput(key);
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
-
+    
                 case "userPasswordCheck":
-                    if (value !== this.state.userPassword) {
-                        this.showErrorInput(key);
+                    if (value !== store.getState().user.userPassword) {
+                        showErrorInput(key);
                         inputsError +=1;
                     }
                     else {
-                        this.hideErrorInput(key);
+                        hideErrorInput(key);
                     }
                     break;
             };
         })
-
+    
         if (inputsError == 0) {
             const button = document.querySelector(".submit-footer__button");
             button.innerHTML= '<i class="is-waiting"></i>';
-            setTimeout(this.sendUserData, 1500)}; //Таймаут для проверки работоспособности
+            sendUserData();
+        }
+    }
+    
+    const changeButtonIsActive = () => {
+        let inputsEmpty = 0;
+        Object.entries(store.getState().user).forEach(([key, value]) => {
+            if (value == "") {
+                inputsEmpty +=1;
+            }
+        });
+        if (inputsEmpty == 0) {
+            document.querySelector(".submit-footer__button").classList.add("is-active");
+            document.querySelector(".submit-footer__button").disabled = false;
+        } else {
+            document.querySelector(".submit-footer__button").classList.remove("is-active");
+            document.querySelector(".submit-footer__button").disabled = true;
+        }
     }
 
-    sendUserData() {
+    store.subscribe(changeButtonIsActive);
+    
+    const sendUserData = () => {
         const button = document.querySelector(".submit-footer__button");
         const data = {};
-        Object.entries(this.state).forEach(([key, value]) => {
+        Object.entries(store.getState().user).forEach(([key, value]) => {
             if (key !== "userPasswordCheck") data[key] = value;
         })
-
+        
         fetch("http://localhost:8000/registration", {
             method: "POST",
             headers: {
@@ -197,88 +193,50 @@ class Reg extends React.Component {
                 document.querySelector(".reg-form-error").classList.add("is-active");
                 console.log(error)});        
     }
-
-    componentDidMount() {
-        document.querySelector(".submit-footer__button").classList.remove("is-active");
-        document.querySelector(".submit-footer__button").disabled = true;
-    }
-
-    componentDidUpdate() {
-        let inputsEmpty = 0;
-        Object.entries(this.state).forEach(([key, value]) => {
-            // console.log(key, " - ", value);
-            if (value == "") {
-                inputsEmpty +=1;
-            }
-        });
-        if (inputsEmpty == 0) {
-            document.querySelector(".submit-footer__button").classList.add("is-active");
-            document.querySelector(".submit-footer__button").disabled = false;
-        } else {
-            document.querySelector(".submit-footer__button").classList.remove("is-active");
-            document.querySelector(".submit-footer__button").disabled = true;
-        }
-    }
-
-    render () {
-        const userName = this.state.userName;
-        const userBirth = this.state.userBirth;
-        const userMail = this.state.userMail;
-        const userPhone = this.state.userPhone;
-        const userPassport = this.state.userPassport;
-        const userPassportDate = this.state.userPassportDate;
-        const userPassportEmit = this.state.userPassportEmit;
-        const userPassportEmitNum = this.state.userPassportEmitNum;
-        const userLicId = this.state.userLicId;
-        const userLicIdDate = this.state.userLicIdDate;
-        const userPassword = this.state.userPassword;
-        const userPasswordCheck = this.state.userPasswordCheck;
-        return (            
-            <>
-            <Header />
-            <NoScript />
-            <main>
-                <div className="reg-form-error">Не удалось продолжить регистрацию. Попробуйте ещё раз.</div>
-                <div className="reg-form-wrapper">
-                    <p>Шаг 1 из 3</p>
-                    <h1>Расскажите о себе</h1>
-                    <form id="userData" name="userData">
-                        <div className="block-input">
-                            <h2>Информация о вас</h2>
-                            <UserName userName={userName} onChange={this.onInputChange}/>
-                            <UserBirth userBirth={userBirth} onChange={this.onInputChange}/>
-                            <UserMail userMail={userMail} onChange={this.onInputChange}/>
-                            <UserPhone userPhone={userPhone} onChange={this.onInputChange}/>
-                        </div>
-                        <div className="block-input">
-                            <h2>Паспорт</h2>
-                            <UserPassport userPassport={userPassport} onChange={this.onInputChange}/>
-                            <UserPassportDate userPassportDate={userPassportDate} onChange={this.onInputChange}/>
-                            <UserPassportEmit userPassportEmit={userPassportEmit} onChange={this.onInputChange}/>
-                            <UserPassportEmitNum userPassporEmitNum={userPassportEmitNum} onChange={this.onInputChange}/>
-                        </div>
-                        <div className="block-input">
-                            <h2>Водительское удостоверение</h2>
-                            <UserLicId userLicId={userLicId} onChange={this.onInputChange}/>
-                            <UserLicIdDate userLicIdDate={userLicIdDate} onChange={this.onInputChange}/>
-                        </div>
-                        <div className="block-input">
-                            <h2>Пароль</h2>
-                            <UserPassword userPassword={userPassword} onChange={this.onInputChange}/>
-                            <UserPasswordCheck userPasswordCheck={userPasswordCheck} onChange={this.onInputChange}/>
-                        </div>
-                    </form>
-                </div>
-            </main>
-            <footer className="submit-footer">
-                <div className="submit-footer__wrapper">
-                    <button className="submit-footer__button is-active" onClick={this.inputCheck}>Продолжить
-                    </button>
-                </div>
-            </footer>
-        </>
-        )       
-    }
+    return (
+        <>
+        <Header />
+        <NoScript />
+        <main>
+            <div className="reg-form-error">Не удалось продолжить регистрацию. Попробуйте ещё раз.</div>
+            <div className="reg-form-wrapper">
+                <p>Шаг 1 из 3</p>
+                <h1>Расскажите о себе</h1>
+                <form id="userData" name="userData">
+                    <div className="block-input">
+                        <h2>Информация о вас</h2>
+                        <UserName />
+                        <UserBirth />
+                        <UserMail />
+                        <UserPhone />
+                    </div>
+                    <div className="block-input">
+                        <h2>Паспорт</h2>
+                        <UserPassport />
+                        <UserPassportDate />
+                        <UserPassportEmit />
+                        <UserPassportEmitNum />
+                    </div>
+                    <div className="block-input">
+                        <h2>Водительское удостоверение</h2>
+                        <UserLicId />
+                        <UserLicIdDate />
+                    </div>
+                    <div className="block-input">
+                        <h2>Пароль</h2>
+                        <UserPassword />
+                        <UserPasswordCheck />
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer className="submit-footer">
+            <div className="submit-footer__wrapper">
+                <button className="submit-footer__button" onClick={inputCheck}>Продолжить</button>
+            </div>
+        </footer>
+    </>
+    )       
 }
 
 export default Reg;

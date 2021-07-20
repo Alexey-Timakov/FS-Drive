@@ -67,16 +67,17 @@
                 margin-bottom: 30px;
             }
 
-            &__wrapper{
+            &__wrapper {
 
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 margin-bottom: 20px;
 
                 a {
                     display: inline-block;
-                    position: relative;
-                    top: 0px;
+                    position: absolute;
+                    top: 10px;
                     right: 10px;
                     width: 25px;
                     height: 25px;
@@ -88,6 +89,13 @@
                 }
             }
 
+            &__input {
+                position: relative;
+                width: 100%;
+                display: flex;
+                align-items: center;
+            }
+
             label {
                 font-size: 14px;
                 font-weight: 400;
@@ -95,13 +103,7 @@
                 color: $reg-black-label-text;
             }
 
-            input {
-
-                &.moved {
-                    position: relative;
-                    left: 26px;
-                }
-                
+            input {                
                 margin-left: auto;
                 height: 44px;
                 width: 416px;
@@ -154,9 +156,13 @@
 
             &__error {
                 display: none;
-                text-align: center;
+                width: 100%;
+                position: relative;
+                left: 260px;
+                text-align: left;
                 margin-bottom: 0px;
                 margin-top: 0px;
+                padding-top: 5px;
                 color: $reg-form-error-color;
                 font-size: 14px;
                 font-weight: 400;
@@ -256,7 +262,7 @@
             font-size: 32px;
             font-weight: 500;
             line-height: 38px;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         form {
@@ -268,7 +274,8 @@
                     font-size: 24px;
                     font-weight: 500;
                     line-height: 29px;
-                    margin-top: 10px;
+                    margin-top: 15px;
+                    margin-bottom: 27px;
                     width: 70%;
                 }
     
@@ -276,26 +283,25 @@
 
                     flex-direction: column;
                     align-items: flex-start;
-                    margin-bottom: 0px;
+                    margin-bottom: 26px;
     
                     a {
-                        top: -35px;
-                        left: 295px;    
+                        top: 38px;
                     }
     
                 }
+
+                &__input {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
                 label {
                     margin-bottom: 12px;
                 }
                 input {
                     width: 100%;
-                    margin-bottom: 26px;
                     
-                    &.moved {
-                        left: 0px;
-                        margin-bottom: 0px;
-                    }
-
                     &.short {
                         width: 100%;
                         // margin-right: 38%;
@@ -311,6 +317,14 @@
                         }
                     }    
                 }
+
+                &__error {
+                    position: initial;
+                    left: 0px;
+                    margin-bottom: 0px;
+                    margin-top: 0px;
+                    padding-top: 5px;
+                    }    
             }
         }
     }
