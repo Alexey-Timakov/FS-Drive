@@ -9,8 +9,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "./build"),
-        // publicPath: path.resolve(__dirname, "./build"), // - for "build"
-        publicPath: "/", // for "dev-server"
+        publicPath: path.resolve(__dirname, "./build"), // - for "build"
+        // publicPath: "/", // for "dev-server"
         filename: "./script/[name].js",
         clean: true
     },
@@ -44,8 +44,8 @@ module.exports = {
                 options: { 
                     esModule: true,
                     publicPath: (resourcePath, context) => {
-                        return path.relative(path.dirname(resourcePath), context) + '/'; // for devServer
-                        // return path.relative(path.dirname(resourcePath), context) + '/build/'; // for build
+                        // return path.relative(path.dirname(resourcePath), context) + '/'; // for devServer
+                        return path.relative(path.dirname(resourcePath), context) + '/build/'; // for build
                         }
                     },
                 },
