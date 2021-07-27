@@ -3,7 +3,7 @@ import validator from "validator";
 
 import "../../scss/reg.scss";
 
-import { store } from "../../Store/Store";
+import { store } from "../../Store/Store.jsx";
 
 import Header from "../Common/header";
 import NoScript from "../Common/NoScript";
