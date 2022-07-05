@@ -1,6 +1,8 @@
 Roboto.zip
 sfdriveeducation@gmail.com.txt
 
+/.vscode
+
 **/node_modules
 **/dist
 **/test
