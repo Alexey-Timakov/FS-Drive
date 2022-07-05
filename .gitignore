@@ -1,3 +1,7 @@
 Roboto.zip
 sfdriveeducation@gmail.com.txt
-/node_modules
+
+**/node_modules
+**/dist
+**/test
+**/files
