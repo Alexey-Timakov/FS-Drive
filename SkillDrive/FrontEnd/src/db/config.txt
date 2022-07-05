@@ -1,0 +1,5 @@
+##store data
+dbpath=D:\Programming\Skillfactory\17\src\db\data\
+ 
+##all output go here
+logpath=D:\Programming\Skillfactory\17\src\db\log\mongo.log

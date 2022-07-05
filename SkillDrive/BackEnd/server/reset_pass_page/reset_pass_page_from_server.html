@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сброс пароля SFDrive</title>
+    <script src="./reset_pass_page_from_server.js"></script>
+    <link rel="stylesheet" href="./reset_pass_page_from_server.css">
+</head>
+<body>
+    <main>
+        <div class="reset-pass-error">Не удалось изменить пароль. Попробуйте ещё раз.</div>
+        <div class="reset-pass__wrapper">
+            <h1>Изменение пароля пользователя</h1>
+            <p class="reset-pass__description">Для создания нового пароля заполните форму</p>
+            <form id="reset-pass_form" name="reset-pass_form">
+                <div class="block-input__wrapper">
+                    <label for="userMail">Электронная почта</label>
+                    <input class="block-input__email" type="text" id="userMail" name="userMail" placeholder="mail@example.com">
+                </div>
+                <p class="block-input__error">Некорректная почта</p>
+                <div class="block-input__wrapper">
+                    <label for="userPassword">Придумайте пароль</label>
+                    <input class="block-input__password moved" type="password" id="userPassword" name="userPassword" placeholder="•••••••••••••••••••">
+                    <a href="#" class="eye-closed"></a>
+                </div>
+                <p class="block-input__error">Придумайте более сложный пароль (a-z, A-Z, 1-9, #,@...)</p>
+                <div class="block-input__wrapper">
+                    <label for="userPasswordCheck">Повторите пароль</label>
+                    <input class="block-input__password moved" type="password" id="userPasswordCheck" name="userPasswordCheck" placeholder="•••••••••••••••••••">
+                    <a href="#" class="eye-closed"></a>
+                </div>
+                <p class="block-input__error">Пароли не совпадают</p>
+                <button class="submit-footer__button">Продолжить</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

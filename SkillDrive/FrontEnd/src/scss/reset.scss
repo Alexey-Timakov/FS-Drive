@@ -1,0 +1,254 @@
+// Imports
+@import "fonts";
+@import "variables";
+
+// Reset password window.
+
+.reset-window {
+    &__fade {
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: $login-window-fade-color;
+        z-index: 100;
+    
+        &.active {
+            display: flex;
+        }
+    }
+    &__wrapper {
+        display: none;
+        width: 504px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        background-color: $login-windwow-background-color;
+        border-radius: 10px;
+        
+        &.active {
+            display: flex;
+            z-index: 101;
+        }
+
+        a {
+            &:hover {
+                filter: drop-shadow(0 0 5px $light-green);
+            }
+        }
+    }
+
+    &__close {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        
+    }
+    &__description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 38px;
+            margin-top: 38px;
+            margin-bottom: 0px;
+        }
+
+        p {
+            max-width: 333px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            margin-bottom: 30px;
+        }
+    }
+
+    &__error {
+
+        display: none;
+        color: $login-window-error;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    &__form {
+        &-wrapper {
+            .block-input__wrapper {
+                width: 325px;
+                height: 44px;
+                border: solid 1px $reg-border-gray;
+                border-radius: 6px;
+                display: flex;
+                flex-direction: column;
+                padding: 0px 12px;
+
+                label {
+                    position: relative;
+                    top: 14px;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    color: $login-input-description-text;
+                    z-index: 2;
+
+                    &.changed {
+                        font-size: 9px;
+                        font-weight: 400;
+                        line-height: 11px;
+                        top: 7px;
+                        margin-bottom: 10px;   
+                    }
+                }
+                input {
+                    border: none;
+                    padding: 0px;
+                    color: $login-input-text;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    position: relative;
+                    top: -1px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+    &__footer {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        padding-bottom: 40px;
+
+        button {
+            width: 126px;
+            height: 51px;
+            background-color: $login-button-color;
+            border-radius: 6px;
+            border: none;
+            color: $login-button-text-color;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19px;
+
+            &:hover {
+                background-color: $reg-fotter-button-color-hover;
+            }
+
+            &:disabled {
+                background-color: $login-button-color-disabled;
+                color: $login-button-text-color-disabled
+            }
+
+            .is-waiting::before {
+                display: inline-block;
+                font-family: 'Glyphter';
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                content:"\0044";
+    
+                animation: rotation 2s infinite linear;
+            }
+    
+            @keyframes rotation {
+                from {
+                    -webkit-transform: rotate(0deg);
+                }
+                to {
+                    -webkit-transform: rotate(359deg);
+                }
+            }
+        }
+    }
+    &__link {
+        margin-top: 30px;
+        a {
+            text-align: center;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: 400;
+            color: $login-window-link;
+            text-decoration: none;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+    .reset-window {
+
+        &__fade {
+            height: 667px; //temp, just for testing on PC
+        
+        }
+        &__wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: 0px;
+            padding: 0px;
+            justify-content: flex-start;
+            
+        }
+
+        &__close {
+            a {
+                padding: 20px;
+            }
+            
+        }
+        &__description {
+            img {
+                transform: scale(0.72);
+            }
+
+            h1 {
+                font-size: 28px;
+                font-weight: 500;
+                line-height: 34px;
+                margin-top: 22px;
+                margin-bottom: 0px;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+                margin-top: 10px;
+                margin-bottom: 28px;
+            }
+            
+        }
+
+        &__footer {
+            margin-top: auto;
+            padding-bottom: 0px;
+
+            button {
+                padding: 0px;
+                margin: 20px 20px;
+                width: 335px;
+                height: 51px;
+            }
+        }
+    }
+}
