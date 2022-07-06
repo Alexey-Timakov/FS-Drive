@@ -1,16 +1,16 @@
 export interface UserInterface {
-  userName: String
-  userMail: String
-  userBirth: String
-  userPhone: String
-  userPassport: String
-  userPassportDate: String
-  userPassportEmitent: String
-  userPassportEmitentId: String
-  userLicId: String
-  userLicIdDate: String
-  userPassword: String
-  accessToken: String
-  refreshToken: String
-  resetToken: String
+  userName: string
+  userMail: string
+  userBirth: string
+  userPhone: string
+  userPassport: string
+  userPassportDate: string
+  userPassportEmitent: string
+  userPassportEmitentId: string
+  userLicId: string
+  userLicIdDate: string
+  userPassword: string
+  accessToken: string
+  refreshToken: string
+  resetToken: string
 };

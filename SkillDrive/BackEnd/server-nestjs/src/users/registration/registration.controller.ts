@@ -15,8 +15,8 @@ export class RegistrationController {
 
   @Post('registration')
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createUser: userDTO): Promise<User> {
-    return this.registrationService.createUser(createUser)
+  createUser(@Body() newUser: userDTO): Promise<User> {
+    return this.registrationService.createUser(newUser)
   }
 
   // @Put(":id")

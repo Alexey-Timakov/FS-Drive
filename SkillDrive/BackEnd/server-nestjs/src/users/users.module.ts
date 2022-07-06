@@ -12,6 +12,6 @@ import { ResetPassModule } from './reset-pass/reset-pass.module';
     RegistrationModule,
     AuthModule,
     ResetPassModule
-  ]
+  ],
 })
 export class UsersModule {}

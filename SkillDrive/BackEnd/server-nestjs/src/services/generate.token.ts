@@ -4,11 +4,11 @@ import { ACCES_TOKEN_SECRET, ACCES_TOKEN_LIFE_SEC, REFRESH_TOKEN_SECRET, REFRESH
 // import { RESET_TOKEN_SECRET, RESET_TOKEN_LIFE_SEC } from '../common/variables';
 
 interface Tokens {
-  "accessToken": String,
-  "refreshToken": String
+  "accessToken": string,
+  "refreshToken": string
 }
 
-export const generateToken = (name: String): Tokens => {
+export const generateToken = (name: string): Tokens => {
   const payload = {
     "userName": name,
     "userRole": "user",

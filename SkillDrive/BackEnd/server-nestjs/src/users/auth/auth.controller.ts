@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { authCredentialsDTO } from '../dto/auth.credentials.dto';
+import { accessAndRefreshTokens } from '../interfaces/tokens';
+import { AuthService } from './auth.service';
 
-@Controller('auth')
-export class AuthController {}
+@Controller('users')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+  
+  @Post('auth')
+  @HttpCode(HttpStatus.CREATED)
+  createUser(@Body() credentials: authCredentialsDTO): Promise<accessAndRefreshTokens> {
+    return this.authService.login(credentials)
+  }
+}

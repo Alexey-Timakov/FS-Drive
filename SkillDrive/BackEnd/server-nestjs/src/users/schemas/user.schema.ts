@@ -6,46 +6,46 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   @Prop()
-  userName: String
+  userName: string
 
   @Prop()
-  userBirth: String
+  userBirth: string
 
   @Prop()
-  userMail: String
+  userMail: string
 
   @Prop()
-  userPhone: String
+  userPhone: string
 
   @Prop()
-  userPassport: String
+  userPassport: string
 
   @Prop()
-  userPassportDate: String
+  userPassportDate: string
 
   @Prop()
-  userPassportEmitent: String
+  userPassportEmitent: string
 
   @Prop()
-  userPassportEmitentId: String
+  userPassportEmitentId: string
 
   @Prop()
-  userLicId: String
+  userLicId: string
 
   @Prop()
-  userLicIdDate: String
+  userLicIdDate: string
 
   @Prop()
-  userPassword: String
+  userPassword: string
 
   @Prop()
-  accessToken: String
+  accessToken: string
 
   @Prop()
-  refreshToken: String
+  refreshToken: string
 
   @Prop()
-  resetToken: String
+  resetToken: string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
