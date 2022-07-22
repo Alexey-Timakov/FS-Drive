@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Link} from "react-router-dom";
 
 import "../../images/menu_compact.svg";
-import Logo from "./logo";
+import Logo from "./Logo";
 
 function TopMenuCompactUnreg () {
 

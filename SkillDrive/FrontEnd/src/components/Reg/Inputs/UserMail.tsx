@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function UserMail ({addUserInfoToState}) {
     const STORE_TITLE = "userMail";
-    const [userMail, userInputChange] = useState("testUser@sfdrive.ru");
+    const [userMail, userInputChange] = useState("avtimakov70@gmail.com");
 
     const onValueChange = (event) => {
         userInputChange(event.target.value);

@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import UserPhone from "../../components/Reg/UserPhone";
+import UserPhone from "../../components/Reg/Inputs/UserPhone";
 import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction.js"
 
 const mapDispatchToProps = (dispatch) => ({

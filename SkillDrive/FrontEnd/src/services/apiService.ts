@@ -1,4 +1,6 @@
 import { userData } from "../interfaces/userData";
+import { userDataToLogin } from "../interfaces/userDataToLogin";
+import { userDataToResetPass } from "../interfaces/userDataToResetPass";
 
 const headersWithoutJWT = {
   "Origin": "http://localhost:8080",
@@ -6,7 +8,7 @@ const headersWithoutJWT = {
 };
 
 export const ApiService = {
-  async sendDataToServer(url: string, method: string,  body: userData): Promise<any> {
+  async sendDataToServer(url: string, method: string,  body: userData | userDataToLogin | userDataToResetPass): Promise<any> {
     const options = {
       "method": method,
       "headers": headersWithoutJWT,

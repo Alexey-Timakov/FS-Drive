@@ -1,8 +1,8 @@
 import React from "react";
 
-import Logo from "./logo";
-import TopMenuUnreg from "./top_menu_unreg";
-import TopMenuCompactUnreg from "./top_menu_compact_unreg";
+import Logo from "./Logo";
+import TopMenuUnreg from "./TopMenuUnreg";
+import TopMenuCompactUnreg from "./TopMenuUnregCompact";
 
 function Header () {
     return (

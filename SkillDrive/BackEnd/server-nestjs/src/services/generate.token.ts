@@ -1,14 +1,11 @@
 const jwt = require('jsonwebtoken');
 
+import { accessAndRefreshTokens, resetToken } from 'src/users/interfaces/tokens';
 import { ACCES_TOKEN_SECRET, ACCES_TOKEN_LIFE_SEC, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_LIFE_SEC } from '../common/variables';
-// import { RESET_TOKEN_SECRET, RESET_TOKEN_LIFE_SEC } from '../common/variables';
+import { RESET_TOKEN_SECRET, RESET_TOKEN_LIFE_SEC } from '../common/variables';
 
-interface Tokens {
-  "accessToken": string,
-  "refreshToken": string
-}
+export const generateToken = (name: string): accessAndRefreshTokens => {
 
-export const generateToken = (name: string): Tokens => {
   const payload = {
     "userName": name,
     "userRole": "user",
@@ -20,5 +17,18 @@ export const generateToken = (name: string): Tokens => {
   return {
     accessToken,
     refreshToken
+  };
+};
+
+export const generateResetToken = (userMail: string): resetToken => {
+
+  const payload = {
+    "userMail": userMail,
+  };
+
+  const resetToken = jwt.sign(payload, RESET_TOKEN_SECRET, { expiresIn: RESET_TOKEN_LIFE_SEC });
+
+  return {
+    resetToken
   };
 };

@@ -43,12 +43,4 @@ export class RegistrationService {
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }
-
-  async remove(id: String): Promise<User> {
-    return this.userModel.findByIdAndRemove(id)
-  }
-
-  async update(id: String, user: userDTO): Promise<User> {
-    return this.userModel.findByIdAndUpdate(id, user, { new: true })
-  }
 }

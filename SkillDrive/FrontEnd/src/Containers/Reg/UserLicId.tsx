@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import UserLicId from "../../components/Reg/UserLicId";
+import UserLicId from "../../components/Reg/Inputs/UserLicId";
 import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction.js"
 
 const mapDispatchToProps = (dispatch) => ({

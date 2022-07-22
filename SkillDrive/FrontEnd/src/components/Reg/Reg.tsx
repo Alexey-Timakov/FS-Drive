@@ -5,7 +5,7 @@ import "../../scss/reg.scss";
 
 import { store } from "../../Store/Store.jsx";
 
-import Header from "../Common/header";
+import Header from "../Common/Header";
 import NoScript from "../Common/NoScript";
 
 import UserName from "../../Containers/Reg/USerName";

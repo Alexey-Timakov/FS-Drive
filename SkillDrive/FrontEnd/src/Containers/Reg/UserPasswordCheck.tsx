@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import UserPasswordCheck from "../../components/Reg/UserPasswordCheck";
+import UserPasswordCheck from "../../components/Reg/Inputs/UserPasswordCheck";
 import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction.js"
 
 const mapDispatchToProps = (dispatch) => ({

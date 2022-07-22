@@ -7,8 +7,8 @@ import "../../scss/check_mail_after_reset_pass.scss";
 function CheckMailAfterResetPass () {
 
     const hideCheckMailWindow = () => {
-        document.querySelector(".check-mail__wrapper").classList.remove("active");
-        document.querySelector(".check-mail__fade").classList.remove("active");
+        document.querySelector<HTMLDivElement>(".check-mail__wrapper").classList.remove("active");
+        document.querySelector<HTMLDivElement>(".check-mail__fade").classList.remove("active");
     }
 
     return (

@@ -9,7 +9,7 @@ export class AuthController {
   
   @Post('auth')
   @HttpCode(HttpStatus.CREATED)
-  createUser(@Body() credentials: authCredentialsDTO): Promise<accessAndRefreshTokens> {
+  login(@Body() credentials: authCredentialsDTO): Promise<accessAndRefreshTokens> {
     return this.authService.login(credentials)
   }
 }

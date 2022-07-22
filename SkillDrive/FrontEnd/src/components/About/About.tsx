@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../../scss/about.scss";
 
-import Header from "../Common/header";
+import Header from "../Common/Header";
 import NoScript from "../Common/NoScript";
 import AboutIntro from "./About_Intro";
 import AboutContacts from "./About_Contacts";
