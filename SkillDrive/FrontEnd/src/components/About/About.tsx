@@ -1,12 +1,13 @@
 import * as React from "react";
-import "../../scss/about.scss";
 
-import Header from "../Common/Header";
+import "./About.scss";
+
+import Header from "../Header/Header";
 import NoScript from "../Common/NoScript";
 import AboutIntro from "./About_Intro";
 import AboutContacts from "./About_Contacts";
 import AboutTeam from "./About_Team";
-import Footer from "../Common/Footer";
+import Footer from "../Footer/Footer";
 
 function About () {
     return (

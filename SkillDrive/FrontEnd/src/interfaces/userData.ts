@@ -1,4 +1,4 @@
-export interface userData {
+export interface UserData {
   userName: String
   userMail: String
   userBirth: String

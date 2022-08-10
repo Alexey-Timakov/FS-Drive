@@ -8,10 +8,15 @@ export class RegistrationController {
   constructor(private readonly registrationService: RegistrationService) {
   }
 
-  // @Get(":id")
-  // getOne(@Param("id") id: string): Promise<User> {
-  //   return this.registrationService.getById(id)
-  // }
+  @Get("findusers")
+  findUser(@Param("id") id: string) {
+    return this.registrationService.findUsers();
+  }
+
+  @Post("createtest")
+  createTest(@Body() newUser: userDTO) {
+    return this.registrationService.createTempUser(newUser);
+  }
 
   @Post('registration')
   @HttpCode(HttpStatus.CREATED)

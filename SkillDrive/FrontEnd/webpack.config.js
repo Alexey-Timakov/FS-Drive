@@ -73,7 +73,7 @@ module.exports = {
             options : {
                 // publicPath: path.resolve(__dirname, "./build/"), // убрал пока-что т.к. картинки в css неверно прогружались
                 name: "[name].[ext]",
-                outputPath: "./images",
+                // outputPath: "./images",
                 esModule: false
             }
             ,

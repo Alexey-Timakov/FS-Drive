@@ -6,7 +6,9 @@ import { generateToken } from 'src/services/generate.token';
 import { userDTO } from '../dto/user.dto';
 import { UserInterface } from '../interfaces/user';
 import { User, UserDocument } from '../schemas/user.schema';
-
+import { MongoDataSource } from '@/data_source/mongo.data.source';
+import { UserEntity } from '@/users/entities/user.entity';
+import { TestUserEntity } from '../entities/user.entity copy';
 
 @Injectable()
 export class RegistrationService {
@@ -42,5 +44,22 @@ export class RegistrationService {
       console.log(error);
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  async findUsers() {
+    const temp = await MongoDataSource.manager.find(UserEntity)
+    const tem = await MongoDataSource.getMongoRepository
+    return temp;
+  }
+  
+  async createTempUser(user: userDTO) {
+    const newUser = new UserEntity();
+    newUser.userMail = user.userMail;
+    newUser.userPassword = user.userPassword;
+    console.log(newUser);
+
+    const temp = await MongoDataSource.manager.save(newUser);
+    console.log(temp);
+    return temp;
   }
 }

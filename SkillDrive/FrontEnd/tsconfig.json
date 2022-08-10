@@ -4,5 +4,6 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
+    "include": ["src/components", "src/custom.d.ts", "src/jpg.d.ts"]
 }

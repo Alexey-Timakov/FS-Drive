@@ -1,4 +1,4 @@
-export interface userDataToLogin {
+export interface UserDataToLogin {
   userMail: String
   userPassword: String
 };

@@ -1,0 +1,127 @@
+@import "../../scss/fonts";
+@import "../../scss/variables";
+
+$slider-width: 678px;
+$slider-height: 233px;
+$text-color: #1B1B1B;
+
+/* Slider section. */
+.slider {
+  &__button-wrapper-left {
+    padding-right: 131px;
+  }
+
+  &__button-wrapper-right {
+    padding-left: 131px;
+  }
+
+  &__buttons {
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  &__active_window {
+    overflow: hidden;
+    width: $slider-width;
+    height: $slider-height;
+    border-radius: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+  &__elements {
+    display: flex;
+    flex-direction: row;
+    transition: translate;
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+.element__ {
+  &wrapper {
+    padding-top: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    min-width: $slider-width - 50px;
+    max-width: $slider-width - 50px;
+    height: $slider-height - 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &image {
+    width: 53px;
+    height: 53px;
+    margin: 0 20px 0 0;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  &description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &name {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: $text-color;
+  }
+
+  &from {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 18px;
+    color: #636780;
+  }
+
+  &text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    max-width: 505px;
+    color: $text-color;
+  }
+}
+
+.slider__dots {
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(63, 61, 86, 0.4);
+  margin: 5px;
+
+  &_active {
+    width: 10px;
+    height: 10px;
+    background: rgba(63, 61, 86, 1);
+  }
+}

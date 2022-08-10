@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import validator from "validator";
 import { setTokens } from "../../services/setToken";
 
-import "../../images/sign_in.svg";
-import "../../images/close_cross.svg";
+import "./images/sign_in.svg";
+import "./images/close_cross.svg";
 
-import "../../scss/login.scss";
+import "./Login.scss";
+
 import { ApiService } from "../../services/apiService";
-import { userDataToLogin } from "../../interfaces/userDataToLogin";
+import { UserDataToLogin } from "../../interfaces/UserDataToLogin";
 
 function Login() {
   let [userMailLogin, changedUserMailLogin] = useState("");
@@ -82,7 +83,7 @@ function Login() {
     hideErrorInput();
     loginButtonWaiting();
 
-    const body: userDataToLogin = {
+    const body: UserDataToLogin = {
       "userMail": userMailLogin,
       "userPassword": userPasswordLogin
     };
@@ -112,10 +113,10 @@ function Login() {
       <div className="login-window__fade">
         <div className="login-window__wrapper">
           <div className="login-window__close">
-            <a onClick={hideLoginWindow} target="_blank" aria-label="Закрыть окно авторизации"><img src="./images/close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно авторизации" /></a>
+            <a onClick={hideLoginWindow} target="_blank" aria-label="Закрыть окно авторизации"><img src="./close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно авторизации" /></a>
           </div>
           <div className="login-window__description">
-            <img src="./images/sign_in.svg" alt="Векторное изображение думающего человека" />
+            <img src="./sign_in.svg" alt="Векторное изображение думающего человека" />
             <h1>Авторизация</h1>
             <p className="login-window__error">Неверная почта или пароль</p>
           </div>

@@ -30,7 +30,7 @@ function UserPasswordCheck ({addUserInfoToState}) {
                 <div className="block-input__input">
                     <label htmlFor="userPasswordCheck">Повторите пароль</label>
                     <input className="block-input__password" type="password" id="userPasswordCheck" name="userPasswordCheck" value={userPasswordCheck} onChange={onValueChange} placeholder="•••••••••••••••••••"/>
-                    <a href="#" className="eye-closed" onClick={changePassView}/>
+                    <a href="#" className="icon eye-closed" onClick={changePassView}/>
                 </div>
             <p className="block-input__error">Пароли не совпадают</p>
             </div>

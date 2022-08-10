@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import validator from "validator";
 
-import "../../scss/reg.scss";
+import "./Reg.scss";
 
-import { store } from "../../Store/Store.jsx";
+import { store } from "../../Store/Store";
 
-import Header from "../Common/Header";
+import Header from "../Header/Header";
 import NoScript from "../Common/NoScript";
 
 import UserName from "../../Containers/Reg/USerName";
@@ -23,12 +23,20 @@ import UserPasswordCheck from "../../Containers/Reg/UserPasswordCheck";
 
 import { setTokens } from "../../services/setToken";
 import { ApiService } from "../../services/apiService";
-import { userData } from "../../interfaces/userData";
-import { userDataWithTokens } from "../../interfaces/userDataWithTokens";
+import { UserData } from "../../interfaces/UserData";
+import { UserState } from "../../interfaces/UserState";
+
+import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
+import { useSelector } from "react-redux";
 
 function Reg() {
   const submitButton = useRef(null);
   const [errorBarIsActive, setErrorBarIsActive] = useState(false);
+  const newUserInfo = useSelector((state: UserState) => state.user);
+
+  useEffect(() => {
+    toggleSubmitButtonActivity();
+  }, [newUserInfo]);
 
   const showErrorInput = (key: string) => {
     const inputElement: HTMLInputElement = document.querySelector(`#${key}`);
@@ -46,11 +54,11 @@ function Reg() {
     descriptionElement.classList.remove("active");
   }
 
-  const inputCheck = (event: React.SyntheticEvent) => {
+  const inputsCheck = (event: React.SyntheticEvent) => {
     event.preventDefault();
     let inputsError = 0;
 
-    Object.entries(store.getState().user as userData).forEach(([key, value]) => {
+    Object.entries(store.getState().user as UserData).forEach(([key, value]) => {
       switch (key) {
         case "userName":
           if (!validator.isAlpha(value, 'ru-RU', { ignore: " -" })) {
@@ -192,12 +200,10 @@ function Reg() {
     }
   }
 
-  store.subscribe(toggleSubmitButtonActivity);
-
   const sendUserData = () => {
     waitingSubmitButton();
 
-    const data = {} as userData;
+    const data = {} as UserData;
 
     Object.entries(store.getState().user).forEach(([key, value]) => {
       if (key !== "userPasswordCheck") data[key] = value;
@@ -264,7 +270,7 @@ function Reg() {
       </main>
       <footer className="submit-footer">
         <div className="submit-footer__wrapper">
-          <button className="submit-footer__button" ref={submitButton} onClick={inputCheck}>Продолжить</button>
+          <button className="submit-footer__button" ref={submitButton} onClick={inputsCheck}>Продолжить</button>
         </div>
       </footer>
     </>

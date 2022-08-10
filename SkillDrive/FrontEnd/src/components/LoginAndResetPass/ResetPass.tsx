@@ -2,12 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import validator from "validator";
 
-import "../../images/arrow_left.svg";
-import "../../images/close_cross.svg";
-import "../../images/reset_password.svg";
-import { userDataToResetPass } from "../../interfaces/userDataToResetPass";
+import "./images/arrow_left.svg";
+import "./images/close_cross.svg";
+import "./images/reset_password.svg";
+import { UserDataToResetPass } from "../../interfaces/UserDataToResetPass";
 
-import "../../scss/reset.scss";
+import "./ResetPass.scss";
 import { ApiService } from "../../services/apiService";
 
 function ResetPass() {
@@ -74,7 +74,7 @@ function ResetPass() {
     hideErrorMessage();
     resetButtonWaiting();
 
-    const body: userDataToResetPass = {
+    const body: UserDataToResetPass = {
       "userMail": userMailToReset
     };
 
@@ -100,11 +100,11 @@ function ResetPass() {
       <div className="reset-window__fade">
         <div className="reset-window__wrapper">
           <div className="reset-window__close">
-            <a onClick={showLoginWindow} target="_blank" aria-label="Назад к форме входа"><img src="./images/arrow_left.svg" alt="" aria-hidden="true" title="Назад к форме входа" /></a>
-            <a onClick={hideResetPassWindow} target="_blank" aria-label="Закрыть окно восстановления пароля"><img src="./images/close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно восстановления пароля" /></a>
+            <a onClick={showLoginWindow} target="_blank" aria-label="Назад к форме входа"><img src="./arrow_left.svg" alt="" aria-hidden="true" title="Назад к форме входа" /></a>
+            <a onClick={hideResetPassWindow} target="_blank" aria-label="Закрыть окно восстановления пароля"><img src="./close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно восстановления пароля" /></a>
           </div>
           <div className="reset-window__description">
-            <img src="./images/reset_password.svg" alt="Векторное изображение человека" />
+            <img src="./reset_password.svg" alt="Векторное изображение человека" />
             <h1>Восстановление пароля</h1>
             <p>Мы отправим ссылку для восстановления пароля на вашу электронную почту</p>
             <p className="reset-window__error">Возникла ошибка при отправке ссылки</p>
