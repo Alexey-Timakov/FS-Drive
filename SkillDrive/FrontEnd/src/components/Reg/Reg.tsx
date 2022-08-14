@@ -9,15 +9,13 @@ import Header from "../Header/Header";
 import NoScript from "../Common/NoScript";
 
 import UserName from "../../Containers/Reg/USerName";
-import UserBirth from "../../Containers/Reg/UserBirth";
+import UserInputDate from "../../Containers/Reg/UserInputDate";
 import UserMail from "../../Containers/Reg/UserMail";
 import UserPhone from "../../Containers/Reg/UserPhone";
 import UserPassport from "../../Containers/Reg/UserPassport";
-import UserPassportDate from "../../Containers/Reg/UserPassportDate";
 import UserPassportEmitent from "../../Containers/Reg/UserPassportEmitent";
 import UserPassportEmitentId from "../../Containers/Reg/UserPassportEmitentId";
 import UserLicId from "../../Containers/Reg/UserLicId";
-import UserLicIdDate from "../../Containers/Reg/UserLicIdDate";
 import UserPassword from "../../Containers/Reg/UserPassword";
 import UserPasswordCheck from "../../Containers/Reg/UserPasswordCheck";
 
@@ -25,8 +23,8 @@ import { setTokens } from "../../services/setToken";
 import { ApiService } from "../../services/apiService";
 import { UserData } from "../../interfaces/UserData";
 import { UserState } from "../../interfaces/UserState";
-
 import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
+
 import { useSelector } from "react-redux";
 
 function Reg() {
@@ -73,7 +71,7 @@ function Reg() {
         case "userBirth":
         case "userPassportDate":
         case "userLicIdDate":
-          if (!validator.isISO8601(value.toString())) {
+          if (!validator.isDate(value.toString(), { format: "DD/MM/YYYY", delimiters: [".", "/", "-"] })) {
             showErrorInput(key);
             inputsError += 1;
           }
@@ -244,21 +242,21 @@ function Reg() {
             <div className="block-input">
               <h2>Информация о вас</h2>
               <UserName />
-              <UserBirth />
+              <UserInputDate inputName={"userBirth"} inputTitle={"Дата рождения"} />
               <UserMail />
               <UserPhone />
             </div>
             <div className="block-input">
               <h2>Паспорт</h2>
               <UserPassport />
-              <UserPassportDate />
+              <UserInputDate inputName={"userPassportDate"} inputTitle={"Дата выдачи"} />
               <UserPassportEmitent />
               <UserPassportEmitentId />
             </div>
             <div className="block-input">
               <h2>Водительское удостоверение</h2>
               <UserLicId />
-              <UserLicIdDate />
+              <UserInputDate inputName={"userLicIdDate"} inputTitle={"Дата выдачи"} />
             </div>
             <div className="block-input">
               <h2>Пароль</h2>

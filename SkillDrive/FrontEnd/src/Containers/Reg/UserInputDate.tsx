@@ -1,9 +1,9 @@
 import {connect} from "react-redux";
-import UserBirth from "../../components/Reg/Inputs/UserBirth";
+import UserInputDate from "../../components/Reg/Inputs/UserInputDate";
 import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction.js"
 
 const mapDispatchToProps = (dispatch) => ({
     addUserInfoToState: (name, value) => dispatch(addUserInfoToStateAction(name, value))
 });
 
-export default connect(null, mapDispatchToProps)(UserBirth);
+export default connect(null, mapDispatchToProps)(UserInputDate);

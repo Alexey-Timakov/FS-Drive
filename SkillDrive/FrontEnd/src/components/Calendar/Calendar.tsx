@@ -2,41 +2,19 @@ import React, { useEffect, useState } from 'react'
 import classnames from 'classnames';
 import chevronLeft from './chevron-left.svg';
 import chevronRight from './chevron-right.svg';
+import validator from "validator";
 
 import { Calendar } from "../../interfaces/Calendar";
 
 import "./Calendar.scss";
 
-function Calendar({ styles }: Calendar) {
+function Calendar({ styles, selectedFromInputDate, onCalendarClick }: Calendar) {
   const monthNames: string[] = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
   const dayNames: string[] = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс",];
   const maxDaysInMonth: number[] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   const [activeDate, setActiveDate] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(null);
-
-  const changeMonth = (increment: number): void => {
-    const newMonth = month + increment;
-    setActiveDate(new Date(activeDate.setMonth(newMonth)));
-  }
-
-  const changeYear = (increment: number): void => {
-    const newYar = year + increment;
-    setActiveDate(new Date(activeDate.setFullYear(newYar)));
-  }
-
-  const changeSelectedDate = (day: number): void => {
-    if (day === -1) return;
-    else {
-      const newSelectedDate = new Date(year, month, day);
-      setSelectedDate(newSelectedDate);
-    }
-  }
-
-  const closeCalendar = (event: React.MouseEvent<HTMLElement>) => {
-    const calendar: HTMLElement = event.currentTarget.parentElement;
-    calendar.classList.remove("active");
-  };
 
   const getMaxDaysInMonth = (year: number, month: number): number => {
     let maxDays: number = maxDaysInMonth[month];
@@ -46,12 +24,12 @@ function Calendar({ styles }: Calendar) {
       }
     }
     return maxDays;
-  };
+  }
 
   const getFirstDayOfMonth = (date: Date): number => {
     const firstDay: number = new Date(year, month, 1).getDay();
     return firstDay;
-  };
+  }
 
   const getMonthAndYearNumbers = (date: Date): number[] => {
     const year: number = date.getFullYear();
@@ -66,8 +44,6 @@ function Calendar({ styles }: Calendar) {
       year === selectedDate.getFullYear()
     return result;
   }
-
-  const [year, month] = getMonthAndYearNumbers(activeDate);
 
   const generateMatrix = (date: Date): string[][] => {
     const maxDays = getMaxDaysInMonth(year, month);
@@ -93,7 +69,44 @@ function Calendar({ styles }: Calendar) {
       }
     }
     return maxtrix;
-  };
+  }
+
+  const changeMonth = (increment: number): void => {
+    const newMonth = month + increment;
+    setActiveDate(new Date(activeDate.setMonth(newMonth)));
+  }
+
+  const changeYear = (increment: number): void => {
+    const newYar = year + increment;
+    setActiveDate(new Date(activeDate.setFullYear(newYar)));
+  }
+
+  const changeSelectedDate = (day: number, month: number, year: number): void => {
+    if (day === -1) return;
+    else {
+      const newSelectedDate = new Date(year, month, day);
+      const newSelectedDateString = newSelectedDate.toLocaleDateString("ru-RU");
+      setSelectedDate(newSelectedDate);
+      onCalendarClick(newSelectedDateString);
+    }
+  }
+
+  useEffect(() => {
+    if (validator.isDate(selectedFromInputDate, { format: "DD/MM/YYYY", delimiters: [".", "/", "-"] })) {
+      const inputDateToArrayOfStrings = selectedFromInputDate.split(".");
+      const day = +inputDateToArrayOfStrings[0];
+      const month = +inputDateToArrayOfStrings[1] - 1;
+      const year = +inputDateToArrayOfStrings[2];
+      changeSelectedDate(day, month, year);
+    }
+  }, [selectedFromInputDate])
+
+  const closeCalendar = (event: React.MouseEvent<HTMLElement>) => {
+    const calendar: HTMLElement = event.currentTarget.parentElement;
+    calendar.classList.remove("active");
+  }
+
+  const [year, month] = getMonthAndYearNumbers(activeDate);
 
   const matrix = generateMatrix(activeDate);
 
@@ -139,7 +152,7 @@ function Calendar({ styles }: Calendar) {
                 'selected_days': selectedDate && showSelectedDate(item),
               });
 
-              return <div className={colClasses} onClick={() => (changeSelectedDate(+item))} key={itemIndex}>{item}</div>
+              return <div className={colClasses} onClick={() => (changeSelectedDate(+item, month, year))} key={itemIndex}>{item}</div>
             })
             const rowClasses = classnames({
               'week': true,
