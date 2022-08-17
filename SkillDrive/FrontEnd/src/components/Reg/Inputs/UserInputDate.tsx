@@ -52,9 +52,6 @@ function UserInputDate({ addUserInfoToState, inputName, inputTitle }) {
           <a href="#" className="icon icon-short calendar" onClick={showCalendar} />
           <Calendar
             styles={{
-              "position": "absolute",
-              "left": "260px",
-              "top": "100%",
             }}
             selectedFromInputDate={userInputDate}
             onCalendarClick={onCalendarClick} />

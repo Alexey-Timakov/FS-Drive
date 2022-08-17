@@ -11,19 +11,28 @@ import { sliderElementsList } from './slider_elements_list';
 
 export default function Slider(props: { sliderElements: FeedbackItem[] }) {
 
-  const SLIDER_WIDTH: number = 678;
+  const getSliderWidth = (): number => {
+    const breakpointMobilePX: number = 768;
+    let sliderWidth: number = 678;
+
+    if (document.body.clientWidth < breakpointMobilePX) sliderWidth = 375;
+    return sliderWidth;
+  }
+
+  const SLIDER_WIDTH: number = getSliderWidth();
   const slidesTotalAmount: number = sliderElementsList.length;
   const maxOffest: number = SLIDER_WIDTH * (slidesTotalAmount - 1);
 
   const [sliderOffset, setOffset] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
 
+
   const moveSliderLeft = () => {
     setOffset(currentOffset => {
       const newOffset: number = currentOffset + SLIDER_WIDTH;
       return Math.min(newOffset, 0);
     });
-    
+
     setActiveSlide(item => {
       const newSlide = item - 1;
       return Math.max(newSlide, 0);
@@ -54,6 +63,7 @@ export default function Slider(props: { sliderElements: FeedbackItem[] }) {
             {props.sliderElements.map(item => {
               return <SliderElement element={item} key={item.image} />
             })}
+            o
           </div>
         </div>
         <div className='slider__button-wrapper slider__button-wrapper-right'><img src={chevronRight} onClick={moveSliderRight} className="slider__buttons" /></div>

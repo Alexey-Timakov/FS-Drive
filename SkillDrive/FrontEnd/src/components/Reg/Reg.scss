@@ -102,7 +102,7 @@
         .eye-on {
           background: url("../../images/eye-on.svg") no-repeat 0% 0%;
         }
-        
+
         .calendar {
           background: url("../../images/calendar.svg") no-repeat 0% 0%;
         }
@@ -124,31 +124,6 @@
         padding: 0px 12px;
         color: $reg-grey-text;
         box-sizing: border-box;
-
-        &.calendar {
-          // background: url(../images/calendar.svg) no-repeat 90% 50%;
-          padding-left: 0px;
-
-          &::-webkit-calendar-picker-indicator {
-            opacity: 0;
-          }
-
-          &::before {
-            display: inline-block;
-            font-family: 'Glyphter';
-            font-style: normal;
-            font-weight: normal;
-            font-size: 20px;
-            line-height: 1;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            content: "\0041";
-            position: relative;
-            top: 0px;
-            left: 173px;
-            color: $reg-footer-button-color;
-          }
-        }
 
         &.short {
           width: 208px;
@@ -310,6 +285,15 @@
         &__input {
           flex-direction: column;
           align-items: flex-start;
+
+          .icon {
+            top: 39px;
+            right: 10px;
+
+            &-short {
+              right: 10px;
+            }
+          }
         }
 
         label {
@@ -322,17 +306,6 @@
           &.short {
             width: 100%;
             // margin-right: 38%;
-          }
-
-          &.calendar {
-
-            // &::-webkit-calendar-picker-indicator {
-            //   }
-            &::before {
-              font-size: 20px;
-              top: 0px;
-              left: 94%;
-            }
           }
         }
 

@@ -8,13 +8,13 @@ import Slider from '../Slider/Slider';
 import './MainPage.scss';
 import { sliderElementsList } from '../Slider/slider_elements_list';
 
-import mainPageHeaderImage from './images/undraw_city_driver.svg';
 import mainPageCityDriver from './images/undraw_fast_car.svg';
 import mainPageVehicleSale from './images/undraw_vehicle_sale.svg';
 import mainPageOnlineTransactions from './images/undraw_online_transactions.svg';
 import mainPageToyCar from './images/undraw_toy_car.svg';
 import dashedLineHorizontal from './images/dashed_line_horizontal.svg';
 import dashedLineHorizontalShort from './images/dashed_line_horizontal_short.svg';
+import dashedLineVerticalShort from './images/dashed_line_vertical_short.svg';
 import iconPrice from './images/icon_price.svg';
 import iconUSD from './images/icon_usd.svg';
 import iconPercent from './images/icon_percent.svg';
@@ -31,7 +31,7 @@ function MainPage() {
       <Header />
       <NoScript />
       <section className="main__section main__section_header">
-        <figure className="section__image section__image_header"><img src={mainPageHeaderImage} alt="Схематическое изображения водителя и автомобиля" /></figure>
+        <figure className="section__image section__image_header"></figure>
         <div className="section__description section__description_header">
           <h1>Каршеринг в любой точке России</h1>
           <p>Будьте всегда за рулём во время путешествий и командировок.</p>
@@ -51,7 +51,7 @@ function MainPage() {
         </div>
       </section>
 
-      <section className="main__section">
+      <section className="main__section mobile_reverse">
         <div className="section__description">
           <h2>Автомобили на любой вкус</h2>
           <p>Вы всегда можете подобрать автомобиль любого класса от бюджетных моделей до премиум-класса и спорткаров.</p>
@@ -79,11 +79,13 @@ function MainPage() {
             <div className="step__title"><p>Выберите автомобиль</p></div>
           </div>
           <div className="step step_dashes"><img src={dashedLineHorizontal} /></div>
+          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
           <div className="step">
             <div className="step__index">2</div>
             <div className="step__title"><p>Забронируйте дату и время</p></div>
           </div>
           <div className="step step_dashes"><img src={dashedLineHorizontal} /></div>
+          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
           <div className="step">
             <div className="step__index">3</div>
             <div className="step__title"><p>Получите автомобиль</p></div>
@@ -100,16 +102,19 @@ function MainPage() {
             <div className="step__title"><p>Вы сами указываете цену</p></div>
           </div>
           <div className="step step_dashes step_short"><img src={dashedLineHorizontalShort} /></div>
+          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
           <div className="step">
             <div className="step__index"><img src={iconUSD} /></div>
             <div className="step__title"><p>Мы страхуем автомобили</p></div>
           </div>
           <div className="step step_dashes step_short"><img src={dashedLineHorizontalShort} /></div>
+          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
           <div className="step">
             <div className="step__index"><img src={iconPercent} /></div>
             <div className="step__title"><p>Наша комиссия всего 3%</p></div>
           </div>
           <div className="step step_dashes step_short"><img src={dashedLineHorizontalShort} /></div>
+          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
           <div className="step">
             <div className="step__index"><img src={iconIncome} /></div>
             <div className="step__title"><p>Выплаты каждую неделю</p></div>
@@ -129,9 +134,9 @@ function MainPage() {
           <img src={mainPageToyCar} alt="Схематическое изображения водителя, сидящего на  автомобиле" />
         </figure>
         <div className="section__description section__description_wide" style={{ paddingRight: "0" }}>
-          <h2>Попробуйте аренду на себе</h2>
+          <h2 className="footer_h2">Попробуйте аренду на себе</h2>
         </div>
-        <div className="button_link">
+        <div className="button_link button_footer">
           <Link to="/Reg" aria-label="Перейти на страницу регистрации">Зарегистрироваться</Link>
         </div>
       </section>

@@ -3,6 +3,8 @@
 
 $slider-width: 678px;
 $slider-height: 233px;
+$slider-width-mobile: 335px;
+$slider-height-mobile: 229px;
 $text-color: #1B1B1B;
 
 /* Slider section. */
@@ -34,7 +36,7 @@ $text-color: #1B1B1B;
     border-radius: 10px;
     background: #FFFFFF;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
-}
+  }
 
   &__elements {
     display: flex;
@@ -124,4 +126,88 @@ $text-color: #1B1B1B;
     height: 10px;
     background: rgba(63, 61, 86, 1);
   }
+}
+
+/* Slider section. Adaptive */
+@media screen and (max-width: $breakpoint-mobile) {
+  .slider {
+    &__button-wrapper-left {
+      padding-right: 0px;
+      display: none;
+    }
+
+    &__button-wrapper-right {
+      padding-left: 0px;
+      display: none;
+    }
+
+    &__buttons {
+      cursor: pointer;
+    }
+
+    &__wrapper {
+      margin-bottom: 31px;
+    }
+
+    &__active_window {
+      width: $slider-width-mobile;
+      height: $slider-height-mobile;
+      border-radius: 10px;
+    }
+
+    &__elements {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .element__ {
+    &wrapper {
+      padding-top: 27px;
+      padding-left: 18px;
+      padding-right: 18px;
+      min-width: $slider-width-mobile - 15px;
+      max-width: $slider-width-mobile - 15px;
+      height: $slider-height-mobile - 15px;
+    }
+
+    &image {
+      width: 53px;
+      height: 53px;
+      margin: 0 20px 0 0;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    &description {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &name {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &from {
+      font-size: 12px;
+      line-height: 18px;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    &text {
+      font-size: 14px;
+      line-height: 21px;
+      text-align: left;
+      max-width: 295px;
+      width: 295px;
+      position: relative;
+      left: -73px;
+      top: 12px
+    }
+  }
+
 }
