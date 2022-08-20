@@ -1,0 +1,189 @@
+// Imports
+@import "../../scss/Variables.scss";
+@import "../../scss/Fonts.scss";
+
+/* Main section. Registration form. Step 2 */
+
+.step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: $reg-black-label-text;
+
+  &__title {
+    font-size: 64px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 27px;
+  }
+
+  &__description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 35px;
+    width: 625px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    border-top: 1px solid #DEE2E4;
+  }
+
+  &__submit {
+    margin-top: 17px;
+    margin-bottom: 17px;
+    background-color: $reg-footer-button-color-disabled;
+    color: $reg-footer-button-text-disabled;
+    width: 176px;
+    height: 51px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 500;
+
+    &.is-active {
+      background-color: $reg-footer-button-color;
+      color: $reg-footer-button-text;
+
+      &:hover {
+        background-color: $reg-fotter-button-color-hover;
+      }
+    }
+
+    .is-waiting::before {
+      display: inline-block;
+      font-family: 'SFDrive-Common';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\0044";
+
+      animation: rotation 2s infinite linear;
+    }
+
+    @keyframes rotation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+
+      to {
+        -webkit-transform: rotate(359deg);
+      }
+    }
+  }
+
+  .camera {
+    &__wrapper {
+      width: $reg-camera-window-width;
+      height: $reg-camera-window-height;
+      background-color: $reg-camera-background-grey;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 75px;
+    }
+
+    &__video {
+      width: $reg-camera-window-width;
+      height: $reg-camera-window-height;
+      display: none;
+      position: relative;
+
+      &.active {
+        display: inherit;
+      }
+
+      video {
+        width: $reg-camera-window-width;
+        height: $reg-camera-window-height;
+      }
+    }
+
+    &__photo {
+      display: none;
+      width: $reg-camera-window-width;
+      height: $reg-camera-window-height;
+      position: relative;
+
+      &.active {
+        display: inherit;
+      }
+    }
+  }
+}
+
+.btn {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 190px;
+  top: 135px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &_start {
+    display: none;
+
+    &.active {
+      display: inherit;
+    }
+  }
+
+  &_capture {
+    display: none;
+    background-color: #000000;
+    opacity: 0.5;
+
+    &.active {
+      display: inherit;
+    }
+  }
+
+  &_delete {
+    background-color: #000000;
+    opacity: 0.5;
+  }
+}
+
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'SFDrive-Common';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $reg-camera-color-green;
+}
+
+.icon-camera:before {
+  content: '\0045';
+  font-size: 24px;
+}
+
+.icon-camera.white:before {
+  color: white;
+}
+
+.icon-trash:before {
+  content: '\004c';
+  font-size: 24px;
+  color: white;
+}

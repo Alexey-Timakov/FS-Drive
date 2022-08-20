@@ -5,14 +5,14 @@ import * as bcrypt from 'bcrypt';
 import { Model } from 'mongoose';
 import { generateToken } from 'src/services/generate.token';
 import { authCredentialsDTO } from '../dto/auth.credentials.dto';
-import { accessAndRefreshTokens } from '../interfaces/tokens';
+import { UserLoggedInWithRefreshTokenDTO } from '../dto/userLoggedInWithRefresh.dto';
 import { User, UserDocument } from '../schemas/user.schema';
 
 @Injectable()
 export class AuthService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) { }
 
-  async login(credentials: authCredentialsDTO): Promise<accessAndRefreshTokens> {
+  async login(credentials: authCredentialsDTO): Promise<UserLoggedInWithRefreshTokenDTO> {
     const userMail = credentials.userMail;
     const userPassword = credentials.userPassword;
     console.log("Requested data: ", userMail, userPassword);
@@ -30,7 +30,8 @@ export class AuthService {
           if (isMatch) {
             console.log("Password matches!");
             const tokens = generateToken(userMail);
-            return tokens;
+            const answer = new UserLoggedInWithRefreshTokenDTO(userToLogin);
+            return {...answer, ...tokens};
           } else {
             console.log("Password does NOT match!");
             textError = "Login and password do NOT match!";

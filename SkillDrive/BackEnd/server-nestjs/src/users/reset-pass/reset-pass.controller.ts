@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { changePassCredentialsDTO } from '../dto/changePass.credentials.dto';
 import { resetPassCredentialsDTO } from '../dto/resetPass.credentials.dto';

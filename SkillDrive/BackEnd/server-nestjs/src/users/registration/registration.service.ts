@@ -9,12 +9,13 @@ import { User, UserDocument } from '../schemas/user.schema';
 import { MongoDataSource } from '@/data_source/mongo.data.source';
 import { UserEntity } from '@/users/entities/user.entity';
 import { TestUserEntity } from '../entities/user.entity copy';
+import { UserLoggedInWithRefreshTokenDTO } from '../dto/userLoggedInWithRefresh.dto';
 
 @Injectable()
 export class RegistrationService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) { }
 
-  async createUser(user: userDTO): Promise<User> {
+  async createUser(user: userDTO): Promise<UserLoggedInWithRefreshTokenDTO> {
     try {
       const checkVal = await this.userModel.find({ "userMail": user.userMail });
 
@@ -33,10 +34,11 @@ export class RegistrationService {
         const tokens = generateToken(newUserData.userMail);
         newUserData.accessToken = tokens.accessToken;
         newUserData.refreshToken = tokens.refreshToken;
-
         const newUser = new this.userModel(newUserData);
+        newUser.save();
 
-        return newUser.save()
+        const answer = new UserLoggedInWithRefreshTokenDTO(newUser);
+        return answer;
       } else {
         throw new HttpException(`User already exists: ${user.userMail}`, HttpStatus.BAD_REQUEST);
       }

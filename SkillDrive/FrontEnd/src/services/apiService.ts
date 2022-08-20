@@ -1,6 +1,7 @@
 import { UserData } from "../interfaces/UserData";
 import { UserDataToLogin } from "../interfaces/UserDataToLogin";
 import { UserDataToResetPass } from "../interfaces/UserDataToResetPass";
+import { UserDataWithTokens } from "../interfaces/UserDataWithTokens";
 
 const headersWithoutJWT = {
   "Origin": "http://localhost:8080",

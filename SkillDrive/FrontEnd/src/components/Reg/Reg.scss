@@ -4,337 +4,66 @@
 
 /* Main section. Registration form. */
 
-.reg-form-error {
-  z-index: 100;
-  display: none;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 0px;
-  height: 58px;
-  width: 100%;
-  background-color: $reg-form-error-color;
-  color: $reg-footer-error-text;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
-
-  &.is-active {
-    display: flex;
-    position: fixed;
+.reg__ {
+  &form-error {
+    z-index: 100;
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
     top: 0px;
+    height: 58px;
+    width: 100%;
+    background-color: $reg-form-error-color;
+    color: $reg-footer-error-text;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+
+    &.is-active {
+      display: flex;
+      position: fixed;
+      top: 0px;
+    }
   }
-}
-
-.reg-form-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-
-  p {
-    margin-top: 55px;
-    margin-bottom: 15px;
+  
+  &step-number {
+    margin: 55px auto 12px auto;
     color: $reg-grey-text;
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
+    width: 100px;
   }
-
-  h1 {
-    font-size: 64px;
-    font-weight: 700;
-    line-height: 78px;
-    margin-top: 0px;
-    margin-bottom: 20px;
-  }
-
-  form {
+  
+  &back-button {
+    position: relative;
+    top: -43px;
+    left: 14%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 676px;
-
-    .block-input {
-      width: 100%;
-
-      h2 {
-        align-self: flex-start;
-        font-size: 36px;
-        font-weight: 400;
-        line-height: 53px;
-        margin-top: 35px;
-        margin-bottom: 30px;
-      }
-
-      &__wrapper {
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      &__input {
-        position: relative;
-        width: 100%;
-        display: flex;
-        align-items: center;
-
-        .icon {
-          display: inline-block;
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          width: 25px;
-          height: 25px;
-
-          &-short {
-            right: 220px;
-          }
-        }
-
-        .eye-closed {
-          background: url("../../images/eye-off.svg") no-repeat 0% 0%;
-        }
-
-        .eye-on {
-          background: url("../../images/eye-on.svg") no-repeat 0% 0%;
-        }
-
-        .calendar {
-          background: url("../../images/calendar.svg") no-repeat 0% 0%;
-        }
-      }
-
-      label {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 16px;
-        color: $reg-black-label-text;
-      }
-
-      input {
-        margin-left: auto;
-        height: 44px;
-        width: 416px;
-        border: solid 1px $reg-border-gray;
-        border-radius: 6px;
-        padding: 0px 12px;
-        color: $reg-grey-text;
-        box-sizing: border-box;
-
-        &.short {
-          width: 208px;
-          margin-right: 208px;
-        }
-
-        &:hover {
-          border-color: $light-green;
-        }
-
-        &:focus {
-          outline: none;
-          border: solid 2px $light-green;
-        }
-
-        &.error {
-          border: solid 2px $reg-form-error-color;
-        }
-      }
-
-      &__error {
-        display: none;
-        width: 100%;
-        position: relative;
-        left: 260px;
-        text-align: left;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        padding-top: 5px;
-        color: $reg-form-error-color;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 16px;
-
-        &.active {
-          display: block;
-        }
-      }
-    }
+    align-items: center;
+    width: 100px;
+    color: $light-green;
+    cursor: pointer;
   }
-
 }
 
-.submit-footer {
-  background-color: $reg-footer-background;
-  padding: 0;
-  margin-top: 80px;
-
-  &__wrapper {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0;
-    border-top: 1px solid #DEE2E4;
-
-  }
-
-  &__button {
-    margin-top: 17px;
-    margin-bottom: 17px;
-    background-color: $reg-footer-button-color-disabled;
-    color: $reg-footer-button-text-disabled;
-    width: 176px;
-    height: 51px;
-    border-radius: 6px;
-    border: 0;
-    font-size: 16px;
-    line-height: 19px;
-    font-weight: 500;
-
-    &.is-active {
-      background-color: $reg-footer-button-color;
-      color: $reg-footer-button-text;
-
-      &:hover {
-        background-color: $reg-fotter-button-color-hover;
-      }
-    }
-
-    .is-waiting::before {
-      display: inline-block;
-      font-family: 'Glyphter';
-      font-style: normal;
-      font-weight: normal;
-      font-size: 24px;
-      line-height: 1;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      content: "\0044";
-
-      animation: rotation 2s infinite linear;
-    }
-
-    @keyframes rotation {
-      from {
-        -webkit-transform: rotate(0deg);
-      }
-
-      to {
-        -webkit-transform: rotate(359deg);
-      }
-    }
-  }
+.arrow-left {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url("./Images/arrow-left.svg") no-repeat 0 0;
+  margin-right: 10px;
+  color: $light-green;
 }
 
 /* Main section. Registration form. Adaptive. */
 
 @media screen and (max-width: 768px) {
-  .reg-form-error {
+  .reg__form-error {
     height: 72px;
     font-size: 14px;
     line-height: 16px;
     text-align: center;
-  }
-
-  .reg-form-wrapper {
-    p {
-      font-size: 12px;
-      line-height: 18px;
-      margin-top: 50px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 32px;
-      font-weight: 500;
-      line-height: 38px;
-      margin-bottom: 30px;
-    }
-
-    form {
-      width: 334px;
-
-      .block-input {
-
-        h2 {
-          font-size: 24px;
-          font-weight: 500;
-          line-height: 29px;
-          margin-top: 15px;
-          margin-bottom: 27px;
-          width: 70%;
-        }
-
-        &__wrapper {
-
-          flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 26px;
-
-          a {
-            top: 38px;
-          }
-
-        }
-
-        &__input {
-          flex-direction: column;
-          align-items: flex-start;
-
-          .icon {
-            top: 39px;
-            right: 10px;
-
-            &-short {
-              right: 10px;
-            }
-          }
-        }
-
-        label {
-          margin-bottom: 12px;
-        }
-
-        input {
-          width: 100%;
-
-          &.short {
-            width: 100%;
-            // margin-right: 38%;
-          }
-        }
-
-        &__error {
-          position: initial;
-          left: 0px;
-          margin-bottom: 0px;
-          margin-top: 0px;
-          padding-top: 5px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .submit-footer {
-    margin-top: 25px;
-
-    // &__wrapper {
-    // }
-
-    &__button {
-      margin-top: 17px;
-      margin-bottom: 17px;
-      width: 335px;
-      font-size: 16px;
-      line-height: 19px;
-      font-weight: 500;
-    }
   }
 }

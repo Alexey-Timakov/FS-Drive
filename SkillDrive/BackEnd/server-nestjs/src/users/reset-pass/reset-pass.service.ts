@@ -10,7 +10,7 @@ import { generateResetToken } from 'src/services/generate.token';
 import { sendEmail } from 'src/services/sendEmail';
 import { User, UserDocument } from '../schemas/user.schema';
 import { logWrite, resetLogFilePath } from 'src/services/log.write';
-import { resetToken } from '../interfaces/tokens';
+import { IResetToken } from '../interfaces/tokens';
 import { UserUpateDataInterface } from '../interfaces/userUpdateData';
 
 @Injectable()
@@ -104,7 +104,7 @@ export class ResetPassService {
       "userMail": userMail,
     };
 
-    const queryResetToken: resetToken = {
+    const queryResetToken: IResetToken = {
       "resetToken": "",
     };
 

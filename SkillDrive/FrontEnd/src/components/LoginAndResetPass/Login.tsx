@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import validator from "validator";
-import { setTokens } from "../../services/setToken";
+import $api from "../../http";
+import { setAccessToken } from "../../services/setToken";
+
+import { UserDataToLogin } from "../../interfaces/UserDataToLogin";
+import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
 
 import "./images/sign_in.svg";
 import "./images/close_cross.svg";
 
 import "./Login.scss";
-
-import { ApiService } from "../../services/apiService";
-import { UserDataToLogin } from "../../interfaces/UserDataToLogin";
 
 function Login() {
   let [userMailLogin, changedUserMailLogin] = useState("");
@@ -88,18 +89,10 @@ function Login() {
       "userPassword": userPasswordLogin
     };
 
-    ApiService.sendDataToServer("http://localhost:3000/users/auth", "POST", body)
+    $api.post<UserDataWithTokens>("users/auth", body)
       .then(res => {
         loginButtonStatinc();
-        if (res.ok) {
-          return res.json();
-        } else {
-          showErrorInput();
-          throw new Error("Something went wrong");
-        }
-      })
-      .then(res => {
-        setTokens(res.accessToken, res.refreshToken);
+        setAccessToken(res.data.accessToken);
       })
       .catch(err => {
         loginButtonStatinc();

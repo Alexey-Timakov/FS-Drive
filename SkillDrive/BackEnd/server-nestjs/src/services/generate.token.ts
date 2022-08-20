@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-import { accessAndRefreshTokens, resetToken } from 'src/users/interfaces/tokens';
+import { IAccessAndRefreshTokens, IResetToken } from 'src/users/interfaces/tokens';
 import { ACCES_TOKEN_SECRET, ACCES_TOKEN_LIFE_SEC, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_LIFE_SEC } from '../common/variables';
 import { RESET_TOKEN_SECRET, RESET_TOKEN_LIFE_SEC } from '../common/variables';
 
-export const generateToken = (name: string): accessAndRefreshTokens => {
+export const generateToken = (name: string): IAccessAndRefreshTokens => {
 
   const payload = {
     "userName": name,
@@ -20,7 +20,7 @@ export const generateToken = (name: string): accessAndRefreshTokens => {
   };
 };
 
-export const generateResetToken = (userMail: string): resetToken => {
+export const generateResetToken = (userMail: string): IResetToken => {
 
   const payload = {
     "userMail": userMail,

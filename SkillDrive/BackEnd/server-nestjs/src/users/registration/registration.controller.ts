@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Post, Res } from '@nestjs/common';
 import { RegistrationService } from './registration.service';
-import { User } from '../schemas/user.schema';
 import { userDTO } from '../dto/user.dto';
+import { UserLoggedInDTO } from '../dto/userLoggedIn.dto';
+import { Response } from 'express';
+import { UserLoggedInWithRefreshTokenDTO } from '../dto/userLoggedInWithRefresh.dto';
 
 @Controller('users')
 export class RegistrationController {
@@ -20,8 +22,18 @@ export class RegistrationController {
 
   @Post('registration')
   @HttpCode(HttpStatus.CREATED)
-  createUser(@Body() newUser: userDTO): Promise<User> {
-    return this.registrationService.createUser(newUser)
+  async createUser(@Body() newUser: userDTO, @Res() res: Response) {
+    const result = await this.registrationService.createUser(newUser);
+    if (result) {
+      res.cookie("refreshToken", result.refreshToken, {
+        expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
+        httpOnly: true,
+      });
+      const {refreshToken, ...rest} = result;
+      return res.send(rest);
+    } else {
+      return new HttpException("Some critical error", HttpStatus.BAD_REQUEST)
+    }
   }
 
   // @Put(":id")
