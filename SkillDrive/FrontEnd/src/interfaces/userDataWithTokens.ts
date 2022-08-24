@@ -1,8 +1,6 @@
-import { userData } from "./userData";
+import { IUserData } from "./IUserData";
 
-export interface userDataWithTokens extends userData {
-  tokens: {
-    accessToken: string,
-    refreshToken: string,
-  }  
+export interface UserDataWithTokens extends IUserData {
+  id: string;
+  accessToken: string,
 };

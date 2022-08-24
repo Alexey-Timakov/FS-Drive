@@ -2,14 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import validator from "validator";
-import { setTokens } from "../../services/setToken";
+import { $api } from "../../http";
+import { setAccessToken } from "../../services/setToken";
 
-import "../../images/sign_in.svg";
-import "../../images/close_cross.svg";
+import { UserDataToLogin } from "../../interfaces/UserDataToLogin";
+import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
 
-import "../../scss/login.scss";
-import { ApiService } from "../../services/apiService";
-import { userDataToLogin } from "../../interfaces/userDataToLogin";
+import "./images/sign_in.svg";
+import "./images/close_cross.svg";
+
+import "./Login.scss";
 
 function Login() {
   let [userMailLogin, changedUserMailLogin] = useState("");
@@ -55,7 +57,7 @@ function Login() {
   const loginButtonWaiting = () => {
     loginButton.innerHTML = '<i class="is-waiting"></i>';
   }
-  
+
   const loginButtonStatinc = () => {
     loginButton.innerHTML = "Войти";
     loginButton.classList.remove("is-waiting");
@@ -82,23 +84,15 @@ function Login() {
     hideErrorInput();
     loginButtonWaiting();
 
-    const body: userDataToLogin = {
+    const body: UserDataToLogin = {
       "userMail": userMailLogin,
       "userPassword": userPasswordLogin
     };
 
-    ApiService.sendDataToServer("http://localhost:3000/users/auth", "POST", body)
+    $api.post<UserDataWithTokens>("users/auth", body)
       .then(res => {
         loginButtonStatinc();
-        if (res.ok) {
-          return res.json();
-        } else {
-          showErrorInput();
-          throw new Error("Something went wrong");
-        }
-      })
-      .then(res => {
-        setTokens(res.accessToken, res.refreshToken);
+        setAccessToken(res.data.accessToken);
       })
       .catch(err => {
         loginButtonStatinc();
@@ -112,10 +106,10 @@ function Login() {
       <div className="login-window__fade">
         <div className="login-window__wrapper">
           <div className="login-window__close">
-            <a onClick={hideLoginWindow} target="_blank" aria-label="Закрыть окно авторизации"><img src="./images/close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно авторизации" /></a>
+            <a onClick={hideLoginWindow} target="_blank" aria-label="Закрыть окно авторизации"><img src="./close_cross.svg" alt="" aria-hidden="true" title="Закрыть окно авторизации" /></a>
           </div>
           <div className="login-window__description">
-            <img src="./images/sign_in.svg" alt="Векторное изображение думающего человека" />
+            <img src="./sign_in.svg" alt="Векторное изображение думающего человека" />
             <h1>Авторизация</h1>
             <p className="login-window__error">Неверная почта или пароль</p>
           </div>

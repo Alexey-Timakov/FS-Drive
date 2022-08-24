@@ -1,0 +1,69 @@
+// Imports
+@import "../../scss/Fonts.scss";
+@import "../../scss/Variables.scss";
+
+/* Main section. Registration form. */
+
+.reg__ {
+  &form-error {
+    z-index: 100;
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    height: 58px;
+    width: 100%;
+    background-color: $reg-form-error-color;
+    color: $reg-footer-error-text;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+
+    &.is-active {
+      display: flex;
+      position: fixed;
+      top: 0px;
+    }
+  }
+  
+  &step-number {
+    margin: 55px auto 12px auto;
+    color: $reg-grey-text;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    width: 100px;
+  }
+  
+  &back-button {
+    position: relative;
+    top: -43px;
+    left: 14%;
+    display: flex;
+    align-items: center;
+    width: 100px;
+    color: $light-green;
+    cursor: pointer;
+  }
+}
+
+.arrow-left {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url("./Images/arrow-left.svg") no-repeat 0 0;
+  margin-right: 10px;
+  color: $light-green;
+}
+
+/* Main section. Registration form. Adaptive. */
+
+@media screen and (max-width: 768px) {
+  .reg__form-error {
+    height: 72px;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+  }
+}

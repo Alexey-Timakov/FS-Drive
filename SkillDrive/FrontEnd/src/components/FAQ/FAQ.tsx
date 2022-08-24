@@ -1,11 +1,12 @@
 import * as React from "react";
 import { useEffect } from "react";
-import "../../scss/faq.scss";
 
-import Header from "../Common/Header";
+import "./Faq.scss";
+
+import Header from "../Header/Header";
 import NoScript from "../Common/NoScript";
 import FaqQuestionMainBlock from "./FaqQustionMainBlock";
-import Footer from "../Common/Footer";
+import Footer from "../Footer/Footer";
 
 function Faq() {
 

@@ -1,0 +1,48 @@
+// Imports
+@import "../../scss/Fonts.scss";
+
+$circle-width: 48px;
+$circle-heigth: 48px;
+$white-pad-thikness: 6px;
+$circle-close-cross-width: 14px;
+
+
+.circle-progress-bar__out-wrapper {
+  position: absolute;
+}
+
+.circle-progress-bar__inner-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-progress-bar__canvas {
+  border-radius: 50%;
+  width: $circle-width;
+  height: $circle-heigth;
+  background-color: #000000;
+  opacity: 0.5;
+}
+
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'SFDrive-Common';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-close-cross:before {
+  content: '\0048';
+  position: absolute;
+  right: ($circle-width - $circle-close-cross-width) / 2;
+  bottom: ($circle-heigth - $circle-close-cross-width) / 2;
+  font-size: $circle-close-cross-width;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+  cursor: pointer;
+}
