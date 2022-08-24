@@ -15,14 +15,15 @@ import UserLicId from "../../Containers/Reg/UserLicId";
 import UserPassword from "../../Containers/Reg/UserPassword";
 import UserPasswordCheck from "../../Containers/Reg/UserPasswordCheck";
 
-import $api from "../../http";
+import { $api } from "../../http";
 import { setAccessToken } from "../../services/setToken";
-import { UserData } from "../../interfaces/UserData";
+import { IUserDataToReg } from "../../Interfaces/IUserDataToReg";
 import { UserState } from "../../interfaces/UserState";
 import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
 import { IRegStep } from "../../interfaces/IRegStep";
 
 import { useSelector } from "react-redux";
+import { addUserInfoToStateAction } from "../../Actions/addUserInfoToStateAction";
 
 function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
 
@@ -53,7 +54,8 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
     event.preventDefault();
     let inputsError = 0;
 
-    Object.entries(store.getState().user as UserData).forEach(([key, value]) => {
+    const newData = new IUserDataToReg(store.getState().user);
+    Object.entries(newData).forEach(([key, value]) => {
       switch (key) {
         case "userName":
           if (!validator.isAlpha(value, 'ru-RU', { ignore: " -" })) {
@@ -182,7 +184,8 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
   const toggleSubmitButtonActivity = () => {
     let inputsEmpty = 0;
 
-    Object.entries(store.getState().user).forEach(([key, value]) => {
+    const newData = new IUserDataToReg(store.getState().user);
+    Object.entries(newData).forEach(([key, value]) => {
       if (value == "") {
         inputsEmpty += 1;
       }
@@ -198,21 +201,19 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
   const sendUserData = () => {
     waitingSubmitButton();
 
-    const data = {} as UserData;
+    const newData = new IUserDataToReg(store.getState().user);
 
-    Object.entries(store.getState().user).forEach(([key, value]) => {
-      if (key !== "userPasswordCheck") data[key] = value;
-    })
-    $api.post<UserDataWithTokens>("users/registration", data)
+    $api.post<UserDataWithTokens>("users/registration", newData)
       .then((data) => {
         staticSubmitButton();
-        toggleErrorBar(false);
+        toggleErrorBar(false, 0);
         setAccessToken(data.data.accessToken);
+        store.dispatch(addUserInfoToStateAction("id", data.data.id))
         changeRegStep(+1);
       })
       .catch(error => {
         staticSubmitButton();
-        toggleErrorBar(true)
+        toggleErrorBar(true, 0)
         console.log(error);
       });
   }

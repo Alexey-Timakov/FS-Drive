@@ -1,4 +1,4 @@
-export class authCredentialsDTO {
+export class IAuthCredentials {
   readonly userMail: string
   readonly userPassword: string
 }

@@ -1,5 +1,5 @@
-import { UserData } from "./UserData";
+import { IUserData } from "./IUserData";
 
 export interface UserState {
-  user: UserData
+  user: IUserData
 };

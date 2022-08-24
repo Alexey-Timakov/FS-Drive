@@ -1,6 +1,6 @@
-import {connect} from "react-redux";
-import UserInputDate from "../../components/Reg/Inputs/UserInputDate";
-import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction.js"
+import { connect } from "react-redux";
+import UserInputDate from "../../Components/Reg/Inputs/UserInputDate";
+import { addUserInfoToStateAction } from "../../Actions/addUserInfoToStateAction";
 
 const mapDispatchToProps = (dispatch) => ({
     addUserInfoToState: (name, value) => dispatch(addUserInfoToStateAction(name, value))

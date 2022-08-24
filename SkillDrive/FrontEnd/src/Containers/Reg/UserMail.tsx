@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import UserMail from "../../components/Reg/Inputs/UserMail";
-import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction.js"
+import UserMail from "../../Components/Reg/Inputs/UserMail";
+import {addUserInfoToStateAction} from "../../Actions/addUserInfoToStateAction";
 
 const mapDispatchToProps = (dispatch) => ({
     addUserInfoToState: (name, value) => dispatch(addUserInfoToStateAction(name, value))

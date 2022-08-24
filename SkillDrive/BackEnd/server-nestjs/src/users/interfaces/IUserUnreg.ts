@@ -1,4 +1,4 @@
-export interface UserInterface {
+export class IUserUnreg {
   userName: string
   userMail: string
   userBirth: string
@@ -10,7 +10,4 @@ export interface UserInterface {
   userLicId: string
   userLicIdDate: string
   userPassword: string
-  accessToken: string
-  refreshToken: string
-  resetToken: string
-};
+}

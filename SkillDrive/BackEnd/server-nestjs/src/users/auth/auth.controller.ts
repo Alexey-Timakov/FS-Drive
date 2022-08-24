@@ -1,9 +1,12 @@
 import { Body, Controller, HttpCode, HttpException, HttpStatus, Post, Res } from '@nestjs/common';
-import { authCredentialsDTO } from '../dto/auth.credentials.dto';
-import { IAccessToken } from '../interfaces/tokens';
-import { AuthService } from './auth.service';
 import { Response } from 'express';
-import { UserLoggedInWithRefreshTokenDTO } from '../dto/userLoggedInWithRefresh.dto';
+
+import { AuthService } from './auth.service';
+
+import { IAuthCredentials } from '../interfaces/IAuthCredentials';
+import { IAccessToken } from '../interfaces/ITokens';
+import { IUserLoggedInWithRefreshToken } from '../interfaces/IUserLoggedInWithRefreshToken';
+import { IUserLoggedIn } from '../interfaces/IUserLoggedIn';
 
 
 @Controller('users')
@@ -12,7 +15,7 @@ export class AuthController {
 
   @Post('auth')
   @HttpCode(HttpStatus.CREATED)
-  async login(@Body() credentials: authCredentialsDTO, @Res() res: Response) {
+  async login(@Body() credentials: IAuthCredentials, @Res() res: Response): Promise<Response<IUserLoggedIn> | Error> {
     const result = await this.authService.login(credentials)
     if (result) {
       res.cookie("refreshToken", result.refreshToken, {

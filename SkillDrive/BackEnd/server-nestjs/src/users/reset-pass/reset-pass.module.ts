@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ResetPassService } from './reset-pass.service';
 import { ResetPassController } from './reset-pass.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from '../schemas/user.schema';
+import { User, UserSchema } from '../../schemas/user.schema';
 // import { ServeStaticModule } from '@nestjs/serve-static';
 // import { join } from 'path';
 

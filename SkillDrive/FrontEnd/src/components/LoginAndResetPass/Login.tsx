@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import validator from "validator";
-import $api from "../../http";
+import { $api } from "../../http";
 import { setAccessToken } from "../../services/setToken";
 
 import { UserDataToLogin } from "../../interfaces/UserDataToLogin";
@@ -57,7 +57,7 @@ function Login() {
   const loginButtonWaiting = () => {
     loginButton.innerHTML = '<i class="is-waiting"></i>';
   }
-  
+
   const loginButtonStatinc = () => {
     loginButton.innerHTML = "Войти";
     loginButton.classList.remove("is-waiting");

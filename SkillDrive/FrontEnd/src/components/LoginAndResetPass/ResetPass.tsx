@@ -8,7 +8,7 @@ import "./images/reset_password.svg";
 import { UserDataToResetPass } from "../../interfaces/UserDataToResetPass";
 
 import "./ResetPass.scss";
-import { ApiService } from "../../services/apiService";
+import { $api } from "../../http";
 
 function ResetPass() {
   let [userMailToReset, changedUserMailToReset] = useState("");
@@ -78,15 +78,10 @@ function ResetPass() {
       "userMail": userMailToReset
     };
 
-    ApiService.sendDataToServer("http://localhost:3000/users/resetpass", "POST", body)
+    $api.post("users/resetpass", body)
       .then(res => {
         resetButtonStatic();
-        if (res.ok) {
-          checkMailAfterResetShow();
-        } else {
-          showErrorMessage();
-          console.log(res);
-        }
+        checkMailAfterResetShow();
       })
       .catch(err => {
         resetButtonStatic();

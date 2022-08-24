@@ -8,9 +8,9 @@ import { readFile } from "fs/promises";
 import { RESET_LIVE_TIME_GAP_SEC } from 'src/common/variables';
 import { generateResetToken } from 'src/services/generate.token';
 import { sendEmail } from 'src/services/sendEmail';
-import { User, UserDocument } from '../schemas/user.schema';
+import { User, UserDocument } from '../../schemas/user.schema';
 import { logWrite, resetLogFilePath } from 'src/services/log.write';
-import { IResetToken } from '../interfaces/tokens';
+import { IResetToken } from '../interfaces/ITokens';
 import { UserUpateDataInterface } from '../interfaces/userUpdateData';
 
 @Injectable()

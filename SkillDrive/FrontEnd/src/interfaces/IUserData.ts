@@ -1,4 +1,4 @@
-export interface UserData {
+export interface IUserData {
   userName: String
   userMail: String
   userBirth: String
@@ -13,4 +13,5 @@ export interface UserData {
   accessToken: String
   refreshToken: String
   resetToken: String
+  id: string
 };
