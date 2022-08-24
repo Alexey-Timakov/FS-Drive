@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { generateToken } from '../../services/generate.token';
-import { encryptPassword } from '../../services/encrypt.pass';
 
 import { User, UserDocument } from '../../schemas/user.schema';
 
@@ -38,20 +37,20 @@ export class RegistrationService {
     }
   }
 
-  async findUsers() {
-    const temp = await MongoDataSource.manager.find(UserEntity)
-    const tem = await MongoDataSource.getMongoRepository
-    return temp;
-  }
+  // async findUsers() {
+  //   const temp = await MongoDataSource.manager.find(UserEntity)
+  //   const tem = await MongoDataSource.getMongoRepository
+  //   return temp;
+  // }
 
-  async createTempUser(user: IUserUnreg) {
-    const newUser = new UserEntity();
-    newUser.userMail = user.userMail;
-    newUser.userPassword = user.userPassword;
-    console.log(newUser);
+  // async createTempUser(user: IUserUnreg) {
+  //   const newUser = new UserEntity();
+  //   newUser.userMail = user.userMail;
+  //   newUser.userPassword = user.userPassword;
+  //   console.log(newUser);
 
-    const temp = await MongoDataSource.manager.save(newUser);
-    console.log(temp);
-    return temp;
-  }
+  //   const temp = await MongoDataSource.manager.save(newUser);
+  //   console.log(temp);
+  //   return temp;
+  // }
 }

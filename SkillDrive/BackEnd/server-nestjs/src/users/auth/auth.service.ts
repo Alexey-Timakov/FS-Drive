@@ -7,6 +7,7 @@ import { generateToken } from 'src/services/generate.token';
 import { IAuthCredentials } from '../interfaces/IAuthCredentials';
 import { IUserLoggedInWithRefreshToken } from '../interfaces/IUserLoggedInWithRefreshToken';
 import { User, UserDocument } from '../../schemas/user.schema';
+import { validateRefreshToken } from '@/services/validate.token';
 
 @Injectable()
 export class AuthService {
@@ -28,10 +29,17 @@ export class AuthService {
         const isMatch = await bcrypt.compare(userPassword, userToLogin.userPassword);
         if (isMatch) {
           console.log("Password matches!");
+
           const { accessToken, refreshToken } = generateToken(userMail);
+
+          userToLogin.accessToken = accessToken;
+          userToLogin.refreshToken = refreshToken;
+          userToLogin.save();
+
           const result = new IUserLoggedInWithRefreshToken(userToLogin);
           result.accessToken = accessToken;
-          result.refreshToken = refreshToken
+          result.refreshToken = refreshToken;
+
           return result;
         } else {
           console.log("Password does NOT match!");
@@ -47,6 +55,36 @@ export class AuthService {
       }
     } catch (error) {
       console.log("Error", error);
+      throw new HttpException(textError, httpStatus);
+    }
+  }
+
+  async refreshToken(token: string): Promise<IUserLoggedInWithRefreshToken> {
+    const textError: string = "Bad request!";
+    const httpStatus: HttpStatus = HttpStatus.BAD_REQUEST;
+
+    if (!token) {
+      throw new Error;
+    }
+    try {
+      const tokenData = validateRefreshToken(token);
+      const queryUser = await this.userModel.findOne({ "refreshToken": token });
+      if (!tokenData || !queryUser) {
+        throw new Error;
+      }
+
+      const { accessToken, refreshToken } = generateToken(queryUser.userMail);
+      queryUser.accessToken = accessToken;
+      queryUser.refreshToken = refreshToken;
+      queryUser.save();
+
+      const result = new IUserLoggedInWithRefreshToken(queryUser);
+      result.accessToken = accessToken;
+      result.refreshToken = refreshToken;
+
+      return result;
+
+    } catch (error) {
       throw new HttpException(textError, httpStatus);
     }
   }

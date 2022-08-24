@@ -2,16 +2,16 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { Model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
 import { readFile } from "fs/promises";
 
 import { RESET_LIVE_TIME_GAP_SEC } from 'src/common/variables';
 import { generateResetToken } from 'src/services/generate.token';
-import { sendEmail } from 'src/services/sendEmail';
+import { sendEmail } from '../../services/send.email';
 import { User, UserDocument } from '../../schemas/user.schema';
 import { logWrite, resetLogFilePath } from 'src/services/log.write';
 import { IResetToken } from '../interfaces/ITokens';
 import { UserUpateDataInterface } from '../interfaces/userUpdateData';
+import { encryptPassword } from '@/services/encrypt.pass';
 
 @Injectable()
 export class ResetPassService {
@@ -52,8 +52,8 @@ export class ResetPassService {
     let httpErrorStatus: HttpStatus = HttpStatus.BAD_REQUEST;
 
     try {
-      const idToReset = await this.userModel.findOne({ "resetToken": resetToken });
-      if (idToReset !== null) {
+      const queryUser = await this.userModel.findOne({ "resetToken": resetToken });
+      if (queryUser !== null) {
         try {
           type JWTPayloadWithUserMail = JwtPayload & {
             userMail: string;
@@ -89,7 +89,6 @@ export class ResetPassService {
   }
 
   async changePassword(userMail: string, userPassword: string): Promise<boolean | Error> {
-    const saltRounds = 10;
     let textError: string = "Error while reading log file";
     let httpErrorStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -110,7 +109,7 @@ export class ResetPassService {
 
     console.log("Requested user to change password: ", userMail);
 
-    userUpdateData.userPassword = bcrypt.hashSync(userPassword, saltRounds);
+    userUpdateData.userPassword = encryptPassword(userPassword);
 
     try {
       const data = await readFile(resetLogFilePath, "utf8");

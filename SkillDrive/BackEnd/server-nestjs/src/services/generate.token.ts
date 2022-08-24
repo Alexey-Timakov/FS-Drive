@@ -3,11 +3,12 @@ const jwt = require('jsonwebtoken');
 import { IAccessAndRefreshTokens, IResetToken } from '../users/interfaces/ITokens';
 import { ACCES_TOKEN_SECRET, ACCES_TOKEN_LIFE_SEC, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_LIFE_SEC } from '../common/variables';
 import { RESET_TOKEN_SECRET, RESET_TOKEN_LIFE_SEC } from '../common/variables';
+import { IUserDataFromJWT } from '@/users/interfaces/IUserDataFromJWT';
 
-export const generateToken = (name: string): IAccessAndRefreshTokens => {
+export const generateToken = (mail: string): IAccessAndRefreshTokens => {
 
-  const payload = {
-    "userName": name,
+  const payload: IUserDataFromJWT = {
+    "userMail": mail,
     "userRole": "user",
   };
 

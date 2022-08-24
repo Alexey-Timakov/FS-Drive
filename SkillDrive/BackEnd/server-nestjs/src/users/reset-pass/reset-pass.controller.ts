@@ -14,7 +14,7 @@ export class ResetPassController {
   }
   
   @Get("resetpass/:id")
-  async sendResetPasswordForm(@Param("id") resetToken: string, @Res() res: Response) {
+  async sendResetPasswordForm(@Param("id") resetToken: string, @Res() res: Response): Promise<any> {
     const result = await this.resetPassService.sendResetPasswordForm(resetToken);
     if (result) {
       res.sendFile("resetPass/index.html", { root: "static" });
