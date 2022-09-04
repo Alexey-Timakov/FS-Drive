@@ -14,16 +14,16 @@ export class IUserDataToReg {
   userPassword: String
 
   constructor(model: IUserData) {
-    this.userName = model.userName;
-    this.userMail = model.userMail;
-    this.userBirth = model.userBirth;
-    this.userPhone = model.userPhone;
-    this.userPassport = model.userPassport;
-    this.userPassportDate = model.userPassportDate;
-    this.userPassportEmitent = model.userPassportEmitent;
-    this.userPassportEmitentId = model.userPassportEmitentId;
-    this.userLicId = model.userLicId;
-    this.userLicIdDate = model.userLicIdDate;
-    this.userPassword = model.userPassword;
+    this.userName = model?.userName;
+    this.userMail = model?.userMail;
+    this.userBirth = model?.userBirth;
+    this.userPhone = model?.userPhone;
+    this.userPassport = model?.userPassport;
+    this.userPassportDate = model?.userPassportDate;
+    this.userPassportEmitent = model?.userPassportEmitent;
+    this.userPassportEmitentId = model?.userPassportEmitentId;
+    this.userLicId = model?.userLicId;
+    this.userLicIdDate = model?.userLicIdDate;
+    this.userPassword = model?.userPassword;
   }
 }

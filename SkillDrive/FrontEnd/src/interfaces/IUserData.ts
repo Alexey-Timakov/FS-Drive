@@ -14,4 +14,5 @@ export interface IUserData {
   refreshToken: String
   resetToken: String
   id: string
+  userAvatarLink: string
 };

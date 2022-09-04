@@ -1,15 +1,16 @@
 import { AxiosRequestConfig } from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { $api, controller } from "../../http";
 import { IRegStep } from '../../interfaces/IRegStep';
 import { UserState } from '../../interfaces/UserState';
-import { store } from '../../Store/Store';
+import { IUserAvatarInfo } from '../../Interfaces/IUserAvatarInfo';
 import CircleProgressBar from '../CircleProgressBar/CircleProgressBar';
 import "./RegStep2.scss";
+import { addUserInfoToStateAction } from '../../Actions/addUserInfoToStateAction';
 
 export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
-  
+
   const videoContainer = useRef(null);
   const photoContainer = useRef(null);
   const cameraVideo = useRef(null);
@@ -17,6 +18,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
   const submitButton = useRef(null);
 
   const userID = useSelector((state: UserState) => state.user.id);
+  const dispatch = useDispatch();
 
   const [percent, setPercent] = useState<number>(0);
   const [isLoading, setLoadingStatus] = useState<boolean>(false);
@@ -71,6 +73,11 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
     video.srcObject.getVideoTracks().forEach((track) => track.stop());
   }
 
+  const saveAvatarLink = (link: string): void => {
+    console.log(link);
+    dispatch(addUserInfoToStateAction("userAvatarLink", link));
+  }
+
   const capturePhoto = (): void => {
     const video: HTMLVideoElement = videoContainer.current;
     const canvas = photoContainer.current;
@@ -85,6 +92,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
     const canvas = photoContainer.current;
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     togglePhotoAndVideoContainers();
+    saveAvatarLink("");
     startCamera();
   }
 
@@ -96,10 +104,11 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
     canvas.toBlob((blob) => {
       const formData = new FormData();
       formData.append('file', blob, fileName);
-      $api.post("/upload/avatar", formData, axiosConfig)
+      $api.post<IUserAvatarInfo>("/upload/avatar", formData, axiosConfig)
         .then((res) => {
           toggleErrorBar(false, 1);
           setPhotoError(false);
+          saveAvatarLink(res.data.userAvatarLink)
           enableSubmitButton();
         })
         .catch((error) => {

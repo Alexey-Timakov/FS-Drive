@@ -39,6 +39,9 @@ export class User {
   userPassword: string
 
   @Prop()
+  userAvatarLink: string
+
+  @Prop()
   accessToken: string
 
   @Prop()

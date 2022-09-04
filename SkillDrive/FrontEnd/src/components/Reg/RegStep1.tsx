@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from "react";
 import validator from "validator";
 import "./RegStep1.scss";
 
-import { store } from "../../Store/Store";
-
 import UserName from "../../Containers/Reg/USerName";
 import UserInputDate from "../../Containers/Reg/UserInputDate";
 import UserMail from "../../Containers/Reg/UserMail";
@@ -22,13 +20,14 @@ import { UserState } from "../../interfaces/UserState";
 import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
 import { IRegStep } from "../../interfaces/IRegStep";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addUserInfoToStateAction } from "../../Actions/addUserInfoToStateAction";
 
 function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
 
   const submitButton = useRef(null);
   const newUserInfo = useSelector((state: UserState) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     toggleSubmitButtonActivity();
@@ -54,7 +53,8 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
     event.preventDefault();
     let inputsError = 0;
 
-    const newData = new IUserDataToReg(store.getState().user);
+    // const newData = new IUserDataToReg(store.getState().user);
+    const newData = new IUserDataToReg(newUserInfo);
     Object.entries(newData).forEach(([key, value]) => {
       switch (key) {
         case "userName":
@@ -143,7 +143,8 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
           break;
 
         case "userPasswordCheck":
-          if (value !== store.getState().user.userPassword) {
+          // if (value !== store.getState().user.userPassword) {
+          if (value !== newUserInfo.userPassword) {
             showErrorInput(key);
             inputsError += 1;
           }
@@ -184,7 +185,8 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
   const toggleSubmitButtonActivity = () => {
     let inputsEmpty = 0;
 
-    const newData = new IUserDataToReg(store.getState().user);
+    // const newData = new IUserDataToReg(store.getState().user);
+    const newData = new IUserDataToReg(newUserInfo);
     Object.entries(newData).forEach(([key, value]) => {
       if (value == "") {
         inputsEmpty += 1;
@@ -201,14 +203,15 @@ function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
   const sendUserData = () => {
     waitingSubmitButton();
 
-    const newData = new IUserDataToReg(store.getState().user);
+    // const newData = new IUserDataToReg(store.getState().user);
+    const newData = new IUserDataToReg(newUserInfo);
 
     $api.post<UserDataWithTokens>("users/registration", newData)
       .then((data) => {
         staticSubmitButton();
         toggleErrorBar(false, 0);
         setAccessToken(data.data.accessToken);
-        store.dispatch(addUserInfoToStateAction("id", data.data.id))
+        dispatch(addUserInfoToStateAction("id", data.data.id))
         changeRegStep(+1);
       })
       .catch(error => {
