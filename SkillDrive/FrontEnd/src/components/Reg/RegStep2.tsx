@@ -1,13 +1,15 @@
 import { AxiosRequestConfig } from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+
 import { $api, controller } from "../../http";
 import { IRegStep } from '../../interfaces/IRegStep';
 import { UserState } from '../../interfaces/UserState';
 import { IUserAvatarInfo } from '../../Interfaces/IUserAvatarInfo';
 import CircleProgressBar from '../CircleProgressBar/CircleProgressBar';
-import "./RegStep2.scss";
 import { addUserInfoToStateAction } from '../../Actions/addUserInfoToStateAction';
+
+import "./RegStep2.scss";
 
 export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
 
@@ -74,7 +76,6 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
   }
 
   const saveAvatarLink = (link: string): void => {
-    console.log(link);
     dispatch(addUserInfoToStateAction("userAvatarLink", link));
   }
 
@@ -108,10 +109,11 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
         .then((res) => {
           toggleErrorBar(false, 1);
           setPhotoError(false);
-          saveAvatarLink(res.data.userAvatarLink)
+          saveAvatarLink(res.data.userAvatarLink);
           enableSubmitButton();
         })
         .catch((error) => {
+          setLoadingStatus(false);
           toggleErrorBar(true, 1);
           setPhotoError(true);
         })
@@ -159,13 +161,13 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
         </div>
         <div ref={cameraPhoto} className='camera__photo'>
           <canvas ref={photoContainer} id="photo-container" className={isPhotoError ? "photo-container_error" : ""} width={430} height={320} />
-          {isLoading && <CircleProgressBar percent={percent} stop={stopUpload} />}
-          {!isLoading && !isPhotoError && <button onClick={deletePhoto} className="btn btn_delete">
-            <i className="icon-trash"></i>
-          </button>}
-          {!isLoading && isPhotoError && <button onClick={uploadPhoto} className="btn btn_reload">
-            <i className="icon-refresh"></i>
-          </button>}
+          <CircleProgressBar
+            percent={percent}
+            stop={stopUpload}
+            reload={uploadPhoto}
+            remove={deletePhoto}
+            isLoading={isLoading}
+            isError={isPhotoError} />
         </div>
       </div>
       <div className="step__footer">

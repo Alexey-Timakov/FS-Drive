@@ -1,0 +1,97 @@
+// Imports
+@import "../../scss/Variables.scss";
+
+/* Main section. Registration form. Thumbnail element */
+
+.thumbnail__ {
+  &wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 327px;
+    height: 319px;
+    border: 1px solid $reg-border-gray;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  &wrapper:nth-of-type(odd) {
+    margin-right: 22px;
+  }
+
+  &image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 327px;
+    height: 249px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &btn-and-description {
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
+  }
+
+  &description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &btn {
+    margin-left: auto;
+
+    button {
+      width: 24px;
+      height: 24px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  &name {
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: $reg-black-label-text;
+  }
+
+  &info {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: $reg-file-upload-hint;
+    &_error {
+      color: $reg-form-error-color;
+    }
+  }
+
+}
+
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'SFDrive-Common';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-trash_green:before {
+  content: '\004c';
+  font-size: 20px;
+  color: $reg-camera-color-green;
+}

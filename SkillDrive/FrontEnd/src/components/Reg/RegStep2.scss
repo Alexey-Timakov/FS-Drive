@@ -161,16 +161,6 @@
       display: inherit;
     }
   }
-
-  &_delete {
-    background-color: #000000;
-    opacity: 0.5;
-  }
-
-  &_reload {
-    background-color: #000000;
-    opacity: 0.5;
-  }
 }
 
 [class*='icon-']:before {
@@ -190,20 +180,5 @@
 }
 
 .icon-camera.white:before {
-  color: white;
-}
-
-.icon-refresh:before {
-  content: '\0045';
-  font-size: 17px;
-  color: white;
-  position: relative;
-  top: 2px;
-  left: 1px;
-}
-
-.icon-trash:before {
-  content: '\004c';
-  font-size: 24px;
   color: white;
 }

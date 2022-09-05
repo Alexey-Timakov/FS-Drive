@@ -4,7 +4,7 @@
 $circle-width: 48px;
 $circle-heigth: 48px;
 $white-pad-thikness: 6px;
-$circle-close-cross-width: 14px;
+$circle-close-cross-width: 16px;
 
 
 .circle-progress-bar__out-wrapper {
@@ -16,14 +16,17 @@ $circle-close-cross-width: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  width: $circle-width;
+  height: $circle-heigth;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .circle-progress-bar__canvas {
   border-radius: 50%;
   width: $circle-width;
   height: $circle-heigth;
-  background-color: #000000;
-  opacity: 0.5;
+  z-index: 9;
 }
 
 [class*='icon-']:before {
@@ -43,6 +46,28 @@ $circle-close-cross-width: 14px;
   bottom: ($circle-heigth - $circle-close-cross-width) / 2;
   font-size: $circle-close-cross-width;
   color: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.icon-refresh:before {
+  content: '\0045';
+  position: absolute;
+  right: ($circle-width - $circle-close-cross-width) / 2;
+  bottom: ($circle-heigth - $circle-close-cross-width) / 2;
+  font-size: $circle-close-cross-width;
+  color: white;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.icon-trash:before {
+  content: '\004c';
+  position: absolute;
+  right: ($circle-width - $circle-close-cross-width) / 2;
+  bottom: ($circle-heigth - $circle-close-cross-width) / 2;
+  font-size: $circle-close-cross-width;
+  color: white;
   z-index: 10;
   cursor: pointer;
 }

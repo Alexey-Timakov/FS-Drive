@@ -26,7 +26,7 @@
     font-size: 24px;
     font-weight: 400;
     line-height: 35px;
-    width: 625px;
+    max-width: 750px;
     text-align: center;
     margin-bottom: 50px;
   }
@@ -87,10 +87,13 @@
     }
   }
 
-  &_thumbnails {
+  &__thumbnails {
+    max-width: 680px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
@@ -100,6 +103,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &wrapper_small {
+    margin-bottom: 30px;
   }
 
   &body {

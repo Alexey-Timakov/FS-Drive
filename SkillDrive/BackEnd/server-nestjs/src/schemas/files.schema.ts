@@ -5,7 +5,7 @@ import { User } from "./user.schema";
 export type FileModelDocument = FileModel & Document;
 
 type UserDocument = {
-  userDocuumentLink: string
+  userDocumentLink: string
 };
 
 @Schema()
@@ -14,10 +14,7 @@ export class FileModel {
   user: User
 
   @Prop()
-  avatar: string
-
-  @Prop()
   documents: UserDocument[]
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const FileSchema = SchemaFactory.createForClass(FileModel);
