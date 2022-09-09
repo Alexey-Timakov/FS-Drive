@@ -8,6 +8,7 @@ import rectangleSmall from "./Images/rectangle-small.svg";
 
 import "./RegStep3.scss";
 
+// Can't figure out any additional cases for Error in this step. All errors handle in Thumbnail component.
 export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
   const submitButton = useRef(null);
   const inputFiles = useRef(null);
@@ -57,7 +58,6 @@ export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
   }
 
   useEffect(() => {
-    console.log(uploadErrors);
     if (uploadErrors === 0) {
       enableSubmitButton();
     } else {

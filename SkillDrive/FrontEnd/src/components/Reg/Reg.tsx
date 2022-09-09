@@ -8,10 +8,11 @@ import RegStep2 from "./RegStep2";
 
 import "./Reg.scss";
 import RegStep3 from "./RegStep3";
+import { RegFinished } from "./RegFinished";
 
 function Reg() {
   const [errorBarIsActive, setErrorBarIsActive] = useState(false);
-  const [regStepNumber, setRegStepNumber] = useState<number>(3);
+  const [regStepNumber, setRegStepNumber] = useState<number>(4);
   const [errorNumber, setErrorNumber] = useState<number>(0);
 
   const errors: string[] = [
@@ -39,6 +40,7 @@ function Reg() {
       {regStepNumber === 1 && <RegStep1 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
       {regStepNumber === 2 && <RegStep2 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
       {regStepNumber === 3 && <RegStep3 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
+      {regStepNumber === 4 && <RegFinished/>}
     </>
   )
 }

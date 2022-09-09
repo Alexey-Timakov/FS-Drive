@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { AxiosRequestConfig } from 'axios';
 import { $api, controller } from "../../http";
+
 import { IThumbnailFile } from "../../Interfaces/IThumbnailFile";
+import { IUserFile } from '../../Interfaces/IUserFile';
+import { UserState } from '../../interfaces/UserState';
 import CircleProgressBar from '../CircleProgressBar/CircleProgressBar';
 
 import "./FileThumbnail.scss";
-import { AxiosRequestConfig } from 'axios';
-import { IUserFile } from '../../Interfaces/IUserFile';
-import { useSelector } from 'react-redux';
-import { UserState } from '../../interfaces/UserState';
-import { IUserFileInfo } from '../../Interfaces/IUserFileInfo';
 
 export function FileThumbnail({ file, deleteFile, changeUploadErrors }: IThumbnailFile) {
   const imagePreview = useRef<HTMLImageElement>(null);
@@ -18,7 +18,7 @@ export function FileThumbnail({ file, deleteFile, changeUploadErrors }: IThumbna
   const [isLoading, setLoadingStatus] = useState<boolean>(false);
   const [isFileError, setFileError] = useState<boolean>(false);
 
-  const userID = useSelector((state: UserState) => "63160ec293d8350f9d6f1f7d" || state.user.id);
+  const userID = useSelector((state: UserState) => state?.user?.id);
   const fileInfo = new IUserFile(file);
 
   const calculateUploadPercent = (loaded: number, total: number) => {
@@ -40,7 +40,7 @@ export function FileThumbnail({ file, deleteFile, changeUploadErrors }: IThumbna
     const formData = new FormData();
     formData.append('file', file, filName);
 
-    $api.post<IUserFileInfo>("/upload/file", formData, axiosConfig)
+    $api.post<boolean>("/upload/file", formData, axiosConfig)
       .then((res) => {
         setFileError(false);
         changeUploadErrors(-1);
