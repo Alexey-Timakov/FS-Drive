@@ -6,6 +6,10 @@ $circle-heigth: 48px;
 $white-pad-thikness: 6px;
 $circle-close-cross-width: 16px;
 
+$circle-width-mobile: 32px;
+$circle-heigth-mobile: 32px;
+$white-pad-thikness-mobile: 5px;
+$circle-close-cross-width-mobile: 12px;
 
 .circle-progress-bar__out-wrapper {
   position: absolute;
@@ -70,4 +74,37 @@ $circle-close-cross-width: 16px;
   color: white;
   z-index: 10;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .circle-progress-bar__inner-wrapper {
+    width: $circle-width-mobile;
+    height: $circle-heigth-mobile;
+  }
+
+  .circle-progress-bar__canvas {
+    width: $circle-width-mobile;
+    height: $circle-heigth-mobile;
+  }
+
+  .icon-close-cross:before {
+    content: '\0048';
+    right: ($circle-width-mobile - $circle-close-cross-width-mobile) / 2;
+    bottom: ($circle-heigth-mobile - $circle-close-cross-width-mobile) / 2;
+    font-size: $circle-close-cross-width-mobile;
+  }
+  
+  .icon-refresh:before {
+    content: '\0045';
+    right: ($circle-width-mobile - $circle-close-cross-width-mobile) / 2;
+    bottom: ($circle-heigth-mobile - $circle-close-cross-width-mobile) / 2;
+    font-size: $circle-close-cross-width-mobile;
+  }
+  
+  .icon-trash:before {
+    content: '\004c';
+    right: ($circle-width-mobile - $circle-close-cross-width-mobile) / 2;
+    bottom: ($circle-heigth-mobile - $circle-close-cross-width-mobile) / 2;
+    font-size: $circle-close-cross-width-mobile;
+  }
 }

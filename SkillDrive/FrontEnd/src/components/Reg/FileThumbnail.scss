@@ -73,6 +73,7 @@
     font-size: 12px;
     line-height: 14px;
     color: $reg-file-upload-hint;
+
     &_error {
       color: $reg-form-error-color;
     }
@@ -94,4 +95,36 @@
   content: '\004c';
   font-size: 20px;
   color: $reg-camera-color-green;
+}
+
+/* Main section. Registration form. Thumbnail element adaptive */
+
+@media screen and (max-width: 768px) {
+  .thumbnail__ {
+    &wrapper {
+      flex-direction: row;
+      width: 100%;
+      height: initial;
+      margin-bottom: 30px;
+      border: none;
+    }
+
+    &wrapper:nth-of-type(odd) {
+      margin-right: 0px;
+    }
+
+    &image {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
+      border-radius: 50%;
+
+    }
+
+    &btn-and-description {
+      padding: 5px 25px 0 20px;
+      width: 100%;
+    }
+  }
 }

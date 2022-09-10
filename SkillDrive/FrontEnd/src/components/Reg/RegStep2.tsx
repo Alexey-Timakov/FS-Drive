@@ -19,7 +19,12 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
   const cameraPhoto = useRef(null);
   const submitButton = useRef(null);
 
-  const userID = useSelector((state: UserState) => state.user.id);
+  const breakpointMobile: number = 768;
+
+  const canvasWidth: number = document.body.clientWidth < breakpointMobile ? 305 : 430;
+  const canvasHeight: number = document.body.clientWidth < breakpointMobile ? 228 : 320;
+
+  const userID = useSelector((state: UserState) => state?.user?.id);
   const dispatch = useDispatch();
 
   const [percent, setPercent] = useState<number>(0);
@@ -30,6 +35,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
     const result = Math.round(loaded * 100 / total);
     setPercent(result);
   }
+
 
   const axiosConfig: AxiosRequestConfig = {
     signal: controller.signal,
@@ -151,7 +157,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
 
   return (
     <div className='step'>
-      <h1 className='step__title'>Загрузите селфи</h1>
+      <h1 className='step__title step__title_various'></h1>
       <p className='step__description'>Смотрите прямо в камеру, без солнцезащитных очков и головных уборов.</p>
       <div className='camera__wrapper'>
         <div ref={cameraVideo} className='camera__video active'>
@@ -160,7 +166,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
           <button onClick={capturePhoto} className="btn btn_capture"><i className="icon-camera white"></i></button>
         </div>
         <div ref={cameraPhoto} className='camera__photo'>
-          <canvas ref={photoContainer} id="photo-container" className={isPhotoError ? "photo-container_error" : ""} width={430} height={320} />
+          <canvas ref={photoContainer} id="photo-container" className={isPhotoError ? "photo-container_error" : ""} width={canvasWidth} height={canvasHeight} />
           <CircleProgressBar
             percent={percent}
             stop={stopUpload}

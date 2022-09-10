@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, DragEvent } from 'react';
 import { IRegStep } from '../../interfaces/IRegStep';
 import { FileThumbnail } from "./FileThumbnail";
 
@@ -12,8 +12,11 @@ import "./RegStep3.scss";
 export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
   const submitButton = useRef(null);
   const inputFiles = useRef(null);
+
   const [userFiles, changeUserFiles] = useState<File[]>([]);
   const [uploadErrors, setUploadErrors] = useState<number>(null);
+
+  const breakpointMobile: number = 768;
 
   const changeUploadErrors = (increment: number): void => {
     const newErrorsNumber = Math.max(0, uploadErrors + increment);
@@ -25,6 +28,19 @@ export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
     if (inputFiles) {
       const input: HTMLInputElement = inputFiles.current;
       input.click();
+    }
+  }
+
+  const handleDopFiles = (event: DragEvent<HTMLDivElement>): void => {
+    event.preventDefault();
+    let newUserFiles = userFiles;
+
+    if (event.dataTransfer.files) {
+      const files: FileList = event.dataTransfer.files;
+      for (let i = 0; i < files.length; i++) {
+        newUserFiles = [...newUserFiles, files[i]]
+      }
+      changeUserFiles(newUserFiles);
     }
   }
 
@@ -71,8 +87,8 @@ export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
       <p className='step__description'>Разворот паспорта и страницу с пропиской, а также водительское удостоверение с двух сторон.</p>
       <div className='step__thumbnails'>
         <input type="file" id="input-files" ref={inputFiles} multiple accept="image/png, image/jpg, image/jpeg" onChange={handleFiles} />
-        {userFiles.length === 0 &&
-          <div id='drop-zone' className='drop-zone__wrapper'>
+        {userFiles.length === 0 && document.body.clientWidth > breakpointMobile &&
+          <div id='drop-zone' className='drop-zone__wrapper' onDrop={handleDopFiles}>
             <img className='drop-zone__image' src={rectangleBig} />
             <div className='drop-zone__body'>
               <div className='drop-zone__icon'><img src={uploadCloud} /></div>
@@ -85,14 +101,26 @@ export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
         }
         {userFiles.length !== 0 && userFiles.map(item => {
           return (
-          <FileThumbnail
-            file={item}
-            key={item.name}
-            deleteFile={deleteFile}
-            changeUploadErrors = {changeUploadErrors}
+            <FileThumbnail
+              file={item}
+              key={item.name}
+              deleteFile={deleteFile}
+              changeUploadErrors={changeUploadErrors}
             />)
         })}
-        {userFiles.length !== 0 &&
+        {document.body.clientWidth < breakpointMobile &&
+          <div className='add-zone__wrapper'>
+            <div className='add-zone__icon'>
+              <i className="icon-plus">+</i>
+            </div>
+            <div className='add-zone__description'>
+              <p className='add-zone__text'><span onClick={clickOnInput}>Загрузить файл</span></p>
+              <p className='add-zone__reminder'>JPG, JPEG или PNG, не более 30 мб</p>
+            </div>
+
+          </div>
+        }
+        {userFiles.length !== 0 && document.body.clientWidth > breakpointMobile &&
           <div id='drop-zone_small' className='drop-zone__wrapper drop-zone__wrapper_small'>
             <img className='drop-zone__image' src={rectangleSmall} />
             <div className='drop-zone__body'>
@@ -106,7 +134,7 @@ export default function RegStep3({ changeRegStep, toggleErrorBar }: IRegStep) {
         }
       </div>
       <div className="step__footer">
-        <button className="step__submit" ref={submitButton} onClick={() => changeRegStep(+1)}>Продолжить</button>
+        <button className="step__submit" ref={submitButton} onClick={() => changeRegStep(+1)}>Зарегистрироваться</button>
       </div>
     </div>
   )

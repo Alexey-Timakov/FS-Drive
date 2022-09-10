@@ -18,6 +18,10 @@
     margin-bottom: 27px;
   }
 
+  &__title_various::after {
+    content: "Загрузите свое фото";
+  }
+
   &__description {
     font-size: 24px;
     font-weight: 400;
@@ -41,8 +45,7 @@
     margin-bottom: 17px;
     background-color: $reg-footer-button-color-disabled;
     color: $reg-footer-button-text-disabled;
-    width: 176px;
-    height: 51px;
+    padding: 16px 40px;
     border-radius: 6px;
     border: none;
     font-size: 16px;
@@ -181,4 +184,68 @@
 
 .icon-camera.white:before {
   color: white;
+}
+
+/* Main section. Registration form. Step 2. Adaptive */
+@media screen and (max-width: 768px) {
+  .step {
+    position: relative;
+    top: -12px;
+
+    &__title {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 38px;
+      margin-bottom: 0;
+    }
+
+    &__title_various::after {
+      content: "Загрузите селфи";
+    }
+
+    &__description {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &__footer {
+    }
+
+    &__submit {
+      width: 335px;
+    }
+
+    .camera {
+      &__wrapper {
+        width: $reg-camera-window-width-mobile;
+        height: $reg-camera-window-height-mobile;
+        margin-bottom: 50px;
+      }
+
+      &__video {
+        width: $reg-camera-window-width-mobile;
+        height: $reg-camera-window-height-mobile;
+
+        &.active {}
+
+        video {
+          width: $reg-camera-window-width-mobile;
+          height: $reg-camera-window-height-mobile;
+        }
+      }
+
+      &__photo {
+        width: $reg-camera-window-width-mobile;
+        height: $reg-camera-window-height-mobile;
+      }
+    }
+  }
+
+  .photo-container_error {}
+
+  .btn {
+    left: 128px;
+    top: 90px;
+  }
 }

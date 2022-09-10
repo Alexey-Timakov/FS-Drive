@@ -74,21 +74,21 @@ function MainPage() {
       <section className="main__section main__section_steps main__section_background main__section_how-to">
         <h2>Как арендовать автомобиль</h2>
         <div className="section__steps">
-          <div className="step">
-            <div className="step__index">1</div>
-            <div className="step__title"><p>Выберите автомобиль</p></div>
+          <div className="step-main">
+            <div className="step-main__index">1</div>
+            <div className="step-main__title"><p>Выберите автомобиль</p></div>
           </div>
-          <div className="step step_dashes"><img src={dashedLineHorizontal} /></div>
-          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
-          <div className="step">
-            <div className="step__index">2</div>
-            <div className="step__title"><p>Забронируйте дату и время</p></div>
+          <div className="step-main step-main_dashes"><img src={dashedLineHorizontal} /></div>
+          <div className="step-main step-main_dashes mobile"><img src={dashedLineVerticalShort} /></div>
+          <div className="step-main">
+            <div className="step-main__index">2</div>
+            <div className="step-main__title"><p>Забронируйте дату и время</p></div>
           </div>
-          <div className="step step_dashes"><img src={dashedLineHorizontal} /></div>
-          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
-          <div className="step">
-            <div className="step__index">3</div>
-            <div className="step__title"><p>Получите автомобиль</p></div>
+          <div className="step-main step-main_dashes"><img src={dashedLineHorizontal} /></div>
+          <div className="step-main step-main_dashes mobile"><img src={dashedLineVerticalShort} /></div>
+          <div className="step-main">
+            <div className="step-main__index">3</div>
+            <div className="step-main__title"><p>Получите автомобиль</p></div>
           </div>
         </div>
       </section>
@@ -97,27 +97,27 @@ function MainPage() {
         <h2 className='mb_20'>У вас есть автомобиль?</h2>
         <p className='mb_80'>Чтобы он не простаивал — сдавайте его в аренду и зарабатывайте.</p>
         <div className="section__steps">
-          <div className="step">
-            <div className="step__index"><img src={iconPrice} /></div>
-            <div className="step__title"><p>Вы сами указываете цену</p></div>
+          <div className="step-main">
+            <div className="step-main__index"><img src={iconPrice} /></div>
+            <div className="step-main__title"><p>Вы сами указываете цену</p></div>
           </div>
-          <div className="step step_dashes step_short"><img src={dashedLineHorizontalShort} /></div>
-          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
-          <div className="step">
-            <div className="step__index"><img src={iconUSD} /></div>
-            <div className="step__title"><p>Мы страхуем автомобили</p></div>
+          <div className="step-main step-main_dashes step-main_short"><img src={dashedLineHorizontalShort} /></div>
+          <div className="step-main step-main_dashes mobile"><img src={dashedLineVerticalShort} /></div>
+          <div className="step-main">
+            <div className="step-main__index"><img src={iconUSD} /></div>
+            <div className="step-main__title"><p>Мы страхуем автомобили</p></div>
           </div>
-          <div className="step step_dashes step_short"><img src={dashedLineHorizontalShort} /></div>
-          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
-          <div className="step">
-            <div className="step__index"><img src={iconPercent} /></div>
-            <div className="step__title"><p>Наша комиссия всего 3%</p></div>
+          <div className="step-main step-main_dashes step-main_short"><img src={dashedLineHorizontalShort} /></div>
+          <div className="step-main step-main_dashes mobile"><img src={dashedLineVerticalShort} /></div>
+          <div className="step-main">
+            <div className="step-main__index"><img src={iconPercent} /></div>
+            <div className="step-main__title"><p>Наша комиссия всего 3%</p></div>
           </div>
-          <div className="step step_dashes step_short"><img src={dashedLineHorizontalShort} /></div>
-          <div className="step step_dashes mobile"><img src={dashedLineVerticalShort} /></div>
-          <div className="step">
-            <div className="step__index"><img src={iconIncome} /></div>
-            <div className="step__title"><p>Выплаты каждую неделю</p></div>
+          <div className="step-main step-main_dashes step-main_short"><img src={dashedLineHorizontalShort} /></div>
+          <div className="step-main step-main_dashes mobile"><img src={dashedLineVerticalShort} /></div>
+          <div className="step-main">
+            <div className="step-main__index"><img src={iconIncome} /></div>
+            <div className="step-main__title"><p>Выплаты каждую неделю</p></div>
           </div>
         </div>
       </section>

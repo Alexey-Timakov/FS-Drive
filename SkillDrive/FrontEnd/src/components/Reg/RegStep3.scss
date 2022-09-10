@@ -45,8 +45,7 @@
     margin-bottom: 17px;
     background-color: $reg-footer-button-color-disabled;
     color: $reg-footer-button-text-disabled;
-    width: 176px;
-    height: 51px;
+    padding: 16px 40px;
     border-radius: 6px;
     border: none;
     font-size: 16px;
@@ -94,6 +93,7 @@
     justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 73px;
   }
 }
 
@@ -146,4 +146,86 @@
     color: $reg-file-upload-hint;
   }
 
+}
+
+.add-zone__ {
+  &wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid $reg-file-upload-border-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-plus {
+      font-size: 24px;
+      color: $light-green;
+      font-style: normal;
+    }
+  }
+
+  &description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 12px;
+  }
+
+  &text {
+    margin: 0;
+    margin-bottom: 5px;
+
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+      color: $reg-file-upload-link;
+      cursor: pointer;
+    }
+  }
+
+  &reminder {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: $reg-file-upload-hint;
+  }
+
+}
+
+/* Main section. Registration form. Step 3. Adaptive */
+
+@media screen and (max-width: 768px) {
+  .step {
+
+    &__title {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 38px;
+      margin-bottom: 0;
+    }
+
+    &__description {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      min-width: 300px;
+      max-width: 85%;
+      margin-bottom: 46px;
+    }
+
+    &__thumbnails {
+      align-self: flex-start;
+      margin-bottom: 50px;
+      padding-left: 20px;
+    }
+  }
 }

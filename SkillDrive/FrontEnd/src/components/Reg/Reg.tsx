@@ -12,7 +12,7 @@ import { RegFinished } from "./RegFinished";
 
 function Reg() {
   const [errorBarIsActive, setErrorBarIsActive] = useState(false);
-  const [regStepNumber, setRegStepNumber] = useState<number>(4);
+  const [regStepNumber, setRegStepNumber] = useState<number>(2);
   const [errorNumber, setErrorNumber] = useState<number>(0);
 
   const errors: string[] = [
@@ -33,8 +33,8 @@ function Reg() {
       <Header />
       <NoScript />
       <div className={`reg__form-error ${errorBarIsActive ? "is-active" : ""}`}>{errors[errorNumber]}</div>
-      <div className="reg__step-number">Шаг {regStepNumber} из 3</div>
-      {regStepNumber !== 1 && <div className="reg__back-button" onClick={() => changeRegStep(-1)}>
+      {regStepNumber !== 4 && <div className="reg__step-number">Шаг {regStepNumber} из 3</div>}
+      {regStepNumber !== 1 && regStepNumber !== 4 && <div className="reg__back-button" onClick={() => changeRegStep(-1)}>
         <i className="arrow-left"></i>Назад
       </div>}
       {regStepNumber === 1 && <RegStep1 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
