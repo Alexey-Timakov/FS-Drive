@@ -40,7 +40,7 @@ export function FileThumbnail({ file, deleteFile, changeUploadErrors }: IThumbna
     const formData = new FormData();
     formData.append('file', file, filName);
 
-    $api.post<boolean>("/upload/file", formData, axiosConfig)
+    $api.post<boolean>("/files/upload-file", formData, axiosConfig)
       .then((res) => {
         setFileError(false);
         changeUploadErrors(-1);

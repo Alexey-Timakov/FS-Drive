@@ -1,8 +1,8 @@
 import React from "react";
 
 import Logo from "./Logo";
-import TopMenuUnreg from "./TopMenuUnreg";
-import TopMenuCompactUnreg from "./TopMenuUnregCompact";
+import TopMenu from "./TopMenu";
+import TopMenuCompact from "./TopMenuCompact";
 
 import "./Header.scss";
 
@@ -10,8 +10,8 @@ function Header () {
     return (
         <header>
             <Logo />
-            <TopMenuCompactUnreg />
-            <TopMenuUnreg />
+            <TopMenuCompact />
+            <TopMenu />
         </header>
     )
 }

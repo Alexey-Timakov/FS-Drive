@@ -1,10 +1,12 @@
-import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
 
 import { IAuthCredentials } from '../interfaces/IAuthCredentials';
 import { IUserLoggedIn } from '../interfaces/IUserLoggedIn';
+import { IUserDataOnRefreshPage } from '../interfaces/IUserDataOnRefreshPage';
+import { AuthGuard } from '@/guards/auth.guard';
 
 
 @Controller('users')
@@ -28,7 +30,7 @@ export class AuthController {
   }
 
   @Get('refresh')
-  async refreshToken(@Req() request: Request, @Res() res: Response): Promise<Response<IUserLoggedIn> | Error> {
+  async refreshToken(@Req() request: Request, @Res() res: Response): Promise<Response<IUserLoggedIn>> {
     try {
       const refreshToken = request.cookies["refreshToken"];
       const result = await this.authService.refreshToken(refreshToken);
@@ -41,11 +43,17 @@ export class AuthController {
         const { refreshToken, ...rest } = result;
         return res.send(rest);
       } else {
-        return new HttpException("Permission denied", HttpStatus.UNAUTHORIZED);
+        throw new HttpException("Permission denied", HttpStatus.UNAUTHORIZED);
       }
 
     } catch (error) {
-      return new HttpException("Permission denied", HttpStatus.UNAUTHORIZED);
+      throw new HttpException("Permission denied", HttpStatus.UNAUTHORIZED);
     }
+  }
+
+  @Get('get-user-data/:id')
+  @UseGuards(AuthGuard)
+  async getUserInfo(@Param("id") id: string): Promise<IUserDataOnRefreshPage> {
+    return await this.authService.getUserData(id);
   }
 }

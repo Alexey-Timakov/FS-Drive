@@ -12,8 +12,12 @@ import "./images/sign_in.svg";
 import "./images/close_cross.svg";
 
 import "./Login.scss";
+import { addUserInfoToStateAction } from "../../Actions/addUserInfoToStateAction";
+import { useDispatch } from "react-redux";
 
 function Login() {
+  const dispatch = useDispatch();
+
   let [userMailLogin, changedUserMailLogin] = useState("");
   let [userPasswordLogin, changedUserPasswordLogin] = useState("");
 
@@ -93,6 +97,7 @@ function Login() {
       .then(res => {
         loginButtonStatinc();
         setAccessToken(res.data.accessToken);
+        dispatch(addUserInfoToStateAction("id", res.data.id))
       })
       .catch(err => {
         loginButtonStatinc();

@@ -111,7 +111,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
     canvas.toBlob((blob) => {
       const formData = new FormData();
       formData.append('file', blob, fileName);
-      $api.post<IUserAvatarInfo>("/upload/avatar", formData, axiosConfig)
+      $api.post<IUserAvatarInfo>("/files/upload-avatar", formData, axiosConfig)
         .then((res) => {
           toggleErrorBar(false, 1);
           setPhotoError(false);

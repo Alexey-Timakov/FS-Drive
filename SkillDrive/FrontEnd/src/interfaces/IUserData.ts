@@ -15,4 +15,5 @@ export interface IUserData {
   resetToken: String
   id: string
   userAvatarLink: string
+  isLoadedOnRefresh: boolean
 };

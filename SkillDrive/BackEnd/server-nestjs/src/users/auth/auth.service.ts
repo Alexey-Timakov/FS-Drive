@@ -8,6 +8,7 @@ import { IAuthCredentials } from '../interfaces/IAuthCredentials';
 import { IUserLoggedInWithRefreshToken } from '../interfaces/IUserLoggedInWithRefreshToken';
 import { User, UserDocument } from '../../schemas/user.schema';
 import { validateRefreshToken } from '@/services/validate.token';
+import { IUserDataOnRefreshPage } from '../interfaces/IUserDataOnRefreshPage';
 
 @Injectable()
 export class AuthService {
@@ -62,7 +63,6 @@ export class AuthService {
   async refreshToken(token: string): Promise<IUserLoggedInWithRefreshToken> {
     const textError: string = "Bad request!";
     const httpStatus: HttpStatus = HttpStatus.BAD_REQUEST;
-
     if (!token) {
       throw new Error;
     }
@@ -87,5 +87,24 @@ export class AuthService {
     } catch (error) {
       throw new HttpException(textError, httpStatus);
     }
+  }
+
+  async getUserData(id: string): Promise<IUserDataOnRefreshPage> {
+    const textError: string = "Bad request!";
+    const httpStatus: HttpStatus = HttpStatus.BAD_REQUEST;
+    console.log(id);
+    try {
+      const queryUser = await this.userModel.findById(id);
+      if (queryUser) {
+        const userData = new IUserDataOnRefreshPage(queryUser);
+        return userData;
+      }
+      else {
+        throw new HttpException(textError, httpStatus);
+      }
+    } catch (error) {
+      throw new HttpException(textError, httpStatus);
+    }
+
   }
 }

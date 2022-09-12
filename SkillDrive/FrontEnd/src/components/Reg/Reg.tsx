@@ -12,7 +12,7 @@ import { RegFinished } from "./RegFinished";
 
 function Reg() {
   const [errorBarIsActive, setErrorBarIsActive] = useState(false);
-  const [regStepNumber, setRegStepNumber] = useState<number>(2);
+  const [regStepNumber, setRegStepNumber] = useState<number>(1);
   const [errorNumber, setErrorNumber] = useState<number>(0);
 
   const errors: string[] = [
