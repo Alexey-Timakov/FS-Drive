@@ -9,16 +9,6 @@ export class RegistrationController {
   constructor(private readonly registrationService: RegistrationService) {
   }
 
-  // @Get("findusers")
-  // findUser(@Param("id") id: string) {
-  //   return this.registrationService.findUsers();
-  // }
-
-  // @Post("createtest")
-  // createTest(@Body() newUser: IUserUnreg) {
-  //   return this.registrationService.createTempUser(newUser);
-  // }
-
   @Post('registration')
   @HttpCode(HttpStatus.CREATED)
   async createUser(@Body() newUser: IUserUnreg, @Res() res: Response): Promise<Response<IUserLoggedIn> | Error> {
@@ -43,5 +33,16 @@ export class RegistrationController {
   // @Delete(":id")
   // remove(@Param("id") id: string): Promise<User> {
   //   return this.registrationService.remove(id)
+  // }
+
+  
+  // @Get("findusers")
+  // findUser(@Param("id") id: string) {
+  //   return this.registrationService.findUsers();
+  // }
+
+  // @Post("createtest")
+  // createTest(@Body() newUser: IUserUnreg) {
+  //   return this.registrationService.createTempUser(newUser);
   // }
 }

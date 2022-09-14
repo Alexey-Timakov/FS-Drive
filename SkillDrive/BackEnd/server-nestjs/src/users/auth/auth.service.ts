@@ -92,7 +92,6 @@ export class AuthService {
   async getUserData(id: string): Promise<IUserDataOnRefreshPage> {
     const textError: string = "Bad request!";
     const httpStatus: HttpStatus = HttpStatus.BAD_REQUEST;
-    console.log(id);
     try {
       const queryUser = await this.userModel.findById(id);
       if (queryUser) {
@@ -105,6 +104,5 @@ export class AuthService {
     } catch (error) {
       throw new HttpException(textError, httpStatus);
     }
-
   }
 }

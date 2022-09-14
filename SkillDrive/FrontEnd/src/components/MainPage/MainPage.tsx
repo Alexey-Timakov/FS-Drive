@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import NoScript from '../Common/NoScript';
 import Slider from '../Slider/Slider';
 
 import './MainPage.scss';
@@ -28,8 +26,6 @@ import "./images/phil.jpg";
 function MainPage() {
   return (
     <>
-      <Header />
-      <NoScript />
       <section className="main__section main__section_header">
         <figure className="section__image section__image_header"></figure>
         <div className="section__description section__description_header">

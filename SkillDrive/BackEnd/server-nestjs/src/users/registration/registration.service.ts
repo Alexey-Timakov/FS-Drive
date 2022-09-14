@@ -37,7 +37,7 @@ export class RegistrationService {
     }
   }
 
-  // async findUsers() {
+  // async findUser() {
   //   const temp = await MongoDataSource.manager.find(UserEntity)
   //   const tem = await MongoDataSource.getMongoRepository
   //   return temp;
