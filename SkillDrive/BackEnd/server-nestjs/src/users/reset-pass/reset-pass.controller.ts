@@ -12,7 +12,7 @@ export class ResetPassController {
   sendResetPasswordLink(@Body() body: IResetPassCredentials): Promise<string> {
     return this.resetPassService.sendResetPasswordLink(body.userMail)
   }
-  
+
   @Get("resetpass/:id")
   async sendResetPasswordForm(@Param("id") resetToken: string, @Res() res: Response): Promise<any> {
     const result = await this.resetPassService.sendResetPasswordForm(resetToken);
@@ -22,7 +22,7 @@ export class ResetPassController {
   }
 
   @Post('changepass')
-  changePassword(@Body() body: IChangePassCredentials): Promise<boolean | Error> {
-   return this.resetPassService.changePassword(body.userMail, body.userPassword);
+  changePassword(@Body() body: IChangePassCredentials): Promise<boolean> {
+    return this.resetPassService.changePassword(body.userMail, body.userPassword);
   }
 }

@@ -1,7 +1,7 @@
 import { Column, Entity, ObjectIdColumn, ObjectID } from 'typeorm';
 
 @Entity()
-export class UserEntity {
+export class User {
   @ObjectIdColumn()
   _id: ObjectID;
 
@@ -10,8 +10,8 @@ export class UserEntity {
 
   @Column()
   userBirth: string;
-  
-  @Column()
+
+  @Column({ unique: true })
   userMail: string;
 
   @Column()
@@ -37,6 +37,9 @@ export class UserEntity {
 
   @Column()
   userPassword: string;
+
+  @Column()
+  userAvatarLink: string
 
   @Column()
   accessToken: string;

@@ -3,12 +3,13 @@ import { ResetPassService } from './reset-pass.service';
 import { ResetPassController } from './reset-pass.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from '../../schemas/user.schema';
+import { ResetPassRepository } from '../repositories/reset-pass.repository';
 // import { ServeStaticModule } from '@nestjs/serve-static';
 // import { join } from 'path';
 
 @Module({
-  providers: [ResetPassService],
   controllers: [ResetPassController],
+  providers: [ResetPassService, ResetPassRepository],
   imports: [
     MongooseModule.forFeature([
       {
@@ -16,11 +17,11 @@ import { User, UserSchema } from '../../schemas/user.schema';
         schema: UserSchema
       }
     ]),
-  //   ServeStaticModule.forRoot({
-  //     rootPath: join(__dirname, '../../../static/resetpass'),
-  //     // renderPath: /(\/users\/resetpass\/requestform\/)([\w-]*\.[\w-]*\.[\w-]*)/g,
-  //     renderPath: "/users/resetpass/requestform/",
-  //  }),
+    //   ServeStaticModule.forRoot({
+    //     rootPath: join(__dirname, '../../../static/resetpass'),
+    //     // renderPath: /(\/users\/resetpass\/requestform\/)([\w-]*\.[\w-]*\.[\w-]*)/g,
+    //     renderPath: "/users/resetpass/requestform/",
+    //  }),
   ]
 })
-export class ResetPassModule {}
+export class ResetPassModule { }

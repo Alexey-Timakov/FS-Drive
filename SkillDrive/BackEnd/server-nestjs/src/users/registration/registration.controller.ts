@@ -11,7 +11,7 @@ export class RegistrationController {
 
   @Post('registration')
   @HttpCode(HttpStatus.CREATED)
-  async createUser(@Body() newUser: IUserUnreg, @Res() res: Response): Promise<Response<IUserLoggedIn> | Error> {
+  async createUser(@Body() newUser: IUserUnreg, @Res() res: Response): Promise<Response<IUserLoggedIn>> {
     const result = await this.registrationService.createUser(newUser);
     if (result) {
       res.cookie("refreshToken", result.refreshToken, {
@@ -20,9 +20,10 @@ export class RegistrationController {
       });
       const answer = new IUserLoggedIn(result);
       return res.send(answer);
-    } else {
-      return new HttpException("Some critical error", HttpStatus.BAD_REQUEST)
     }
+    // else {
+    //   return new HttpException("Some critical error", HttpStatus.BAD_REQUEST)
+    // }
   }
 
   // @Put(":id")
@@ -35,14 +36,9 @@ export class RegistrationController {
   //   return this.registrationService.remove(id)
   // }
 
-  
+
   // @Get("findusers")
   // findUser(@Param("id") id: string) {
   //   return this.registrationService.findUsers();
-  // }
-
-  // @Post("createtest")
-  // createTest(@Body() newUser: IUserUnreg) {
-  //   return this.registrationService.createTempUser(newUser);
   // }
 }

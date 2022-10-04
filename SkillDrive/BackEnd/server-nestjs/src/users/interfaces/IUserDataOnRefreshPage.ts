@@ -1,13 +1,15 @@
 import { UserDocument } from "@/schemas/user.schema";
+import { User as UserEntity } from "../entities/user.entity";
+import { ObjectID } from "typeorm";
 
 export class IUserDataOnRefreshPage {
-  "id": string;
+  "id": ObjectID;
   "userAvatarLink": string;
-  "userName": string; 
+  "userName": string;
 
-  constructor(model: UserDocument) {
+  constructor(model: UserEntity) {
     this.userAvatarLink = model.userAvatarLink;
-    this.id = model.id;
+    this.id = model._id;
     this.userName = model.userName;
   }
 }

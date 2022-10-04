@@ -1,4 +1,4 @@
-export interface UserUpateDataInterface {
+export interface UserUpdateDataInterface {
   userPassword: string
   accessToken?: string
   refreshToken?: string

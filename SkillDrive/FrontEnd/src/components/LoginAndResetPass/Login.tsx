@@ -97,7 +97,8 @@ function Login() {
       .then(res => {
         loginButtonStatinc();
         setAccessToken(res.data.accessToken);
-        dispatch(addUserInfoToStateAction("id", res.data.id))
+        dispatch(addUserInfoToStateAction("id", res.data.id));
+        hideLoginWindow();
       })
       .catch(err => {
         loginButtonStatinc();

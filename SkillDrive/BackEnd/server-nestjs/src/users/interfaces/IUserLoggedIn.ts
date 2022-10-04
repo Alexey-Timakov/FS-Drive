@@ -1,10 +1,13 @@
 import { UserDocument } from "@/schemas/user.schema";
+import { ObjectID } from "typeorm";
+import { User as UserEntity } from "../entities/user.entity";
+
 
 export class IUserLoggedIn {
-  id: string;
+  id: ObjectID;
   accessToken: string;
 
-  constructor(model: UserDocument) {
+  constructor(model: UserEntity) {
     this.accessToken = model.accessToken;
     this.id = model._id
   }

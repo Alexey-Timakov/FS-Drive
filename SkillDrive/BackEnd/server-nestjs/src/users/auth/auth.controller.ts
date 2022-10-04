@@ -15,7 +15,7 @@ export class AuthController {
 
   @Post('auth')
   @HttpCode(HttpStatus.CREATED)
-  async login(@Body() credentials: IAuthCredentials, @Res() res: Response): Promise<Response<IUserLoggedIn> | Error> {
+  async login(@Body() credentials: IAuthCredentials, @Res() res: Response): Promise<Response<IUserLoggedIn>> {
     const result = await this.authService.login(credentials)
     if (result) {
       res.cookie("refreshToken", result.refreshToken, {
@@ -24,9 +24,10 @@ export class AuthController {
       })
       const { refreshToken, ...rest } = result;
       return res.send(rest);
-    } else {
-      return new HttpException("Some critical error", HttpStatus.BAD_REQUEST)
     }
+    // else {
+    //   throw new HttpException("Some critical error", HttpStatus.BAD_REQUEST)
+    // }
   }
 
   @Get('refresh')
@@ -54,6 +55,15 @@ export class AuthController {
   @Get('get-user-data/:id')
   @UseGuards(AuthGuard)
   async getUserInfo(@Param("id") id: string): Promise<IUserDataOnRefreshPage> {
-    return await this.authService.getUserData(id);
+    try {
+      const result = await this.authService.getUserData(id);
+      if (result) {
+        return result;
+      } else {
+        throw new HttpException("User not found", HttpStatus.BAD_REQUEST)
+      }
+    } catch (error) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST)
+    }
   }
 }

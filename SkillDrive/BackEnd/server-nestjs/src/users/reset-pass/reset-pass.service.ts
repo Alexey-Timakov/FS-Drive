@@ -9,105 +9,84 @@ import { generateResetToken } from 'src/services/generate.token';
 import { sendEmail } from '../../services/send.email';
 import { User, UserDocument } from '../../schemas/user.schema';
 import { logWrite, resetLogFilePath } from 'src/services/log.write';
-import { IResetToken } from '../interfaces/ITokens';
-import { UserUpateDataInterface } from '../interfaces/userUpdateData';
+import { UserUpdateDataInterface } from '../interfaces/userUpdateData';
 import { encryptPassword } from '@/services/encrypt.pass';
+import { ResetPassRepository } from '../repositories/reset-pass.repository';
 
 @Injectable()
 export class ResetPassService {
-  constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) { }
+  constructor(
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    private resetPassRepository: ResetPassRepository
+  ) { }
 
-  async sendResetPasswordLink(userMail: string): Promise<any> {
-
+  async sendResetPasswordLink(userMail: string): Promise<string> {
     console.log("Requested user to reset password: ", userMail);
-    const queryUser = { "userMail": userMail };
-    const resetToken = generateResetToken(userMail);
 
-    let textError: string = "Something went wrong...";
-    let httpErrorStatus: HttpStatus = HttpStatus.NOT_FOUND;
-
-    try {
-      const result = await this.userModel.findOneAndUpdate(queryUser, { $set: { "resetToken": resetToken.resetToken } })
-      if (result) {
-        console.log("Found");
-        sendEmail(userMail, resetToken.resetToken);
-        logWrite(0, userMail, resetToken.resetToken);
-        return "Reset password request has been acepted";
-      } else if (!result) {
-        textError = "Email NOT found!";
-        console.log(textError);
-        throw new Error;
-      }
-    }
-    catch (error) {
-      console.log("Error", error);
-      throw new HttpException(textError, httpErrorStatus);
+    const { resetToken } = generateResetToken(userMail);
+    const result = await this.resetPassRepository.updateResetToken(userMail, resetToken);
+    if (result) {
+      console.log("Found and updated with new resetToken");
+      sendEmail(userMail, resetToken);
+      logWrite(0, userMail, resetToken);
+      return "Reset password request has been acepted";
+    } else {
+      console.log("Email NOT found!");
+      throw new Error;
     }
   }
 
-  async sendResetPasswordForm(resetToken: string): Promise<boolean | Error> {
+  async sendResetPasswordForm(resetToken: string): Promise<boolean> {
     console.log("Requested reset password form");
 
     let textError: string = "Something went wrong...";
     let httpErrorStatus: HttpStatus = HttpStatus.BAD_REQUEST;
 
-    try {
-      const queryUser = await this.userModel.findOne({ "resetToken": resetToken });
-      if (queryUser !== null) {
-        try {
-          type JWTPayloadWithUserMail = JwtPayload & {
-            userMail: string;
-          }
-          const resetTokenPayload = jwtDecode<JWTPayloadWithUserMail>(resetToken);
-          console.log("Token has been found. Token payload:", resetTokenPayload);
+    const queryUser = await this.resetPassRepository.getUserByResetToken(resetToken);
+    if (queryUser) {
+      try {
+        type JWTPayloadWithUserMail = JwtPayload & {
+          userMail: string;
+        }
+        const resetTokenPayload = jwtDecode<JWTPayloadWithUserMail>(resetToken);
+        console.log("Token has been found. Token payload:", resetTokenPayload);
 
-          const currentTime = Math.round(Date.now() / 1000);
-          const resetTokenTime = resetTokenPayload.exp;
-          const isResetTokenExpired: boolean = resetTokenTime - currentTime < RESET_LIVE_TIME_GAP_SEC;
+        const currentTime = Math.round(Date.now() / 1000);
+        const resetTokenTime = resetTokenPayload.exp;
+        const isResetTokenExpired: boolean = resetTokenTime - currentTime < RESET_LIVE_TIME_GAP_SEC;
 
-          if (!isResetTokenExpired) {
-            logWrite(1, resetTokenPayload.userMail, resetToken);
-            return true;
-          } else {
-            textError = "ResetToken is expired";
-            httpErrorStatus = HttpStatus.FORBIDDEN;
-            throw new Error;
-          }
-        } catch (error) {
-          textError = "ResetToken is invalid";
-          httpErrorStatus = HttpStatus.UNAUTHORIZED;
+        if (!isResetTokenExpired) {
+          logWrite(1, resetTokenPayload.userMail, resetToken);
+          return true;
+        } else {
+          textError = "ResetToken is expired";
+          httpErrorStatus = HttpStatus.FORBIDDEN;
           throw new Error;
         }
-      } else {
-        textError = "Requested data has NOT been found";
-        httpErrorStatus = HttpStatus.NOT_FOUND;
+      } catch (error) {
+        textError = "ResetToken is invalid";
+        httpErrorStatus = HttpStatus.UNAUTHORIZED;
         throw new Error;
       }
-    } catch (error) {
-      throw new HttpException(textError, httpErrorStatus);
+    } else {
+      textError = "Requested data has NOT been found";
+      httpErrorStatus = HttpStatus.NOT_FOUND;
+      throw new Error;
     }
   }
 
-  async changePassword(userMail: string, userPassword: string): Promise<boolean | Error> {
+  async changePassword(userMail: string, userPassword: string): Promise<boolean> {
+    console.log("Requested user to change password: ", userMail);
+
     let textError: string = "Error while reading log file";
     let httpErrorStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const userUpdateData: UserUpateDataInterface = {
+    const userUpdateData: UserUpdateDataInterface = {
       "userPassword": "",
       "resetToken": "",
       "accessToken": "",
       "refreshToken": "",
     };
-
-    const queryUser: object = {
-      "userMail": userMail,
-    };
-
-    const queryResetToken: IResetToken = {
-      "resetToken": "",
-    };
-
-    console.log("Requested user to change password: ", userMail);
 
     userUpdateData.userPassword = encryptPassword(userPassword);
 
@@ -117,25 +96,17 @@ export class ResetPassService {
         const dataArrayOfString: string[] = data.split("\r\n").filter(item => item.includes(userMail));
         const userInfoString: string = dataArrayOfString[dataArrayOfString.length - 1];
         const resetToken: string = userInfoString.split(",")[2].split(":")[1].slice(1, -1);
-        queryResetToken.resetToken = resetToken;
 
-        try {
-          const result = await this.userModel.findOneAndUpdate({ $and: [queryUser, queryResetToken] }, { $set: userUpdateData }, { returnNewDocument: true });
-          if (result) {
-            logWrite(2, userMail, "");
-            console.log("Password updated for user: ", userMail);
-            return true;
-          } else {
-            textError = "Password NOT updated for user";
-            httpErrorStatus = HttpStatus.BAD_REQUEST;
-            console.log("Password NOT updated for user: ", userMail);
-            throw new Error;
-          }
-        }
-        catch (error) {
-          textError = "Database Error";
-          console.log("Database Error", error);
-          throw new HttpException(textError, httpErrorStatus);
+        const result = await this.resetPassRepository.updateUserPassAndTokens(userMail, resetToken, userUpdateData);
+        if (result) {
+          logWrite(2, userMail, "");
+          console.log("Password updated for user: ", userMail);
+          return true;
+        } else {
+          textError = "Password NOT updated for user";
+          httpErrorStatus = HttpStatus.BAD_REQUEST;
+          console.log("Password NOT updated for user: ", userMail);
+          throw new Error;
         }
       } else {
         textError = "Data NOT found";

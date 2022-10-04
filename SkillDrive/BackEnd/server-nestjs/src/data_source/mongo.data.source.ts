@@ -1,5 +1,5 @@
-import { UserEntity } from "@/users/entities/user.entity";
-import { TestUserEntity } from "@/users/entities/user.entity copy";
+import { File as FileEntity } from "@/files/entities/file.entity";
+import { User as UserEntity } from "@/users/entities/user.entity";
 import { DataSource } from "typeorm";
 
 export const MongoDataSource = new DataSource({
@@ -8,8 +8,7 @@ export const MongoDataSource = new DataSource({
   port: 27017,
   database: 'sfdrive-orm',
   entities: [
-    UserEntity, TestUserEntity,
-    // `${__dirname}/**/*.entity.ts`
+    UserEntity, FileEntity
   ]
 });
 

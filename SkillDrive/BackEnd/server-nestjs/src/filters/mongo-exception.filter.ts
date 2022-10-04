@@ -10,7 +10,7 @@ export class MongoExceptionFilter implements ExceptionFilter {
     // const request = ctx.getRequest();
 
     let error;
-    console.log(exception.name);
+    console.log("exception.name: ", exception.name);
     switch (exception.name) {
       case 'DocumentNotFoundError': {
         error = {
@@ -25,7 +25,13 @@ export class MongoExceptionFilter implements ExceptionFilter {
       // case 'DivergentArrayError': { break; }
       // case 'MissingSchemaError': { break; }
       // case 'ValidatorError': { break; }
-      // case 'ValidationError': { break; }
+      case 'ValidationError': {
+        error = {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: "validation error"
+        }
+        break;
+      }
       // case 'ObjectExpectedError': { break; }
       // case 'ObjectParameterError': { break; }
       // case 'OverwriteModelError': { break; }
