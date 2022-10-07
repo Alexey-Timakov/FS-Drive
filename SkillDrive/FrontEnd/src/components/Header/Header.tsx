@@ -5,7 +5,7 @@ import TopMenuCompact from "./TopMenuCompact";
 
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { UserState } from "../../interfaces/UserState";
+import { IState } from "../../Interfaces/IState";
 import { $api, API_URL } from "../../http";
 import { IUserDataOnReload } from "../../Interfaces/IUserDataOnReload";
 import { addUserInfoToStateAction } from "../../Actions/addUserInfoToStateAction";
@@ -15,9 +15,7 @@ import axios from "axios";
 import { setAccessToken } from "../../services/setToken";
 
 function Header() {
-  // const userID = useSelector((state: UserState) => state?.user?.id);
-  // const userAvatarLink = useSelector((state: UserState) => state?.user?.userAvatarLink);
-  const isLoadedOnRefresh = useSelector((state: UserState) => state?.user?.isLoadedOnRefresh);
+  const isLoadedOnRefresh = useSelector((state: IState) => state?.user?.isLoadedOnRefresh);
   const dispatch = useDispatch();
 
   const getUserInfo = (id: string) => {

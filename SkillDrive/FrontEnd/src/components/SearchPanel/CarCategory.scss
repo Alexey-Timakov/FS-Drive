@@ -1,0 +1,113 @@
+@import "../../scss/variables";
+@import "../../scss//Fonts.scss";
+
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'sfdrive additional_01';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+.car-category__ {
+  &wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 307px;
+    border-left: 1px solid $reg-border-gray;
+  }
+
+  &input-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+  }
+
+  &selected {
+    display: flex;
+    flex-direction: column;
+    padding-left: 12px;
+  }
+
+  &title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 11px;
+    color: $reg-grey-text;
+  }
+
+  &name {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: $reg-black-label-text;
+  }
+
+  &arrow-down-button {
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0 19px;
+
+    .icon-arrow-down:before {
+      font-size: 10px;
+      font-family: 'sfdrive additional_01';
+      content: '\0041';
+    }
+  }
+
+  &modal-wrapper {
+    width: 100%;
+    padding: 10px 0;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+  }
+
+  &variant-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $light-green-transparent;
+    }
+  }
+
+  &variant-description {}
+
+  &variant-name {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: $reg-black-label-text;
+    margin-bottom: 5px;
+  }
+
+  &variant-class {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: $reg-grey-text;
+  }
+
+  &tick {
+    margin-left: auto;
+
+    .icon-tick:before {
+      font-family: 'sfdrive additional_01';
+      font-size: 12px;
+      color: $light-green;
+      content: '\0042';
+    }
+  }
+}

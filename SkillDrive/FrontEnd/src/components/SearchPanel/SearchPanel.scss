@@ -1,0 +1,19 @@
+@import "../../scss/variables";
+@import "../../scss//Fonts.scss";
+
+.search-panel__ {
+  &wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 44px;
+    border: 1px solid $reg-border-gray;
+    border-radius: 5px;
+  }
+}
+
+.input-panel__ {
+  &wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+}

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
 import { API_URL } from "../../http";
 
 import Logo from "./Logo";
-import { UserState } from "../../interfaces/UserState";
+import { IState } from "../../Interfaces/IState";
 
 import defaultAvatar from "./images/default-user.jpg";
 import "./images/menu_compact.svg";
@@ -14,9 +14,9 @@ import "./images/close_cross.svg";
 function TopMenuCompactUnreg() {
   const location = useLocation();
 
-  const userID = useSelector((state: UserState) => state?.user?.id);
-  const userAvatarLink = useSelector((state: UserState) => state?.user?.userAvatarLink);
-  const userName = useSelector((state: UserState) => state?.user?.userName);
+  const userID = useSelector((state: IState) => state?.user?.id);
+  const userAvatarLink = useSelector((state: IState) => state?.user?.userAvatarLink);
+  const userName = useSelector((state: IState) => state?.user?.userName);
   const [userNameAndF, setUserNameAndF] = useState(null);
 
   const genUserNameAndF = () => {

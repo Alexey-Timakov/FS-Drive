@@ -2,19 +2,19 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
 
-import { $api, API_URL } from "../../http";
+import { API_URL } from "../../http";
 
 import Login from "../LoginAndResetPass/Login";
 import ResetPass from "../LoginAndResetPass/ResetPass";
 import CheckMailAfterResetPass from "../LoginAndResetPass/CheckMailAfterResetPass";
 import defaultAvatar from "./images/default-user.jpg";
-import { UserState } from "../../interfaces/UserState";
+import { IState } from "../../Interfaces/IState";
 
 function TopMenu() {
   const location = useLocation();
 
-  const userID = useSelector((state: UserState) => state?.user?.id);
-  const userAvatarLink = useSelector((state: UserState) => state?.user?.userAvatarLink);
+  const userID = useSelector((state: IState) => state?.user?.id);
+  const userAvatarLink = useSelector((state: IState) => state?.user?.userAvatarLink);
   const showLoginWindow = () => {
     document.querySelector(".login-window__wrapper").classList.add("active");
     document.querySelector(".login-window__fade").classList.add("active");

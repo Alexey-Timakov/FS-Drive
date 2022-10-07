@@ -16,7 +16,7 @@ import UserPasswordCheck from "../../Containers/Reg/UserPasswordCheck";
 import { $api } from "../../http";
 import { setAccessToken } from "../../services/setToken";
 import { IUserDataToReg } from "../../Interfaces/IUserDataToReg";
-import { UserState } from "../../interfaces/UserState";
+import { IState } from "../../Interfaces/IState";
 import { UserDataWithTokens } from "../../interfaces/UserDataWithTokens";
 import { IRegStep } from "../../interfaces/IRegStep";
 
@@ -26,7 +26,7 @@ import { addUserInfoToStateAction } from "../../Actions/addUserInfoToStateAction
 function RegStep1({ changeRegStep, toggleErrorBar }: IRegStep) {
 
   const submitButton = useRef(null);
-  const newUserInfo = useSelector((state: UserState) => state.user);
+  const newUserInfo = useSelector((state: IState) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {

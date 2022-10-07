@@ -5,7 +5,7 @@ import { $api, controller } from "../../http";
 
 import { IThumbnailFile } from "../../Interfaces/IThumbnailFile";
 import { IUserFile } from '../../Interfaces/IUserFile';
-import { UserState } from '../../interfaces/UserState';
+import { IState } from '../../Interfaces/IState';
 import CircleProgressBar from '../CircleProgressBar/CircleProgressBar';
 
 import "./FileThumbnail.scss";
@@ -18,7 +18,7 @@ export function FileThumbnail({ file, deleteFile, changeUploadErrors }: IThumbna
   const [isLoading, setLoadingStatus] = useState<boolean>(false);
   const [isFileError, setFileError] = useState<boolean>(false);
 
-  const userID = useSelector((state: UserState) => state?.user?.id);
+  const userID = useSelector((state: IState) => state?.user?.id);
   const fileInfo = new IUserFile(file);
 
   const calculateUploadPercent = (loaded: number, total: number) => {

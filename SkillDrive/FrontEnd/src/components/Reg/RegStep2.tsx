@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { $api, controller } from "../../http";
 import { IRegStep } from '../../interfaces/IRegStep';
-import { UserState } from '../../interfaces/UserState';
+import { IState } from '../../Interfaces/IState';
 import { IUserAvatarInfo } from '../../Interfaces/IUserAvatarInfo';
 import CircleProgressBar from '../CircleProgressBar/CircleProgressBar';
 import { addUserInfoToStateAction } from '../../Actions/addUserInfoToStateAction';
@@ -24,7 +24,7 @@ export default function RegStep2({ changeRegStep, toggleErrorBar }: IRegStep) {
   const canvasWidth: number = document.body.clientWidth < breakpointMobile ? 305 : 430;
   const canvasHeight: number = document.body.clientWidth < breakpointMobile ? 228 : 320;
 
-  const userID = useSelector((state: UserState) => state?.user?.id);
+  const userID = useSelector((state: IState) => state?.user?.id);
   const dispatch = useDispatch();
 
   const [percent, setPercent] = useState<number>(0);

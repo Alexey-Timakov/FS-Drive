@@ -1,9 +1,9 @@
 import { ADD_USER_INFO } from "../Actions/addUserInfoToStateAction";
 import { ADD_INITIAL_DATA } from "../Actions/addInitialLoadingData";
-import { UserState } from "../interfaces/UserState";
-const DEFAULT_STATE = {} as UserState;
+import { IUserState } from "../Interfaces/IUserState";
+const DEFAULT_STATE = {} as IUserState;
 
-export const addUserInfoToStateReducer = (state: UserState = DEFAULT_STATE, action) => {
+export const userInfo = (state: IUserState = DEFAULT_STATE, action) => {
   switch (action.type) {
     case ADD_USER_INFO:
     case ADD_INITIAL_DATA:
@@ -11,10 +11,7 @@ export const addUserInfoToStateReducer = (state: UserState = DEFAULT_STATE, acti
       const value = action.payload.InputValue;
       return {
         ...state,
-        user: {
-          ...state.user,
-          [key]: value
-        }
+        [key]: value
       };
 
     default: return state;

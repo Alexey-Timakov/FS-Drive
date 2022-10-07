@@ -3,6 +3,7 @@ $breakpoint-mobile: 768px;
 
 // Colors
 $light-green: #61A199;
+$light-green-transparent: rgba(97, 161, 153, 0.12);
 $light-grey: #F7F9FB;
 
 $link-color: #000000;
@@ -22,7 +23,7 @@ $footer-shadow: #ffffff;
 
 $menu-compact-background-color: rgba(255, 255, 255, 0.95);
 $menu-compact-line-color: rgba(220, 224, 237, 1);
-$menu-compact-link-color: rgba(27, 27, 27, 1);
+$menu-compact-link-color: #1b1b1b;
 
 $reg-grey-text: #828282;
 $reg-black-label-text: #1b1b1b;
@@ -45,10 +46,10 @@ $reg-file-upload-link: #508E87;
 $reg-file-upload-hint: #828282;
 $reg-file-upload-border-grey: #E0E0E0;
 
-$login-window-fade-color: rgba(0,0,0,.5);
+$login-window-fade-color: rgba(0, 0, 0, .5);
 $login-windwow-background-color: #ffffff;
 $login-input-description-text: rgba(163, 160, 177, 1);
-$login-input-text:rgba(27, 27, 27, 1);
+$login-input-text: rgba(27, 27, 27, 1);
 $login-button-color: rgba(97, 161, 153, 1);
 $login-button-text-color: rgba(255, 255, 255, 1);
 $login-window-border: rgba(222, 219, 241, 1);
