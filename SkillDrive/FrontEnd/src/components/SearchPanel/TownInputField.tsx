@@ -1,26 +1,35 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { IState } from '../../Interfaces/IState';
-import { changeTownName } from "../../Actions/searchOptionsAction";
+import { changeTownName, searchTowns } from "../../Actions/searchOptionsAction";
 
 import "./TownInputField.scss";
 
 export default function TownInputField() {
   const dispatch = useDispatch();
-  // const [townName, changeTonwName] = useState<string>("");
   const [isModalActive, toggleModalActive] = useState<Boolean>(false);
   const townVariants = useSelector((state: IState) => state.searchOptions.townVariants);
   const townName = useSelector((state: IState) => state.searchOptions.town);
 
   const onTownNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newTownName = event.target.value;
-    // changeTonwName(newTownName);
     dispatch(changeTownName(newTownName));
+
+    if (newTownName.length >= 3) {
+      dispatch(searchTowns(newTownName));
+    }
   }
 
   const changeSelectedTown = (townName: string) => {
     dispatch(changeTownName(townName));
+    toggleModalActive(false);
   }
+
+  useEffect(() => {
+    if (townVariants.length) {
+      toggleModalActive(true);
+    }
+  }, [townVariants]);
 
   return (
     <div className='town__wrapper'>
@@ -31,7 +40,7 @@ export default function TownInputField() {
       {isModalActive && <div className='town__modal-wrapper'>
         {townVariants.map(item => {
           return (
-            <div key={item.townName} className='town__variant-wrapper'>
+            <div key={item.townName} className='town__variant-wrapper' onClick={() => changeSelectedTown(item.townName)}>
               <div className='town__variant-name'>{item.townName}</div>
               <div className='town__variant-state'>{item.townState}</div>
             </div>

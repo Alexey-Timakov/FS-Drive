@@ -8,7 +8,7 @@ import { changeCarType } from "../../Actions/searchOptionsAction";
 
 export default function CarCategory() {
   const [isModalActive, toggleModalActive] = useState<Boolean>(false);
-  const selectedCategory = useSelector((state: IState) => state.searchOptions.carType.categoryName);
+  const selectedCategory = useSelector((state: IState) => state.searchOptions.carCategory);
   const dispatch = useDispatch();
 
   const showModalWindow = () => {

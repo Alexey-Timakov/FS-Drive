@@ -7,6 +7,7 @@ import { FilesModule } from './files/files.module';
 import { CarsModule } from './cars/cars.module';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 // import { UserEntity } from './users/entities/user.entity';
+import { TownsModule } from './towns/towns.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CarsModule } from './cars/cars.module';
     UsersModule,
     FilesModule,
     CarsModule,
+    TownsModule,
   ],
   controllers: [AppController,],
   providers: [AppService,],

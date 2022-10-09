@@ -1,13 +1,11 @@
 import { CarCategory, CarSearchOptions } from "../Interfaces/ICarSearchOptions";
-import { CHANGE_SEARCH_OPTIONS, CHANGE_CAR_TYPE, CHANGE_TOWN_NAME } from "../Actions/searchOptionsAction";
+import { CHANGE_SEARCH_OPTIONS, CHANGE_CAR_TYPE, CHANGE_TOWN_NAME, ADD_TOWN_VARIANTS } from "../Actions/searchOptionsAction";
 
 const DEFAULT_STATE: CarSearchOptions = {
   town: "",
   townVariants: [],
   dates: "",
-  carType: {
-    categoryName: "Легковые",
-  }
+  carCategory: "Легковые",
 }
 
 export const searchOptions = (state = DEFAULT_STATE, action) => {
@@ -16,18 +14,20 @@ export const searchOptions = (state = DEFAULT_STATE, action) => {
       const categoryName = action.payload.categoryName;
       return {
         ...state,
-        carType: {
-          categoryName
-        }
+        carCategory: categoryName
       };
-
     case CHANGE_TOWN_NAME:
       const townName = action.payload.townName;
       return {
         ...state,
         town: townName
       };
-
+    case ADD_TOWN_VARIANTS:
+      const townVariants = action.payload.townVariants;
+      return {
+        ...state,
+        townVariants
+      }
     default: return state;
   }
 };

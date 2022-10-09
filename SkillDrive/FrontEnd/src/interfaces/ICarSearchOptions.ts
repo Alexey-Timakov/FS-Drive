@@ -12,5 +12,5 @@ export interface CarSearchOptions {
   town: string;
   townVariants: Town[];
   dates: string;
-  carType: CarCategory;
+  carCategory: string;
 }
