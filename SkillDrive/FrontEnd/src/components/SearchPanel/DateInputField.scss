@@ -1,0 +1,75 @@
+@import "../../scss/variables";
+@import "../../scss//Fonts.scss";
+
+.date__ {
+  &wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 217px;
+    padding: 0 12px;
+  }
+
+  &selected {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 44px;
+    max-height: 44px;
+  }
+
+  &dates {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 11px;
+    color: $reg-grey-text;
+  }
+
+  &name {
+    width: 38%;
+    text-align: start;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    border: none;
+    color: $reg-black-label-text;
+
+    &:last-of-type {
+      text-align: end;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &calendar-button {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+
+    .icon-calendar:before {
+      font-family: 'SFDrive-Common';
+      content: '\0041';
+      color: $light-green;
+      font-size: 20px;
+    }
+  }
+}
+
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'SFDrive-Common';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

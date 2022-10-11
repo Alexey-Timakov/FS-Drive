@@ -5,9 +5,25 @@
   &wrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     height: 44px;
-    border: 1px solid $reg-border-gray;
     border-radius: 5px;
+  }
+
+  &btn {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: $login-button-text-color;
+    padding: 12px 27px;
+    background-color: $light-green;
+    border-radius: 6px;
+    margin-left: 18px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -15,5 +31,7 @@
   &wrapper {
     display: flex;
     flex-direction: row;
+    border: 1px solid $reg-border-gray;
+    border-radius: 8px;
   }
 }

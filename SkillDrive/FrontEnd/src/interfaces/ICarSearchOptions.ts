@@ -8,9 +8,14 @@ export interface Town {
   townState: string;
 }
 
+export interface DateStartDateEnd {
+  dateStart: string;
+  dateEnd: string;
+}
+
 export interface CarSearchOptions {
   town: string;
   townVariants: Town[];
-  dates: string;
+  dates: DateStartDateEnd;
   carCategory: string;
 }
