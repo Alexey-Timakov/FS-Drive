@@ -12,7 +12,7 @@ sfdriveeducation@gmail.com.txt
 **/node_modules
 **/dist
 **/test
-**/files
+SkillDrive/BackEnd/server-nestjs/files/
 
 pass.ts
 Main (adaptive).png
