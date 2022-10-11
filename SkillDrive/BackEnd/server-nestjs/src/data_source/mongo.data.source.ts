@@ -1,7 +1,8 @@
+import { DataSource } from "typeorm";
 import { File as FileEntity } from "@/files/entities/file.entity";
 import { User as UserEntity } from "@/users/entities/user.entity";
 import { Towns as TownEntity } from "@/towns/entities/town.entity";
-import { DataSource } from "typeorm";
+import { Cars as CarsEntity } from "@/cars/entities/car.entity";
 
 export const MongoDataSource = new DataSource({
   type: 'mongodb',
@@ -9,7 +10,7 @@ export const MongoDataSource = new DataSource({
   port: 27017,
   database: 'sfdrive-orm',
   entities: [
-    UserEntity, FileEntity, TownEntity
+    UserEntity, FileEntity, TownEntity, CarsEntity
   ]
 });
 

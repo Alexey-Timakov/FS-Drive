@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Towns } from './entities/town.entity';
 import ITownResponce from './interfaces/ITownResponce';
 import { TownRepository } from './repositories/towns.repository';
 

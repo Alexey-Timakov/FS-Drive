@@ -12,7 +12,8 @@ export class RegistrationRepository {
     try {
       const queryUser = await repository.findOneBy({ "userMail": newUser.userMail });
       if (queryUser === null) {
-        return await repository.save(newUser);
+        const createdNewUser = repository.create(newUser);
+        return await repository.save(createdNewUser);
       } else {
         throw new HttpException(`User already exists`, HttpStatus.BAD_REQUEST);
       }

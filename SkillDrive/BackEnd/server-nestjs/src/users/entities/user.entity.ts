@@ -49,4 +49,7 @@ export class User {
 
   @Column()
   resetToken: string;
+
+  @Column()
+  cars: string[];
 }

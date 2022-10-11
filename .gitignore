@@ -17,3 +17,8 @@ sfdriveeducation@gmail.com.txt
 pass.ts
 Main (adaptive).png
 *.fig
+SkillDrive/MongoDataBase/
+SkillDrive/cars.json
+SkillDrive/file.json
+SkillDrive/towns.json
+SkillDrive/user.json

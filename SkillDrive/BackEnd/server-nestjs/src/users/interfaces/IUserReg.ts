@@ -2,6 +2,7 @@ import { IUserUnreg } from "./IUserUnreg"
 import { encryptPassword } from "../../services/encrypt.pass";
 
 export class IUserReg extends IUserUnreg {
+  cars?: string[]
   accessToken?: string
   refreshToken?: string
   resetToken?: string
@@ -19,8 +20,9 @@ export class IUserReg extends IUserUnreg {
     this.userLicId = model.userLicId;
     this.userLicIdDate = model.userLicIdDate;
     this.userPassword = encryptPassword(model.userPassword);
-    this.accessToken = ""
-    this.refreshToken = ""
-    this.resetToken = ""
+    this.accessToken = "";
+    this.refreshToken = "";
+    this.resetToken = "";
+    this.cars = [];
   }
 }
