@@ -12,7 +12,7 @@ export const addDefaultCars = (cars: Car[]) => ({
 })
 
 export const fetchDefaultCars = () => dispatch => {
-  $api.get<Car[]>(`${API_URL}/cars/get-default-cars`)
+  $api.get<Car[]>(`${API_URL}/cars/get-all-cars`)
     .then(data => {
       dispatch(addDefaultCars(data.data));
     })

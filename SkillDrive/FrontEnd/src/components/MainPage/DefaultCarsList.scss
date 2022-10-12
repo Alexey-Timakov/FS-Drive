@@ -1,0 +1,26 @@
+@import "../../scss/variables";
+
+.default-cars-list__ {
+  &wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &title {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 43px;
+    text-align: center;
+    color: $reg-black-label-text;
+  }
+
+  &variants {
+    width: 1024px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

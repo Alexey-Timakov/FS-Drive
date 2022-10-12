@@ -3,6 +3,7 @@
 import { IUserAvatarLink } from '@/users/interfaces/IUserAvatarLink';
 import { FilesRepository } from './repositories/files.repository';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CarImageLink } from './interfaces/ICarImageLink';
 // import { InjectModel } from '@nestjs/mongoose';
 // import { Model } from 'mongoose';
 // import { IUserDocumentsInfo } from './interfaces/IUserDocumentsInfo';
@@ -15,6 +16,15 @@ export class FilesService {
     // @InjectModel(FileModel.name) private readonly fileModel: Model<FileModelDocument>,
     private filesRepository: FilesRepository
   ) { }
+
+  async findUserAvatarLink(userId: string): Promise<string> {
+    const result = await this.filesRepository.getUserById(userId);
+    if (result) {
+      return result.userAvatarLink
+    } else {
+      return null;
+    }
+  }
 
   async saveAvatarLink(filename: string, filePath: string): Promise<IUserAvatarLink> {
     const userId: string = filename.split("_")[0];
@@ -40,6 +50,20 @@ export class FilesService {
       return true;
     } else {
       throw new HttpException("Error during update user's files", HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  async saveCarImageLink(filename: string, filePath: string): Promise<CarImageLink> {
+    const carId: string = filename.split("_")[0];
+    const carImageLink: string = filePath;
+
+    const carToUpdate = await this.filesRepository.saveCarImageLink(carId, carImageLink);
+    if (carToUpdate) {
+      return new CarImageLink(carImageLink);
+    }
+    else {
+      throw new HttpException("Error during update car's image", HttpStatus.BAD_REQUEST);
     }
   }
 }

@@ -24,5 +24,8 @@ export class Cars {
   primaryImageLink: string;
 
   @Column()
+  imagesLinks: string[];
+
+  @Column()
   user: string;
 }

@@ -6,10 +6,10 @@ const DEFAULT_STATE: CarSearchResults = {
   fetchedResults: [],
 }
 
-export const searchOptions = (state = DEFAULT_STATE, action) => {
+export const carSearch = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case ADD_DEFAULT_CARS:
-      const defaultResults = action.payload;
+      const defaultResults = action.payload.cars;
       return {
         ...state,
         defaultResults

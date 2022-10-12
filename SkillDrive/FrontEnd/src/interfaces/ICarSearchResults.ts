@@ -1,13 +1,13 @@
-import { IUserData } from "../Interfaces/IUserData";
-
 export interface Car {
+  _id: string;
   brand: string;
   model: string;
   year: number;
   minimumPrice: number;
   categoryClass: string;
   primaryImageLink: string;
-  owner: IUserData;
+  imagesLinks: string[];
+  user: string;
 };
 
 export interface CarSearchResults {

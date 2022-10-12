@@ -12,6 +12,7 @@ export interface Car {
   minimumPrice: number;
   categoryClass: string;
   primaryImageLink: string;
+  imagesLinks: string[];
   user: string;
   _id: ObjectID;
 };
@@ -23,6 +24,7 @@ export class NewCar {
   minimumPrice: number;
   categoryClass: string;
   primaryImageLink?: string;
+  imagesLinks: string[];
   user: string;
   _id: ObjectID;
 
@@ -32,6 +34,8 @@ export class NewCar {
     this.year = model.year;
     this.minimumPrice = model.minimumPrice;
     this.categoryClass = model.categoryClass;
+    this.primaryImageLink = null;
+    this.imagesLinks = [];
     this.user = null;
     this._id = null;
   }
