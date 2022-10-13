@@ -2,10 +2,10 @@
 
 .default-cars-list__ {
   &wrapper {
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 100px;
   }
 
   &title {
@@ -14,6 +14,8 @@
     line-height: 43px;
     text-align: center;
     color: $reg-black-label-text;
+    margin-top: 100px;
+    margin-bottom: 50px;
   }
 
   &variants {

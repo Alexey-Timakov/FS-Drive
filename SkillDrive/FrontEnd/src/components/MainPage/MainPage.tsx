@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import Footer from '../Footer/Footer';
 import Slider from '../Slider/Slider';
 
 import './MainPage.scss';
@@ -136,7 +135,6 @@ function MainPage() {
           <Link to="/Reg" aria-label="Перейти на страницу регистрации">Зарегистрироваться</Link>
         </div>
       </section>
-      <Footer />
     </>
   )
 }

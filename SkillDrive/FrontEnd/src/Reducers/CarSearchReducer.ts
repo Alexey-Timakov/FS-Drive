@@ -1,9 +1,10 @@
-import { CarSearchResults } from "../Interfaces/ICarSearchResults";
-import { ADD_DEFAULT_CARS, } from "../Actions/carSearchAction";
+import { CarSearchResults, CarInfo } from "../Interfaces/ICarSearchResults";
+import { ADD_DEFAULT_CARS, ADD_FETCHED_CAR } from "../Actions/carSearchAction";
 
 const DEFAULT_STATE: CarSearchResults = {
   defaultResults: [],
   fetchedResults: [],
+  fetchedCar: {} as CarInfo
 }
 
 export const carSearch = (state = DEFAULT_STATE, action) => {
@@ -14,6 +15,13 @@ export const carSearch = (state = DEFAULT_STATE, action) => {
         ...state,
         defaultResults
       };
+
+    case ADD_FETCHED_CAR:
+      const fetchedCar = action.payload.car;
+      return {
+        ...state,
+        fetchedCar
+      }
     default: return state;
   }
 };

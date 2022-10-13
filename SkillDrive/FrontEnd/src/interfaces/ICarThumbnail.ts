@@ -1,5 +1,5 @@
-import { Car } from "./ICarSearchResults";
+import { CarForMainPage } from "./ICarSearchResults";
 
 export interface ICarThumbnail {
-  car: Car;
+  car: CarForMainPage;
 }

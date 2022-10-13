@@ -2,13 +2,13 @@ import { MongoDataSource } from "@/data_source/mongo.data.source";
 import { User as UserEntity } from "@/users/entities/user.entity";
 import { Injectable } from "@nestjs/common";
 import { Cars as CarsEntity } from "../entities/car.entity";
-import { Car as CarInterface, NewCar } from "../interfaces/ICar";
+import { ICarMain, NewCar } from "../interfaces/ICar";
 import { ObjectID } from "mongodb";
 
 @Injectable()
 export class CarsRepository {
 
-  async addCar(newCar: CarInterface, userId: string): Promise<CarsEntity> {
+  async addCar(newCar: ICarMain, userId: string): Promise<CarsEntity> {
     const carRepository = MongoDataSource.getMongoRepository(CarsEntity);
 
     try {
@@ -38,5 +38,14 @@ export class CarsRepository {
   async getAllCars(): Promise<CarsEntity[]> {
     const repository = MongoDataSource.getMongoRepository(CarsEntity);
     return await repository.find();
+  }
+
+  async getCar(carId: string): Promise<CarsEntity> {
+    const repository = MongoDataSource.getMongoRepository(CarsEntity);
+    try {
+      return await repository.findOneBy(carId);
+    } catch (error) {
+      throw new Error;
+    }
   }
 }

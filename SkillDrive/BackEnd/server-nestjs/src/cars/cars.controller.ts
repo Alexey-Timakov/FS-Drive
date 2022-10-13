@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CarsService } from './cars.service';
-import { Car as CarInterface, NewCarQueryParams } from './interfaces/ICar';
+import { ICarMain, NewCarQueryParams } from './interfaces/ICar';
 
 @Controller('cars')
 export class CarsController {
@@ -11,8 +11,13 @@ export class CarsController {
     return await this.carsService.getAllCars();
   }
 
+  @Get('get-car/:id')
+  async getCar(@Param('id') carId: string) {
+    return await this.carsService.getCar(carId);
+  }
+
   @Post('add-car')
-  async addCar(@Query() query: NewCarQueryParams, @Body() newCar: CarInterface) {
+  async addCar(@Query() query: NewCarQueryParams, @Body() newCar: ICarMain) {
     return await this.carsService.addCar(newCar, query.userId);
   }
 }

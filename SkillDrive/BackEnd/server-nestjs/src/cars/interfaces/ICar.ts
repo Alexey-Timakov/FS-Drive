@@ -1,11 +1,11 @@
-import { User } from "@/users/entities/user.entity";
 import { Cars as CarsEntity } from "../entities/car.entity";
 import { ObjectID } from "typeorm"
+
 export interface NewCarQueryParams {
   userId: string;
 }
 
-export interface Car {
+export interface ICarMain {
   brand: string;
   model: string;
   year: number;
@@ -40,3 +40,54 @@ export class NewCar {
     this._id = null;
   }
 }
+
+export interface ICarRank {
+  userId: string;
+  userName: string;
+  userSurname: string;
+  rank: number;
+  rankInfo: {
+    author: string;
+    year: number;
+    month: number;
+    text: string;
+  }
+}
+
+export interface ICarInfo extends ICarMain {
+  prices: {
+    priceUsual: number;
+    price3Days: number;
+    price5Days: number;
+  },
+  bodyType: string;
+  endgine: {
+    size: number;
+    brakePower: number;
+    fuelType: string;
+  };
+  transmission: string;
+  drivingWheelType: string;
+  totalMileage: number;
+  features: {
+    isofix?: boolean;
+    airbags?: boolean;
+    authonomyHeater?: boolean;
+    aux?: boolean;
+    bluetooth?: boolean;
+    cruiseControl?: boolean;
+    airConditioner?: boolean;
+    multimedia?: boolean;
+    navigation?: boolean;
+    seatVentilation?: boolean;
+    seatHeat?: boolean;
+    roofTrunk?: boolean;
+    parktronic?: boolean;
+    rearViewCamera?: boolean;
+  };
+  orderedDates: [];
+  rating: {
+    averageRank: number;
+    ranks: ICarRank[];
+  }
+};
