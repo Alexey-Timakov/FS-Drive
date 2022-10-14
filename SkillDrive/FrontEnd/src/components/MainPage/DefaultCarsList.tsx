@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDefaultCars } from "../../Actions/carSearchAction";
 import { IState } from '../../Interfaces/IState';
-import CarThumbnail from './CarThumbnail';
+import CarThumbnail from '../CarThumbnail/CarThumbnail';
 import "./DefaultCarsList.scss";
 
 export default function DefaultCarsList() {

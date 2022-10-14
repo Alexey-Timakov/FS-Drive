@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Cars as CarsEntity } from './entities/car.entity';
-import { ICarMain } from './interfaces/ICar';
+import { ICarInfo, ICarMain, MainCarInfo } from './interfaces/ICar';
 import { CarsRepository } from './repositories/cars.repository';
 
 @Injectable()
 export class CarsService {
   constructor(private readonly carsRepository: CarsRepository) { }
 
-  async addCar(newCar: ICarMain, userId: string): Promise<CarsEntity> {
+  async addCar(newCar: ICarInfo, userId: string): Promise<CarsEntity> {
     const carResult = await this.carsRepository.addCar(newCar, userId);
     if (carResult) {
       const carId = carResult._id.toString();
@@ -18,8 +18,14 @@ export class CarsService {
     } else throw new Error;
   }
 
-  async getAllCars(): Promise<CarsEntity[]> {
-    return await this.carsRepository.getAllCars();
+  async getAllCars(): Promise<ICarMain[]> {
+    const queryCars = await this.carsRepository.getAllCars();
+    const result = queryCars.map(item => {
+      // const newMainCarItem = new NewCar(item);
+      return new MainCarInfo(item);
+      // return newMainCarItem;
+    });
+    return result;
   }
 
   async getCar(carId: string): Promise<CarsEntity> {

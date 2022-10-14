@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import Header from "../Header/Header";
-import NoScript from "../Common/NoScript";
+// import Header from "../Header/Header";
+// import NoScript from "../Common/NoScript";
 import RegStep1 from "./RegStep1";
 
 import RegStep2 from "./RegStep2";
@@ -30,8 +30,8 @@ function Reg() {
 
   return (
     <>
-      <Header />
-      <NoScript />
+      {/* <Header /> */}
+      {/* <NoScript /> */}
       <div className={`reg__form-error ${errorBarIsActive ? "is-active" : ""}`}>{errors[errorNumber]}</div>
       {regStepNumber !== 4 && <div className="reg__step-number">Шаг {regStepNumber} из 3</div>}
       {regStepNumber !== 1 && regStepNumber !== 4 && <div className="reg__back-button" onClick={() => changeRegStep(-1)}>
@@ -40,7 +40,7 @@ function Reg() {
       {regStepNumber === 1 && <RegStep1 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
       {regStepNumber === 2 && <RegStep2 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
       {regStepNumber === 3 && <RegStep3 changeRegStep={changeRegStep} toggleErrorBar={toggleErrorBar} />}
-      {regStepNumber === 4 && <RegFinished/>}
+      {regStepNumber === 4 && <RegFinished />}
     </>
   )
 }

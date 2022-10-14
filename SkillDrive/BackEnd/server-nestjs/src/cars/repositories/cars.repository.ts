@@ -2,18 +2,19 @@ import { MongoDataSource } from "@/data_source/mongo.data.source";
 import { User as UserEntity } from "@/users/entities/user.entity";
 import { Injectable } from "@nestjs/common";
 import { Cars as CarsEntity } from "../entities/car.entity";
-import { ICarMain, NewCar } from "../interfaces/ICar";
-import { ObjectID } from "mongodb";
+import { ICarInfo } from "../interfaces/ICar";
+// import { ObjectID } from "mongodb";
 
 @Injectable()
 export class CarsRepository {
 
-  async addCar(newCar: ICarMain, userId: string): Promise<CarsEntity> {
+  async addCar(newCar: ICarInfo, userId: string): Promise<CarsEntity> {
     const carRepository = MongoDataSource.getMongoRepository(CarsEntity);
 
     try {
-      const newCarData = new NewCar(newCar);
-      newCarData._id = ObjectID();
+      const newCarData = carRepository.create(newCar);
+      // const newCarData = new NewCar(newCar);
+      // newCarData._id = ObjectID();
       newCarData.user = userId;
       return await carRepository.save(newCarData);
     } catch (error) {

@@ -3,14 +3,13 @@ export interface CarForMainPage {
   brand: string;
   model: string;
   year: number;
-  minimumPrice: number;
+  price: number;
   categoryClass: string;
   primaryImageLink: string;
-  imagesLinks: string[];
   user: string;
 };
 
-export interface carRank {
+export interface ICarRank {
   userId: string;
   userName: string;
   userSurname: string;
@@ -23,42 +22,55 @@ export interface carRank {
   }
 }
 
+export interface ICarFeatures {
+  isofix?: boolean;
+  airbags?: boolean;
+  authonomyHeater?: boolean;
+  aux?: boolean;
+  bluetooth?: boolean;
+  cruiseControl?: boolean;
+  airConditioner?: boolean;
+  multimedia?: boolean;
+  navigation?: boolean;
+  seatVentilation?: boolean;
+  seatHeat?: boolean;
+  roofTrunk?: boolean;
+  parktronic?: boolean;
+  rearViewCamera?: boolean;
+}
+
 export interface CarInfo extends CarForMainPage {
+  numberPlate: string;
+  VIN: string;
+  PTSnumber: string;
+  STSnumber: string;
+  color: string;
+
   prices: {
     priceUsual: number;
     price3Days: number;
     price5Days: number;
   },
+
+  imagesLinks: string[];
+
   bodyType: string;
-  endgine: {
+
+  engine: {
     size: number;
     brakePower: number;
     fuelType: string;
   };
+
   transmission: string;
   drivingWheelType: string;
   totalMileage: number;
-  features: {
-    isofix?: boolean;
-    airbags?: boolean;
-    authonomyHeater?: boolean;
-    aux?: boolean;
-    bluetooth?: boolean;
-    cruiseControl?: boolean;
-    airConditioner?: boolean;
-    multimedia?: boolean;
-    navigation?: boolean;
-    seatVentilation?: boolean;
-    seatHeat?: boolean;
-    roofTrunk?: boolean;
-    parktronic?: boolean;
-    rearViewCamera?: boolean;
-  };
+
+  features: ICarFeatures;
+
   orderedDates: [];
-  rating: {
-    averageRank: number;
-    ranks: carRank[];
-  }
+
+  ranks: ICarRank[];
 };
 
 export interface CarSearchResults {

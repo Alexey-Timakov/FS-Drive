@@ -3,10 +3,10 @@ import { useEffect } from "react";
 
 import "./Faq.scss";
 
-import Header from "../Header/Header";
-import NoScript from "../Common/NoScript";
+// import Header from "../Header/Header";
+// import NoScript from "../Common/NoScript";
 import FaqQuestionMainBlock from "./FaqQustionMainBlock";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 
 function Faq() {
 
@@ -29,10 +29,10 @@ function Faq() {
 
   return (
     <>
-      <Header />
-      <NoScript />
+      {/* <Header /> */}
+      {/* <NoScript /> */}
       <FaqQuestionMainBlock />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

@@ -1,0 +1,29 @@
+@import "../../scss/variables";
+@import "../../scss//Fonts.scss";
+
+.gallery__ {
+  &wrapper {
+    display: flex;
+  }
+
+  &images {
+    display: flex;
+    flex-direction: row;
+    width: 1026px;
+  }
+
+  &main-image {
+    width: 677px;
+    height: 464px;
+  }
+
+  &small-images {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &small-image {
+    width: 328px;
+    height: 222px;
+  }
+}

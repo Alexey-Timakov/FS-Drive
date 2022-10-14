@@ -2,24 +2,24 @@ import * as React from "react";
 
 import "./About.scss";
 
-import Header from "../Header/Header";
-import NoScript from "../Common/NoScript";
+// import Header from "../Header/Header";
+// import NoScript from "../Common/NoScript";
 import AboutIntro from "./About_Intro";
 import AboutContacts from "./About_Contacts";
 import AboutTeam from "./About_Team";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 
-function About () {
+function About() {
     return (
         <>
-            <Header />
-            <NoScript />
+            {/* <Header /> */}
+            {/* <NoScript /> */}
             <main>
                 <AboutIntro />
                 <AboutContacts />
                 <AboutTeam />
             </main>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }
