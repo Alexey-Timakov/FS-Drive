@@ -1,9 +1,20 @@
 @import "../../scss/variables";
 @import "../../scss//Fonts.scss";
 
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'sfdrive common';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .gallery__ {
   &wrapper {
     display: flex;
+    justify-content: center;
   }
 
   &images {
@@ -15,15 +26,102 @@
   &main-image {
     width: 677px;
     height: 464px;
+    cursor: pointer;
   }
 
   &small-images {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 
   &small-image {
     width: 328px;
     height: 222px;
+    padding-left: 20px;
+
+    &:first-child {
+      padding-bottom: 20px;
+    }
+  }
+
+  &modal-window {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $modal-window-black-fade;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.modal-window__ {
+  &info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+  }
+
+  &title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $modal-window-white-text;
+    padding: 40px 0;
+  }
+
+  &close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 40px;
+    cursor: pointer;
+
+    .icon-close-cross:before {
+      color: $modal-window-white-text;
+      content: '\0048';
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  &image-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .icon-arrow-left:before {
+      color: $modal-window-white-text;
+      content: '\0046';
+      font-size: 14px;
+    }
+
+    .icon-arrow-right:before {
+      color: $modal-window-white-text;
+      content: '\0047';
+      font-size: 14px;
+    }
+
+    .button-left,
+    .button-right {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 40px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $modal-window-white-wade;
+      }
+    }
   }
 }

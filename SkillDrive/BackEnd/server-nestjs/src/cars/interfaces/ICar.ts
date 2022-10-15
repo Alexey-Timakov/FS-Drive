@@ -12,7 +12,6 @@ export interface ICarMain {
   price: number;
   categoryClass: string;
   primaryImageLink?: string;
-  // imagesLinks?: string[];
   user: string;
   _id: ObjectID;
 };
@@ -65,23 +64,15 @@ export interface ICarInfo extends ICarMain {
   PTSnumber: string;
   STSnumber: string;
   color: string;
-
   prices: ICarPrices,
-
   bodyType: string;
-
   imagesLinks: string[];
-
   engine: ICarEngine;
-
   transmission: string;
   drivingWheelType: string;
   totalMileage: number;
-
   features: ICarFeatures;
-
   orderedDates: string[];
-
   ranks: ICarRank[];
 };
 

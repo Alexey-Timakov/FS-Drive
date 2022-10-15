@@ -1,0 +1,123 @@
+@import "../../scss/variables";
+@import "../../scss//Fonts.scss";
+
+[class*='icon-']:before {
+  display: inline-block;
+  font-family: 'sfdrive common';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.car-info__ {
+  &wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 1026px;
+  }
+
+  &header {
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      color: $light-green;
+
+      span {
+        padding-left: 14px;
+        vertical-align: 2px;
+        font-style: normal;
+      }
+    }
+
+    .icon-arrow-left:before {
+      font-weight: 400;
+      font-size: 14px;
+      content: '\0046';
+      color: $light-green;
+    }
+  }
+
+  &main-description {}
+
+  &car {
+    width: 677px;
+  }
+
+  &car-title {
+    // font-family: "Roboto-500";
+    font-weight: 500;
+    font-size: 48px;
+    color: $reg-black-label-text;
+    margin-bottom: 30px;
+    margin-top: 60px;
+  }
+
+  &car-prices {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &price {
+    display: flex;
+    flex-direction: column;
+    padding-right: 38px;
+  }
+
+  &price-value {
+    font-weight: 400;
+    font-size: 24px;
+    color: $light-green;
+    margin-bottom: 10px;
+  }
+
+  &price-description {
+    font-weight: 400;
+    font-size: 14px;
+    color: $car-info-text-description;
+  }
+
+  &features {
+    display: flex;
+    flex-direction: column;
+
+    >h2 {
+      font-weight: 500;
+      font-size: 28px;
+      color: $reg-black-label-text;
+      margin-top: 60px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &feature {
+    display: flex;
+    flex-direction: row;
+    padding: 12px 0;
+
+    .feature__ {
+      &title {
+        font-weight: 400;
+        font-size: 16px;
+        color: $car-info-text-description;
+        width: 270px;
+      }
+
+      &value {
+        font-weight: 400;
+        font-size: 16px;
+        color: $car-info-text-value;
+
+      }
+    }
+  }
+}
