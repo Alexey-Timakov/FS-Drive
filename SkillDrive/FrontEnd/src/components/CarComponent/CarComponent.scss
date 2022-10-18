@@ -1,17 +1,6 @@
 @import "../../scss/variables";
 @import "../../scss//Fonts.scss";
 
-[class*='icon-']:before {
-  display: inline-block;
-  font-family: 'sfdrive common';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-
 .car-info__ {
   &wrapper {
     margin: 0 auto;
@@ -40,6 +29,12 @@
     }
 
     .icon-arrow-left:before {
+      display: inline-block;
+      font-family: 'SFDrive-Common';
+      font-style: normal;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       font-weight: 400;
       font-size: 14px;
       content: '\0046';
@@ -47,7 +42,13 @@
     }
   }
 
-  &main-description {}
+  &main-description {
+    display: flex;
+    flex-direction: row;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid $car-info-border-grey;
+  }
 
   &car {
     width: 677px;
@@ -59,7 +60,6 @@
     font-size: 48px;
     color: $reg-black-label-text;
     margin-bottom: 30px;
-    margin-top: 60px;
   }
 
   &car-prices {
@@ -86,7 +86,7 @@
     color: $car-info-text-description;
   }
 
-  &features {
+  &information-wrapper {
     display: flex;
     flex-direction: column;
 
@@ -99,12 +99,12 @@
     }
   }
 
-  &feature {
+  &information {
     display: flex;
     flex-direction: row;
     padding: 12px 0;
 
-    .feature__ {
+    .info__ {
       &title {
         font-weight: 400;
         font-size: 16px;
@@ -119,5 +119,195 @@
 
       }
     }
+  }
+
+  &owner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    height: 210px;
+    padding: 39px;
+    margin-left: auto;
+    background: $car-info-owner-background-gray;
+
+    .owner-avatar {
+      width: 84px;
+      height: 84px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-bottom: 10px;
+
+      >img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .owner-name {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 35px;
+      text-align: center;
+      color: $car-info-text-value;
+    }
+
+    .owner-title {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      text-align: center;
+      color: $car-info-text-description;
+      margin-bottom: 32px;
+    }
+
+    .owner-link>a {
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      color: $light-green;
+    }
+  }
+
+  &features {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid $car-info-border-grey;
+
+    >h2 {
+      font-weight: 500;
+      font-size: 28px;
+      color: $reg-black-label-text;
+      margin-bottom: 30px;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+  }
+
+  &features-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &feature-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 33%;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  &icon {
+    width: 24px;
+    height: 24px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    [class*='icon-']:before {
+      display: inline-block;
+      font-family: 'SFDrive-Car-Features';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: $car-info-icon-green;
+
+    }
+
+    .icon-car-airbag:before {
+      content: '\0041';
+    }
+
+    .icon-car-air-conditioner:before {
+      content: '\0042';
+    }
+
+    .icon-car-authonomy-heater:before {
+      content: '\0043';
+    }
+
+    .icon-car-aux:before {
+      content: '\0044';
+    }
+
+    .icon-car-bluetooth:before {
+      content: '\0045';
+    }
+
+    .icon-car-child-seat:before {
+      content: '\0046';
+    }
+
+    .icon-car-cruise-control:before {
+      content: '\0047';
+    }
+
+    .icon-car-multimedia:before {
+      content: '\0048';
+    }
+
+    .icon-car-navigation:before {
+      content: '\0049';
+    }
+
+    .icon-car-parktronic:before {
+      content: '\004a';
+    }
+
+    .icon-car-rear-view-camera:before {
+      content: '\004b';
+    }
+
+    .icon-car-roof-trunk:before {
+      content: '\004c';
+    }
+
+    .icon-car-seat-heater:before {
+      content: '\004d';
+    }
+
+    .icon-car-seat-ventilation:before {
+      content: '\004e';
+    }
+
+  }
+
+  &description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $car-info-text-value;
+  }
+
+  &availability {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid $car-info-border-grey;
+
+    >h2 {
+      font-weight: 500;
+      font-size: 28px;
+      color: $reg-black-label-text;
+      margin-bottom: 30px;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+  }
+
+  &calendars {
+    display: flex;
+    flex-direction: row;
   }
 }

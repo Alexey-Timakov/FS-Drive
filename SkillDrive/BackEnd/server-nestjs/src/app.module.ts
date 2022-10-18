@@ -8,6 +8,7 @@ import { CarsModule } from './cars/cars.module';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 // import { UserEntity } from './users/entities/user.entity';
 import { TownsModule } from './towns/towns.module';
+import { FeedbacksModule } from './feedbacks/feedbacks.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { TownsModule } from './towns/towns.module';
     FilesModule,
     CarsModule,
     TownsModule,
+    FeedbacksModule,
   ],
   controllers: [AppController,],
   providers: [AppService,],

@@ -68,13 +68,20 @@ export interface CarInfo extends CarForMainPage {
 
   features: ICarFeatures;
 
-  orderedDates: [];
+  orderedDates: string[];
 
   ranks: ICarRank[];
+};
+
+export interface ICarOwnerData {
+  id: string;
+  userAvatarLink: string;
+  userName: string;
 };
 
 export interface CarSearchResults {
   defaultResults: CarForMainPage[];
   fetchedResults: CarForMainPage[];
   fetchedCar: CarInfo;
+  carOwnerData: ICarOwnerData;
 }

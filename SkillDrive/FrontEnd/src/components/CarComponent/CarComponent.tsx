@@ -2,9 +2,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchCar } from '../../Actions/carSearchAction';
-import { CarInfo } from '../../Interfaces/ICarSearchResults';
+import { fetchCarOwner } from '../../Actions/userAction';
+import { CarInfo, ICarOwnerData } from '../../Interfaces/ICarSearchResults';
 import { IState } from '../../Interfaces/IState';
+import { carFeaturesList } from './CarFeaturesList';
 import CarGallery from '../CarGallery/CarGallery';
+import CalendarStatic from '../CalendarStatic/CalendarStatic';
+import { API_URL } from '../../http';
 import "./CarComponent.scss";
 
 export default function CarComponent() {
@@ -13,19 +17,31 @@ export default function CarComponent() {
   };
   const params = useParams<Params>();
 
+  const currentMonth = new Date;
+  const nextMonth = new Date;
+  currentMonth.setDate(1);
+  nextMonth.setMonth(nextMonth.getMonth() + 1);
+  nextMonth.setDate(1);
+
   const carOwnerId: string = useSelector((state: IState) => state.cars.fetchedCar.user);
   const images: string[] = useSelector((state: IState) => state.cars.fetchedCar.imagesLinks);
   const carDetails: CarInfo = useSelector((state: IState) => state.cars.fetchedCar);
+  const carOwnerData: ICarOwnerData = useSelector((state: IState) => state.cars.carOwnerData);
+
+  const carOwnerName = carOwnerData.userName?.split(" ")[0];
+  const carOwnerSurname = carOwnerData.userName?.split(" ").pop().slice(0, 1).toUpperCase();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const { id: carId } = params;
     dispatch(fetchCar(carId));
-  })
+  }, [])
 
   useEffect(() => {
-
+    if (carOwnerId) {
+      dispatch(fetchCarOwner(carOwnerId))
+    }
   }, [carOwnerId]);
 
   return (
@@ -57,44 +73,74 @@ export default function CarComponent() {
                 <div className='car-info__price-description'>при аренде на 5 дней</div>
               </div>
             </div>
-            <div className='car-info__features'>
+            <div className='car-info__information-wrapper'>
               <h2>Характеристики</h2>
-              <div className='car-info__feature'>
-                <div className='feature__title'>Год выпуска</div>
-                <div className='feature__value'>{carDetails.year}</div>
+              <div className='car-info__information'>
+                <div className='info__title'>Год выпуска</div>
+                <div className='info__value'>{carDetails.year}</div>
               </div>
-              <div className='car-info__feature'>
-                <div className='feature__title'>Кузов</div>
-                <div className='feature__value'>{carDetails.bodyType}</div>
+              <div className='car-info__information'>
+                <div className='info__title'>Кузов</div>
+                <div className='info__value'>{carDetails.bodyType}</div>
               </div>
-              <div className='car-info__feature'>
-                <div className='feature__title'>Двигатель</div>
-                <div className='feature__value'>{carDetails.engine.size} л / {carDetails.engine.brakePower} л.с. / {carDetails.engine.fuelType} </div>
+              <div className='car-info__information'>
+                <div className='info__title'>Двигатель</div>
+                <div className='info__value'>{carDetails.engine.size} л / {carDetails.engine.brakePower} л.с. / {carDetails.engine.fuelType} </div>
               </div>
-              <div className='car-info__feature'>
-                <div className='feature__title'>Трансмиссия</div>
-                <div className='feature__value'>{carDetails.transmission}</div>
+              <div className='car-info__information'>
+                <div className='info__title'>Трансмиссия</div>
+                <div className='info__value'>{carDetails.transmission}</div>
               </div>
-              <div className='car-info__feature'>
-                <div className='feature__title'>Привод</div>
-                <div className='feature__value'>{carDetails.drivingWheelType}</div>
+              <div className='car-info__information'>
+                <div className='info__title'>Привод</div>
+                <div className='info__value'>{carDetails.drivingWheelType}</div>
               </div>
-              <div className='car-info__feature'>
-                <div className='feature__title'>Пробег</div>
-                <div className='feature__value'>{carDetails.totalMileage}</div>
+              <div className='car-info__information'>
+                <div className='info__title'>Пробег</div>
+                <div className='info__value'>{carDetails.totalMileage} км</div>
               </div>
             </div>
           </div>
-          <div className='car-info__owner'>Owner
-            <div>Photo</div>
-            <div>Info</div>
-            <div>Link to User</div>
+          {carOwnerData.id &&
+            <div className='car-info__owner'>
+              <div className='owner-avatar'>
+                <img src={`${API_URL}/${carOwnerData.userAvatarLink}`} />
+              </div>
+              <div className='owner-name'>{carOwnerName} {carOwnerSurname}</div>
+              <div className='owner-title'>Владелец</div>
+              <div className='owner-link'><Link to={`/users/${carOwnerId}`}>Посмотреть профиль</Link></div>
+            </div>
+          }
+        </div>
+        <div className='car-info__features'>
+          <h2>Опции</h2>
+          <div className='car-info__features-wrapper'>
+            {Object.keys(carDetails.features).map(item => {
+              const queryIndex = carFeaturesList.findIndex(feature => feature.classId === item);
+              if (queryIndex) {
+                const iconClassname = carFeaturesList[queryIndex].className;
+                const iconDescription = carFeaturesList[queryIndex].description;
+                return (
+                  <div className='car-info__feature-wrapper' key={item}>
+                    <div className='car-info__icon'><i className={iconClassname}></i></div>
+                    <div className='car-info__description'>{iconDescription}</div>
+                  </div>
+                )
+              }
+            })}
           </div>
         </div>
-        <div>Features block</div>
-        <div>Calendar block</div>
+        <div className='car-info__availability'>
+          <h2>Доступность</h2>
+          <div className='car-info__calendars'>
+            <CalendarStatic
+              monthToShow={currentMonth} />
+            <CalendarStatic
+              monthToShow={nextMonth} />
+          </div>
+        </div>
       </div>}
       <div>Feedbacks</div>
-    </div>
+    </div >
   )
 }

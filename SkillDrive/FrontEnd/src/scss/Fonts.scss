@@ -35,11 +35,19 @@
 }
 
 @font-face {
-    font-family: 'sfdrive additional_01';
+    font-family: 'SFDrive-Additional';
     src: url('../fonts/sfdrive-additional_01.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'SFDrive-Car-Features';
+    src: url('../fonts/sfdrive-car-features.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 body {
     font-family: "Roboto";

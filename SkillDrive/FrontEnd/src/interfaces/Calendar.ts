@@ -5,3 +5,7 @@ export interface Calendar {
   onCalendarClick: (newDate: string) => void;
   selectedFromInputDate: string;
 }
+
+export interface ICalendarStatic {
+  monthToShow: Date;
+}

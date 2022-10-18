@@ -83,6 +83,17 @@
   }
 
   &items {
+    .week {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
     .active_days {
       display: flex;
       justify-content: center;
@@ -133,17 +144,6 @@
     }
   }
 
-}
-
-.week {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-bottom: 10px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
