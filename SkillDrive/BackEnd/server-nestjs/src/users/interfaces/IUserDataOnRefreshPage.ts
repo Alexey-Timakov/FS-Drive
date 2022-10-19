@@ -1,4 +1,3 @@
-import { UserDocument } from "@/schemas/user.schema";
 import { User as UserEntity } from "../entities/user.entity";
 import { ObjectID } from "typeorm";
 

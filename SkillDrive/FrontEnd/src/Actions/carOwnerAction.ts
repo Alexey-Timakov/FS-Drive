@@ -4,7 +4,7 @@ import { ICarOwnerData } from "../Interfaces/ICarSearchResults";
 export const FETCH_CAR_OWNER = "FETCH_CAR_OWNER";
 export const ADD_CAR_OWNER_DATA = "ADD_CAR_OWNER_DATA";
 
-export const addCarOwnerInfo = (carOwner: ICarOwnerData) => ({
+export const addCarOwnerData = (carOwner: ICarOwnerData) => ({
   type: ADD_CAR_OWNER_DATA,
   payload: {
     carOwner
@@ -12,9 +12,9 @@ export const addCarOwnerInfo = (carOwner: ICarOwnerData) => ({
 })
 
 export const fetchCarOwner = (userId: string) => dispatch => {
-  $api.get<ICarOwnerData>(`${API_URL}/users/get-user-data/${userId}`)
+  $api.get<ICarOwnerData>(`${API_URL}/users/get-car-owner-data/${userId}`)
     .then(data => {
-      dispatch(addCarOwnerInfo(data.data));
+      dispatch(addCarOwnerData(data.data));
     })
     .catch(error => {
       console.log(error);

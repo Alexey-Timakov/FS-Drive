@@ -10,13 +10,13 @@ export class FeedbacksController {
 
   // @UseGuards(AuthGuard)
   @Get('/:id')
-  async getCarFeedbacks(@Param('id') carid: string): Promise<IFeedback[]> {
-    return await this.feedbackService.getCarFeedbacks(carid);
+  async getUserFeedbacks(@Param('id') userId: string): Promise<IFeedback[]> {
+    return await this.feedbackService.getUserFeedbacks(userId);
   }
 
   // @UseGuards(AuthGuard)
   @Put('/:id')
-  async updateCarFeedbacks(@Param('id') carid: string, @Body() newFeedback: IFeedback): Promise<FeedbackEntity> {
-    return await this.feedbackService.updateCarFeedbacks(carid, newFeedback);
+  async updateUserFeedbacks(@Param('id') userId: string, @Body() newFeedback: IFeedback): Promise<FeedbackEntity> {
+    return await this.feedbackService.updateUserFeedbacks(userId, newFeedback);
   }
 }

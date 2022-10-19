@@ -2,13 +2,16 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchCar } from '../../Actions/carSearchAction';
-import { fetchCarOwner } from '../../Actions/userAction';
+import { fetchCarOwner } from '../../Actions/carOwnerAction';
+import { fetchUserFeedbacks } from '../../Actions/feedbackAction';
 import { CarInfo, ICarOwnerData } from '../../Interfaces/ICarSearchResults';
 import { IState } from '../../Interfaces/IState';
 import { carFeaturesList } from './CarFeaturesList';
 import CarGallery from '../CarGallery/CarGallery';
 import CalendarStatic from '../CalendarStatic/CalendarStatic';
+import Feedback from '../Feedback/Feedback';
 import { API_URL } from '../../http';
+import { IUserFeedback } from '../../Interfaces/IUserFeedback';
 import "./CarComponent.scss";
 
 export default function CarComponent() {
@@ -16,6 +19,7 @@ export default function CarComponent() {
     id: string;
   };
   const params = useParams<Params>();
+  const { id: carId } = params;
 
   const currentMonth = new Date;
   const nextMonth = new Date;
@@ -27,6 +31,7 @@ export default function CarComponent() {
   const images: string[] = useSelector((state: IState) => state.cars.fetchedCar.imagesLinks);
   const carDetails: CarInfo = useSelector((state: IState) => state.cars.fetchedCar);
   const carOwnerData: ICarOwnerData = useSelector((state: IState) => state.cars.carOwnerData);
+  const userFeedbacks: IUserFeedback[] = useSelector((state: IState) => state.cars.carOwnerData.feedbacks);
 
   const carOwnerName = carOwnerData.userName?.split(" ")[0];
   const carOwnerSurname = carOwnerData.userName?.split(" ").pop().slice(0, 1).toUpperCase();
@@ -34,13 +39,13 @@ export default function CarComponent() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const { id: carId } = params;
     dispatch(fetchCar(carId));
   }, [])
 
   useEffect(() => {
     if (carOwnerId) {
-      dispatch(fetchCarOwner(carOwnerId))
+      dispatch(fetchCarOwner(carOwnerId));
+      dispatch(fetchUserFeedbacks(carOwnerId))
     }
   }, [carOwnerId]);
 
@@ -140,7 +145,25 @@ export default function CarComponent() {
           </div>
         </div>
       </div>}
-      <div>Feedbacks</div>
+      {userFeedbacks && <div className='car-info__feedbacks-wrapper'>
+        <h2>Отзывы</h2>
+        <div className='car-info__rank-wrapper'>
+          <i className='icon-star'></i>
+          {carOwnerData.avgRank}<span> ({userFeedbacks.length} отзыва)</span>
+        </div>
+        <div className='car-info__feedbacks'>
+          {userFeedbacks.map(item => {
+            return (
+              <Feedback feedback={item} key={item.date} />
+            )
+          })}
+        </div>
+      </div>}
+      <div className='car-info__footer'>
+        <Link to={`/cars/rent/${carId}`}>
+          Арендовать
+        </Link>
+      </div>
     </div >
   )
 }

@@ -1,3 +1,5 @@
+import { IUserFeedback } from "./IUserFeedback";
+
 export interface CarForMainPage {
   _id: string;
   brand: string;
@@ -77,6 +79,12 @@ export interface ICarOwnerData {
   id: string;
   userAvatarLink: string;
   userName: string;
+  avgRank: number;
+  userBirth: string;
+  userPhone: string;
+  userMail: string;
+  cars: string[];
+  feedbacks?: IUserFeedback[];
 };
 
 export interface CarSearchResults {

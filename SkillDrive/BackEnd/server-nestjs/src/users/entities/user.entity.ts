@@ -52,4 +52,7 @@ export class User {
 
   @Column()
   cars: string[];
+
+  @Column()
+  avgRank: number;
 }

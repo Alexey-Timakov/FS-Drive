@@ -7,6 +7,7 @@ import { IAuthCredentials } from '../interfaces/IAuthCredentials';
 import { IUserLoggedIn } from '../interfaces/IUserLoggedIn';
 import { IUserDataOnRefreshPage } from '../interfaces/IUserDataOnRefreshPage';
 import { AuthGuard } from '@/guards/auth.guard';
+import { ICarOwnerData } from '../interfaces/ICarOwnerData';
 
 
 @Controller('users')
@@ -57,6 +58,21 @@ export class AuthController {
   async getUserInfo(@Param("id") id: string): Promise<IUserDataOnRefreshPage> {
     try {
       const result = await this.authService.getUserData(id);
+      if (result) {
+        return result;
+      } else {
+        throw new HttpException("User not found", HttpStatus.BAD_REQUEST)
+      }
+    } catch (error) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  @Get('get-car-owner-data/:id')
+  @UseGuards(AuthGuard)
+  async getCarOwnerData(@Param("id") id: string): Promise<ICarOwnerData> {
+    try {
+      const result = await this.authService.getCarOwnerData(id);
       if (result) {
         return result;
       } else {

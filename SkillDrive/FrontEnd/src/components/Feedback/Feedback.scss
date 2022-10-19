@@ -1,0 +1,61 @@
+@import "../../scss/variables";
+@import "../../scss//Fonts.scss";
+
+.feedback__ {
+  &wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    padding-bottom: 60px;
+
+    &:nth-child(odd) {
+      padding-right: 20px;
+    }
+  }
+
+  &header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  &avatar {
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    >img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+
+    .name {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 27px;
+      color: $car-info-text-value;
+    }
+
+    .date {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: $car-info-text-description;
+    }
+  }
+
+  &text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $car-info-text-value;
+  }
+}

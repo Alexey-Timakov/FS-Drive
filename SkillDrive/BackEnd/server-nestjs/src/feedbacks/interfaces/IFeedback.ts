@@ -1,18 +1,20 @@
-import { ObjectID } from "typeorm/driver/mongodb/typings";
-
 export interface IFeedback {
-  userId: string;
+  // Feedback author's id
+  authorId: string;
+  name: string;
   rank: number;
   date: string;
   text: string;
 }
 
-export class NewCarFeedbackData {
-  carId: string;
+export class NewUserFeedbackData {
+  userId: string;
   feedbacks: IFeedback[];
+  avgRank: number;
 
-  constructor(feedback: IFeedback, carId: string) {
-    this.carId = carId;
+  constructor(userId: string, feedback: IFeedback) {
+    this.userId = userId;
     this.feedbacks = [feedback];
+    this.avgRank = feedback.rank;
   }
 }

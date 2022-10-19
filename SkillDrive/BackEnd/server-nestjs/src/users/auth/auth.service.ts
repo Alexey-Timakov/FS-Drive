@@ -10,6 +10,7 @@ import { IUserLoggedInWithRefreshToken } from '../interfaces/IUserLoggedInWithRe
 import { validateRefreshToken } from '@/services/validate.token';
 import { IUserDataOnRefreshPage } from '../interfaces/IUserDataOnRefreshPage';
 import { AuthRepository } from '../repositories/auth.repository';
+import { ICarOwnerData } from '../interfaces/ICarOwnerData';
 
 @Injectable()
 export class AuthService {
@@ -78,6 +79,23 @@ export class AuthService {
       if (queryUser) {
         console.log("user found", queryUser._id);
         const userData = new IUserDataOnRefreshPage(queryUser);
+        return userData;
+      }
+      else {
+        console.log("user data not found", queryUser._id);
+        throw new Error;
+      }
+    } catch (error) {
+      throw new Error;
+    }
+  }
+
+  async getCarOwnerData(id: string): Promise<ICarOwnerData> {
+    try {
+      const queryUser = await this.authRepository.getUserById(id);
+      if (queryUser) {
+        console.log("user found", queryUser._id);
+        const userData = new ICarOwnerData(queryUser);
         return userData;
       }
       else {
