@@ -17,5 +17,11 @@ export interface CarSearchOptions {
   town: string;
   townVariants: Town[];
   dates: DateStartDateEnd;
-  carCategory: string;
+  categoryName: string;
 }
+
+export interface ICarSearchBody {
+  town: string;
+  dates: string[];
+  categoryName: string;
+};

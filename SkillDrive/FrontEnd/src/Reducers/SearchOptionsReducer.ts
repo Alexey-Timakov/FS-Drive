@@ -7,7 +7,7 @@ const DEFAULT_STATE: CarSearchOptions = {
     dateStart: "",
     dateEnd: ""
   },
-  carCategory: "Легковые",
+  categoryName: "Легковые",
   townVariants: [],
 }
 
@@ -17,7 +17,7 @@ export const searchOptions = (state = DEFAULT_STATE, action) => {
       const categoryName = action.payload.categoryName;
       return {
         ...state,
-        carCategory: categoryName
+        categoryName: categoryName
       };
     case CHANGE_TOWN_NAME:
       const townName = action.payload.townName;

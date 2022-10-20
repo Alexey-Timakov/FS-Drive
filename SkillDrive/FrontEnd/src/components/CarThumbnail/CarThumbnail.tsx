@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { API_URL } from '../../http'
 import { ICarThumbnail } from '../../Interfaces/ICarThumbnail';
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import "./CarThumbnail.scss";
 export default function CarThumbnail({ car }: ICarThumbnail) {
 
   return (
-    <Link to={`/cars/${car._id}`} >
+    <Link to={`/cars/${car.carId}`} >
       <div className='car-thumbnail__wrapper'>
         <img src={`${API_URL}/${car.primaryImageLink}`} />
         <div className='car-thumbnail__avatar'><img src={`${API_URL}/files/avatar/${car.user}`} /></div>

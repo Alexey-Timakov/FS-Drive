@@ -15,11 +15,12 @@
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: $login-button-text-color;
     padding: 12px 27px;
-    background-color: $light-green;
     border-radius: 6px;
     margin-left: 18px;
+    color: $login-button-text-color;
+    background-color: $light-green;
+    border: none;
 
     &:hover {
       cursor: pointer;

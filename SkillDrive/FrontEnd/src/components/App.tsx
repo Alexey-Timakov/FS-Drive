@@ -18,11 +18,11 @@ function App() {
         <NoScript />
         <Switch>
           <Route exact path="/" component={MainPagesWrapper} />
-          <Route path="/faq" component={Faq} />
-          <Route path="/about" component={About} />
-          <Route path="/reg" component={Reg} />
+          <Route exact path="/faq" component={Faq} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/reg" component={Reg} />
           <Route exact path="/cars" component={MainPagesWrapper} />
-          <Route path="/cars/:id" component={CarComponent} />
+          <Route exact path="/cars/:id" component={CarComponent} />
         </Switch>
         <Footer />
       </Router>

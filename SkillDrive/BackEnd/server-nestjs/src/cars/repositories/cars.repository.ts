@@ -3,6 +3,9 @@ import { User as UserEntity } from "@/users/entities/user.entity";
 import { Injectable } from "@nestjs/common";
 import { Cars as CarsEntity } from "../entities/car.entity";
 import { ICarInfo } from "../interfaces/ICar";
+import { ICarSearchBody } from "../interfaces/ICarSearchBody";
+const _ = require('lodash/array');
+
 // import { ObjectID } from "mongodb";
 
 @Injectable()
@@ -46,6 +49,51 @@ export class CarsRepository {
     try {
       return await repository.findOneBy(carId);
     } catch (error) {
+      throw new Error;
+    }
+  }
+
+  async searchCarsWithTown(searchOptions: ICarSearchBody): Promise<CarsEntity[]> {
+    const carsRepository = MongoDataSource.getMongoRepository(CarsEntity);
+    try {
+      const queryCars = await carsRepository.find({
+        where: {
+          town: searchOptions.town,
+          categoryName: searchOptions.categoryName
+        }
+      });
+
+      if (queryCars) {
+        const filteredCars = queryCars.filter(item => {
+          const intersect = _.intersection(item.orderedDates, searchOptions.dates);
+          return intersect.length === 0;
+        });
+        return filteredCars;
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error;
+    }
+  }
+
+  async searchCarsWithoutTown(searchOptions: ICarSearchBody): Promise<CarsEntity[]> {
+    const carsRepository = MongoDataSource.getMongoRepository(CarsEntity);
+    try {
+      const queryCars = await carsRepository.find({
+        where: {
+          categoryName: searchOptions.categoryName
+        }
+      });
+
+      if (queryCars) {
+        const filteredCars = queryCars.filter(item => {
+          const intersect = _.intersection(item.orderedDates, searchOptions.dates);
+          return intersect.length === 0;
+        });
+        return filteredCars;
+      }
+    } catch (error) {
+      console.log(error);
       throw new Error;
     }
   }

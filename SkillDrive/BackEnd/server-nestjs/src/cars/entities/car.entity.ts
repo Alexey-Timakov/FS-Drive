@@ -7,6 +7,9 @@ export class Cars {
   _id: ObjectID;
 
   @Column()
+  town: string;
+
+  @Column()
   brand: string;
 
   @Column()
@@ -19,7 +22,7 @@ export class Cars {
   prices: ICarPrices;
 
   @Column()
-  categoryClass: string;
+  categoryName: string;
 
   @Column()
   primaryImageLink?: string;

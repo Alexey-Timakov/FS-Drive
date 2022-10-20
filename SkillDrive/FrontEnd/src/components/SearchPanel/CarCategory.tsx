@@ -8,7 +8,7 @@ import { changeCarType } from "../../Actions/searchOptionsAction";
 
 export default function CarCategory() {
   const [isModalActive, toggleModalActive] = useState<Boolean>(false);
-  const selectedCategory = useSelector((state: IState) => state.searchOptions.carCategory);
+  const selectedCategoryName = useSelector((state: IState) => state.searchOptions.categoryName);
   const dispatch = useDispatch();
 
   const showModalWindow = () => {
@@ -25,7 +25,7 @@ export default function CarCategory() {
       <div className='car-category__input-wrapper'>
         <div className='car-category__selected'>
           <div className='car-category__title'>Категория</div>
-          <div className='car-category__name'>{selectedCategory}</div>
+          <div className='car-category__name'>{selectedCategoryName}</div>
         </div>
         <div className='car-category__arrow-down-button' onClick={() => showModalWindow()}>
           <i className='icon-arrow-down'></i>
@@ -40,7 +40,7 @@ export default function CarCategory() {
                 <div className='car-category__variant-class'>{item.categoryClass}</div>
               </div>
               <div className='car-category__tick'>
-                {item.categoryName === selectedCategory &&
+                {item.categoryName === selectedCategoryName &&
                   <i className='icon-tick'></i>}
               </div>
             </div>

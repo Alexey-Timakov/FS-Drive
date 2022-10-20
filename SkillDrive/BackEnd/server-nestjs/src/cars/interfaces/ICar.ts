@@ -6,14 +6,14 @@ export interface NewCarQueryParams {
 }
 
 export interface ICarMain {
+  carId: ObjectID;
   brand: string;
   model: string;
   year: number;
-  price: number;
-  categoryClass: string;
+  town: string;
+  categoryName: string;
   primaryImageLink?: string;
   user: string;
-  _id: ObjectID;
 };
 
 export interface ICarRank {
@@ -77,23 +77,25 @@ export interface ICarInfo extends ICarMain {
 };
 
 export class MainCarInfo {
+  carId: ObjectID;
   brand: string;
   model: string;
   year: number;
   price: number;
-  categoryClass: string;
+  town: string;
+  categoryName: string;
   primaryImageLink: string;
   user: string;
-  _id: ObjectID;
 
   constructor(model: CarsEntity) {
+    this.carId = model._id;
     this.brand = model.brand;
     this.model = model.model;
     this.year = model.year;
     this.price = model.prices?.priceUsual || 9999;
-    this.categoryClass = model.categoryClass;
+    this.town = model.town;
+    this.categoryName = model.categoryName;
     this.primaryImageLink = model.imagesLinks[0];
     this.user = model.user;
-    this._id = model._id;
   }
 }

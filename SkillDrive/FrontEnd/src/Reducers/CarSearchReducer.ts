@@ -1,13 +1,13 @@
 import { CarSearchResults, CarInfo, ICarOwnerData } from "../Interfaces/ICarSearchResults";
-import { ADD_DEFAULT_CARS, ADD_FETCHED_CAR } from "../Actions/carSearchAction";
+import { ADD_FETCHED_CARS, ADD_FETCHED_CAR, ADD_DEFAULT_CARS } from "../Actions/carSearchAction";
 import { ADD_CAR_OWNER_DATA } from "../Actions/carOwnerAction";
 import { ADD_USER_FEEDBACKS } from "../Actions/feedbackAction";
 
 const DEFAULT_STATE: CarSearchResults = {
-  defaultResults: [],
   fetchedResults: [],
   fetchedCar: {} as CarInfo,
   carOwnerData: {} as ICarOwnerData,
+  isSearchExecuted: false
 }
 
 export const carSearch = (state = DEFAULT_STATE, action) => {
@@ -16,7 +16,15 @@ export const carSearch = (state = DEFAULT_STATE, action) => {
       const defaultResults = action.payload.cars;
       return {
         ...state,
-        defaultResults
+        fetchedResults: defaultResults
+      };
+
+    case ADD_FETCHED_CARS:
+      const fetchedResults = action.payload.cars;
+      return {
+        ...state,
+        isSearchExecuted: true,
+        fetchedResults
       };
 
     case ADD_FETCHED_CAR:

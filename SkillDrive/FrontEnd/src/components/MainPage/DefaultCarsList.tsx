@@ -7,7 +7,7 @@ import "./DefaultCarsList.scss";
 
 export default function DefaultCarsList() {
   const dispatch = useDispatch();
-  const defaultCarsList = useSelector((state: IState) => state.cars.defaultResults);
+  const defaultCarsList = useSelector((state: IState) => state.cars.fetchedResults);
 
   useEffect(() => {
     dispatch(fetchDefaultCars());
@@ -21,7 +21,7 @@ export default function DefaultCarsList() {
           return (
             <CarThumbnail
               car={item}
-              key={item._id}
+              key={item.carId}
             />
           )
         })}

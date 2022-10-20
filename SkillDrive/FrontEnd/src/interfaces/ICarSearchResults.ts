@@ -1,14 +1,25 @@
 import { IUserFeedback } from "./IUserFeedback";
 
-export interface CarForMainPage {
-  _id: string;
+//Type for search page: 
+export interface ICarSearchResult {
+  carId: string;
   brand: string;
   model: string;
   year: number;
+  engine: ICarEngine;
+  transmission: string;
+  drivingWheelType: string;
   price: number;
-  categoryClass: string;
+  categoryName: string;
   primaryImageLink: string;
+  avgRank: number;
   user: string;
+};
+
+export interface ICarEngine {
+  size: number;
+  brakePower: number;
+  fuelType: string;
 };
 
 export interface ICarRank {
@@ -41,7 +52,8 @@ export interface ICarFeatures {
   rearViewCamera?: boolean;
 }
 
-export interface CarInfo extends CarForMainPage {
+// Type on add-new-car and get-car
+export interface CarInfo extends ICarSearchResult {
   numberPlate: string;
   VIN: string;
   PTSnumber: string;
@@ -87,9 +99,10 @@ export interface ICarOwnerData {
   feedbacks?: IUserFeedback[];
 };
 
+// State type:
 export interface CarSearchResults {
-  defaultResults: CarForMainPage[];
-  fetchedResults: CarForMainPage[];
+  fetchedResults: ICarSearchResult[];
   fetchedCar: CarInfo;
   carOwnerData: ICarOwnerData;
+  isSearchExecuted: boolean;
 }
