@@ -7,13 +7,13 @@ export interface IFeedback {
   text: string;
 }
 
-export class NewUserFeedbackData {
-  userId: string;
+export class NewCarFeedbackData {
+  carId: string;
   feedbacks: IFeedback[];
   avgRank: number;
 
-  constructor(userId: string, feedback: IFeedback) {
-    this.userId = userId;
+  constructor(carId: string, feedback: IFeedback) {
+    this.carId = carId;
     this.feedbacks = [feedback];
     this.avgRank = feedback.rank;
   }

@@ -9,6 +9,7 @@ import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import MainPagesWrapper from "./MainPage/MainPagesWrapper";
 import Reg from "./Reg/Reg";
+import SearchResultPage from "./SearchResultPage/SearchResultPage";
 
 function App() {
   return (
@@ -18,11 +19,12 @@ function App() {
         <NoScript />
         <Switch>
           <Route exact path="/" component={MainPagesWrapper} />
-          <Route exact path="/faq" component={Faq} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/reg" component={Reg} />
+          <Route path="/faq" component={Faq} />
+          <Route path="/about" component={About} />
+          <Route path="/reg" component={Reg} />
           <Route exact path="/cars" component={MainPagesWrapper} />
-          <Route exact path="/cars/:id" component={CarComponent} />
+          <Route exact path="/cars/search" component={SearchResultPage} />
+          <Route path="/cars/:id" component={CarComponent} />
         </Switch>
         <Footer />
       </Router>

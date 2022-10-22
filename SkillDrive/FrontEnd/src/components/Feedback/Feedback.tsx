@@ -1,9 +1,9 @@
 import React from 'react'
 import { API_URL } from '../../http';
-import { IFeedback } from '../../Interfaces/IFeedback'
+import { IFeedbackComponent } from '../../Interfaces/ICarFeedback'
 import "./Feedback.scss";
 
-export default function Feedback({ feedback }: IFeedback) {
+export default function Feedback({ feedback }: IFeedbackComponent) {
   const name = feedback.name.split(" ")[0];
   const surname = feedback.name.split(" ").pop().slice(0, 1).concat(".");
   return (

@@ -2,14 +2,14 @@ import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { Cars as CarsEntity } from './entities/car.entity';
 import { ICarInfo, ICarMain, NewCarQueryParams } from './interfaces/ICar';
-import { ICarSearchBody, ICarSearchResult } from './interfaces/ICarSearchBody';
+import { CarSearchResult, ICarSearchBody, ICarSearchResult } from './interfaces/ICarSearchBody';
 
 @Controller('cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) { }
 
   @Get('get-all-cars')
-  async getAllCars(): Promise<ICarMain[]> {
+  async getAllCars(): Promise<CarSearchResult[]> {
     return await this.carsService.getAllCars();
   }
 

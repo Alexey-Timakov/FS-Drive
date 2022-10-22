@@ -7,7 +7,7 @@ import "./DefaultCarsList.scss";
 
 export default function DefaultCarsList() {
   const dispatch = useDispatch();
-  const defaultCarsList = useSelector((state: IState) => state.cars.fetchedResults);
+  const defaultCarsList = useSelector((state: IState) => state.cars.fetchedCars);
 
   useEffect(() => {
     dispatch(fetchDefaultCars());

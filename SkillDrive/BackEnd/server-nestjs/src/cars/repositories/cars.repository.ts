@@ -19,6 +19,7 @@ export class CarsRepository {
       // const newCarData = new NewCar(newCar);
       // newCarData._id = ObjectID();
       newCarData.user = userId;
+      newCarData.avgRank = 0;
       return await carRepository.save(newCarData);
     } catch (error) {
       throw new Error;

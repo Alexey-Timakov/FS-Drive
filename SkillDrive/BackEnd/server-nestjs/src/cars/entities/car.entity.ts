@@ -70,5 +70,8 @@ export class Cars {
   orderedDates: string[];
 
   @Column()
-  ranks: ICarRank[];
+  avgRank: number;
+
+  @Column()
+  totalRanks: number;
 }

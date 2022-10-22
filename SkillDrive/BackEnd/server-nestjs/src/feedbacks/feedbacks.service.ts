@@ -6,12 +6,13 @@ import { FeedbackRepository } from './repositories/feedback.repository';
 export class FeedbacksService {
   constructor(private readonly feedbackRepository: FeedbackRepository) { }
 
-  async getUserFeedbacks(userId: string): Promise<IFeedback[]> {
-    const result = await this.feedbackRepository.getUserFeedbacks(userId);
-    return result.feedbacks
+  async getCarFeedbacks(carId: string): Promise<IFeedback[] | []> {
+    const result = await this.feedbackRepository.getCarFeedbacks(carId);
+    if (result) return result.feedbacks;
+    else return []
   }
 
-  async updateUserFeedbacks(userId: string, newFeedback: IFeedback) {
-    return await this.feedbackRepository.updateUserFeedbacks(userId, newFeedback)
+  async updateCarFeedbacks(carId: string, newFeedback: IFeedback) {
+    return await this.feedbackRepository.updateCarFeedbacks(carId, newFeedback)
   }
 }

@@ -1,0 +1,61 @@
+@import "../../scss/variables";
+
+.search-results__ {
+  &wrapper {
+    width: 1024px;
+    margin: 46px auto 0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &search-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .search-btn {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      padding: 12px 27px;
+      border-radius: 6px;
+      color: $login-button-text-color;
+      background-color: $light-green;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 40px;
+
+    >button {
+      border: 1px solid $car-search-button-border-gray;
+      background-color: $car-search-button-back-light-gray;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: $car-info-text-value;
+      padding: 12px;
+      border-radius: 8px;
+      margin-right: 12px;
+    }
+  }
+
+  &results {
+    width: 100%;
+
+    >a {
+      text-decoration: none;
+      color: $car-info-text-value;
+    }
+  }
+}

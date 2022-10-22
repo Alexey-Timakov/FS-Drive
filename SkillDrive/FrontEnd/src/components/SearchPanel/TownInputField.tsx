@@ -15,7 +15,7 @@ export default function TownInputField() {
     const newTownName = event.target.value;
     dispatch(changeTownName(newTownName));
 
-    if (newTownName.length >= 3) {
+    if (newTownName.length >= 2) {
       dispatch(searchTowns(newTownName));
     }
   }
@@ -26,10 +26,14 @@ export default function TownInputField() {
   }
 
   useEffect(() => {
-    if (townVariants.length) {
+    if (townVariants.length >= 2) {
       toggleModalActive(true);
     }
   }, [townVariants]);
+
+  useEffect(() => {
+    toggleModalActive(false);
+  }, []);
 
   return (
     <div className='town__wrapper'>

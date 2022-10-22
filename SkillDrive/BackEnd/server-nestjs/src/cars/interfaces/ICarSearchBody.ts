@@ -35,6 +35,7 @@ export class CarSearchResult {
   carId: string;
   user: string;
   avgRank: number;
+  totalRanks: number;
 
   constructor(model: CarsEntity) {
     this.brand = model.brand;
@@ -46,7 +47,9 @@ export class CarSearchResult {
     this.price = model.prices?.priceUsual || 9999;
     this.categoryName = model.categoryName;
     this.primaryImageLink = model.imagesLinks[0];
-    this.user = model.user;
     this.carId = model._id.toString();
+    this.user = model.user;
+    this.avgRank = model.avgRank;
+    this.totalRanks = model.totalRanks;
   }
 }

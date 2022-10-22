@@ -1,13 +1,38 @@
 @import "../../scss/variables";
 
-.main-page-reg__title {
-  margin-bottom: 50px;
-  margin-top: 100px;
-  text-align: center;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 58px;
-  text-align: center;
-  color: $reg-black-label-text;
+.main-page-reg__ {
+  &title {
+    margin-bottom: 50px;
+    margin-top: 100px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 58px;
+    text-align: center;
+    color: $reg-black-label-text;
+  }
+
+  &search-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .search-btn {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      padding: 12px 27px;
+      border-radius: 6px;
+      margin-left: 18px;
+      color: $login-button-text-color;
+      background-color: $light-green;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

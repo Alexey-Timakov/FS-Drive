@@ -35,7 +35,6 @@ export default function SearchPanel() {
         <DateInputField />
         <CarCategory />
       </div>
-      <button ref={searchButton} className='search-panel__btn' onClick={(e) => searchCars(e)}>Найти</button>
     </div>
   )
 }

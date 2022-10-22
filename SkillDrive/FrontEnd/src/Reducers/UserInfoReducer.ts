@@ -1,6 +1,7 @@
 import { ADD_USER_INFO } from "../Actions/addUserInfoToStateAction";
 import { ADD_INITIAL_DATA } from "../Actions/addInitialLoadingData";
 import { IUserState } from "../Interfaces/IUserState";
+
 const DEFAULT_STATE = {} as IUserState;
 
 export const userInfo = (state: IUserState = DEFAULT_STATE, action) => {

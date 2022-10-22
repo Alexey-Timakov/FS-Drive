@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { fetchCar } from '../../Actions/carSearchAction';
 import { fetchCarOwner } from '../../Actions/carOwnerAction';
-import { fetchUserFeedbacks } from '../../Actions/feedbackAction';
+import { fetchCarFeedbacks } from '../../Actions/feedbackAction';
 import { CarInfo, ICarOwnerData } from '../../Interfaces/ICarSearchResults';
 import { IState } from '../../Interfaces/IState';
 import { carFeaturesList } from './CarFeaturesList';
@@ -11,7 +11,7 @@ import CarGallery from '../CarGallery/CarGallery';
 import CalendarStatic from '../CalendarStatic/CalendarStatic';
 import Feedback from '../Feedback/Feedback';
 import { API_URL } from '../../http';
-import { IUserFeedback } from '../../Interfaces/IUserFeedback';
+import { IFeedback } from '../../Interfaces/ICarFeedback';
 import "./CarComponent.scss";
 
 export default function CarComponent() {
@@ -31,30 +31,31 @@ export default function CarComponent() {
   const images: string[] = useSelector((state: IState) => state.cars.fetchedCar.imagesLinks);
   const carDetails: CarInfo = useSelector((state: IState) => state.cars.fetchedCar);
   const carOwnerData: ICarOwnerData = useSelector((state: IState) => state.cars.carOwnerData);
-  const userFeedbacks: IUserFeedback[] = useSelector((state: IState) => state.cars.carOwnerData.feedbacks);
-
+  const carFeedbacks: IFeedback[] = useSelector((state: IState) => state.feedbacks.carFeedbacks);
   const carOwnerName = carOwnerData.userName?.split(" ")[0];
   const carOwnerSurname = carOwnerData.userName?.split(" ").pop().slice(0, 1).toUpperCase();
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchCar(carId));
+    dispatch(fetchCarFeedbacks(carId))
   }, [])
 
   useEffect(() => {
     if (carOwnerId) {
       dispatch(fetchCarOwner(carOwnerId));
-      dispatch(fetchUserFeedbacks(carOwnerId))
     }
   }, [carOwnerId]);
 
   return (
     <div className='car-info__wrapper'>
       <div className='car-info__header'>
-        <Link to={`/cars/`} >
+        <a onClick={() => { history.goBack() }}>
           <i className='icon-arrow-left'><span>Назад</span></i>
-        </Link>
+        </a>
       </div>
       {
         images &&
@@ -145,16 +146,16 @@ export default function CarComponent() {
           </div>
         </div>
       </div>}
-      {userFeedbacks && <div className='car-info__feedbacks-wrapper'>
+      {(carFeedbacks.length !== 0) && <div className='car-info__feedbacks-wrapper'>
         <h2>Отзывы</h2>
         <div className='car-info__rank-wrapper'>
           <i className='icon-star'></i>
-          {carOwnerData.avgRank}<span> ({userFeedbacks.length} отзыва)</span>
+          {carDetails.avgRank}<span> ({carFeedbacks.length} отзыва)</span>
         </div>
         <div className='car-info__feedbacks'>
-          {userFeedbacks.map(item => {
+          {carFeedbacks.map((item, index) => {
             return (
-              <Feedback feedback={item} key={item.date} />
+              <Feedback feedback={item} key={index} />
             )
           })}
         </div>

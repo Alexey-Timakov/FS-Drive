@@ -8,8 +8,8 @@ export class Feedback {
   _id: ObjectID;
 
   @Column()
-  //Id of car owner. All feedbacks are related to user, not to car.
-  userId: Types.ObjectId;
+  //Id of car. All feedbacks are related to a car, not to a user.
+  carId: Types.ObjectId;
 
   @Column()
   feedbacks: IFeedback[];
